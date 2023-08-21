@@ -382,7 +382,7 @@
 <form method="post" action="{{ route('agent.store.new.multiimage') }}" id="myForm" enctype="multipart/form-data">
                 @csrf
 
-        <input type="hidden" name="imageid" value="{{ $property->id }}">
+        <input type="hidden" name="imageId" value="{{ $property->id }}">
 
 <table class="table table-striped">
  <tbody>

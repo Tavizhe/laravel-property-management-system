@@ -20,29 +20,29 @@
   <form id="myForm" method="POST" action="{{ route('update.agent') }}" class="forms-sample">
 				@csrf
  
-    <input type="hidden" name="id" value="{{ $allagent->id }}">
+    <input type="hidden" name="id" value="{{ $allAgent->id }}">
 
 				<div class="form-group mb-3">
  <label for="exampleInputEmail1" class="form-label">Agent Name   </label>
-	 <input type="text" name="name" class="form-control" value="{{ $allagent->name }}" > 
+	 <input type="text" name="name" class="form-control" value="{{ $allAgent->name }}" > 
 				</div>
 
                 <div class="form-group mb-3">
  <label for="exampleInputEmail1" class="form-label">Agent Email   </label>
-     <input type="email" name="email" class="form-control"  value="{{ $allagent->email }}" > 
+     <input type="email" name="email" class="form-control"  value="{{ $allAgent->email }}" > 
                 </div>
 
 
                 <div class="form-group mb-3">
  <label for="exampleInputEmail1" class="form-label">Agent Phone   </label>
-     <input type="text" name="phone" class="form-control"  value="{{ $allagent->phone }}"  > 
+     <input type="text" name="phone" class="form-control"  value="{{ $allAgent->phone }}"  > 
                 </div>
 
 
 
                 <div class="form-group mb-3">
  <label for="exampleInputEmail1" class="form-label">Agent Address   </label>
-     <input type="text" name="address" class="form-control"  value="{{ $allagent->address }}" > 
+     <input type="text" name="address" class="form-control"  value="{{ $allAgent->address }}" > 
                 </div>
 
   

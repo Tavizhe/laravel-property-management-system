@@ -1,0 +1,1 @@
+1. First issue is that all agent need to pay money to access property adding also in admin. TODO:

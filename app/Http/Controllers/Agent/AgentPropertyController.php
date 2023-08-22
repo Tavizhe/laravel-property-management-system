@@ -1,37 +1,57 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Agent;
 
 use App\Http\Controllers\Controller;
 use App\Models\Amenities;
 use App\Models\MultiImage;
+use App\Models\PackagePlan;
 use App\Models\Property;
 use App\Models\PropertyType;
 use App\Models\User;
+use barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use DB;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
-class PropertyController extends Controller
+class AgentPropertyController extends Controller
 {
-    public function AllProperty()
+    public function AgentAllProperty()
     {
-        $property = Property::latest()->get();
+        $id = Auth::user()->id;
+        $property = Property::where('agent_id', $id)->first();
 
-        return view('backend.property.all_property', compact('property'));
+        return view('agent.property.all_property', compact('property'));
     } // End Method
 
-    public function AddProperty()
+    public function AgentAddProperty()
     {
         $propertyType = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
-        $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('backend.property.add_property', compact('propertyType', 'amenities', 'activeAgent'));
+        // TODO:
+        $id = Auth::user()->id;
+        $property = User::where('role', 'agent')->where('id', $id)->first();
+        $pCount = $property->credit;
+        if ($pCount == 1 || 7) {
+            return redirect()->route('buy.package');
+        } else {
+            return view('agent.property.all_property', compact('propertyType', 'amenities'));
+        }
+        // TODO:
+
+        // return view('agent.property.all_property', compact('propertyType', 'amenities'));
     } // End Method
 
-    public function StoreProperty(Request $request)
+    public function AgentStoreProperty(Request $request)
     {
+        // TODO:
+        $id = Auth::user()->id;
+        $uid = User::findOFail($id);
+        $nid = $uid->credits;
+        // TODO:
         $amen = $request->amenities_id;
         $amenities = implode(',', $amen);
 
@@ -67,12 +87,11 @@ class PropertyController extends Controller
             'longitude' => $request->longitude,
             'featured' => $request->featured,
             'hot' => $request->hot,
-            'agent_id' => $request->agent_id,
+            'agent_id' => Auth::user()->id,
             'status' => 1,
             'property_thambnail' => $save_url,
             'created_at' => $request->Carbon::now(),
         ]);
-
         /* Multiple image Upload */
 
         $image = $request->file('multi_img');
@@ -98,17 +117,22 @@ class PropertyController extends Controller
                 $fCount->distance = $request->distance[$i];
                 $fCount->save();
             }
+            // TODO:
+            User::where('id', $id)->update([
+                'credit' => DB::raw('1 + '.$nid),
+            ]);
+            // TODO:
         }
         $notification = [
             'message' => 'Property Inserted Successfully',
             'alert-type' => 'success',
         ];
 
-        return redirect()->route('all.property')->with($notification);
+        return redirect()->route('agent.all.property')->with($notification);
 
     } // End Method
 
-    public function EditProperty($id)
+    public function AgentEditProperty($id)
     {
         $facilities = Facility::where('property_id', $id)->get();
         $property = Property::findOrFail($id);
@@ -117,12 +141,11 @@ class PropertyController extends Controller
         $multiImage = MultiImage::where('property_id', $id)->get();
         $propertyType = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
-        $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('backend.property.edit_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'multiImage', 'facilities'));
+        return view('agent.property.edit_property', compact('property', 'propertyType', 'amenities', 'property_ami', 'multiImage', 'facilities'));
     } // End Method
 
-    public function UpdateProperty(Request $request)
+    public function AgentUpdateProperty(Request $request)
     {
         $property = Property::findOrFail($id);
         $type = $property->amenities_id;
@@ -154,7 +177,7 @@ class PropertyController extends Controller
             'longitude' => $request->longitude,
             'featured' => $request->featured,
             'hot' => $request->hot,
-            'agent_id' => $request->agent_id,
+            'agent_id' => Auth::user()->id,
             'updated_at' => $request->Carbon::now(),
 
         ]);
@@ -163,11 +186,11 @@ class PropertyController extends Controller
             'alert-type' => 'success',
         ];
 
-        return redirect()->route('all.property')->with($notification);
+        return redirect()->route('agent.all.property')->with($notification);
 
     } // End Method
 
-    public function UpdatePropertyThambnail(Request $request)
+    public function AgentUpdatePropertyThambnail(Request $request)
     {
         $pro_id = $request->$id;
         $oldImage = $request->old_img;
@@ -194,7 +217,7 @@ class PropertyController extends Controller
 
     } // End Method
 
-    public function UpdatePropertyMultiImage(Request $request)
+    public function AgentUpdatePropertyMultiImage(Request $request)
     {
         $imgs = $request->multi_img;
 
@@ -220,7 +243,7 @@ class PropertyController extends Controller
 
     } // End Method
 
-    public function PropertyMultiImageDelete($id)
+    public function AgentPropertyMultiImageDelete($id)
     {
         $oldImg = MultiImage::findOrFail($id);
         unlink($oldImg->photo_name);
@@ -235,7 +258,7 @@ class PropertyController extends Controller
         return redirect()->back()->with($notification);
     } // End Method
 
-    public function StoreNewMultiImage(Request $request)
+    public function AgentStoreNewMultiImage(Request $request)
     {
         $new_multi = $request->imageId;
         $image = $request->file('multi_img');
@@ -257,7 +280,7 @@ class PropertyController extends Controller
         return redirect()->back()->with($notification);
     } // End Method
 
-    public function UpdatePropertyFacilities(Request $request)
+    public function AgentUpdatePropertyFacilities(Request $request)
     {
         $pid = $request->$id;
 
@@ -282,7 +305,7 @@ class PropertyController extends Controller
         return redirect()->back()->with($notification);
     } // End Method
 
-    public function DeleteProperty($id)
+    public function AgentDeleteProperty($id)
     {
         $property = Property::findOrFail($id);
         unlink($property->property_thambnail);
@@ -310,7 +333,7 @@ class PropertyController extends Controller
 
     } // End Method
 
-    public function DetailsProperty($id)
+    public function AgentDetailsProperty($id)
     {
         $facilities = Facility::where('property_id', $id)->get();
         $property = Property::findOrFail($id);
@@ -321,10 +344,10 @@ class PropertyController extends Controller
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('backend.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'multiImage', 'facilities'));
+        return view('agent.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'multiImage', 'facilities'));
     } // End Method
 
-    public function InactiveProperty(Request $request)
+    public function AgentInactiveProperty(Request $request)
     {
         $pid = $request->id;
         Property::findOrFail($pid)->update([
@@ -338,7 +361,7 @@ class PropertyController extends Controller
         return redirect()->route('all.property')->with($notification);
     } // End Method
 
-    public function ActiveProperty(Request $request)
+    public function AgentActiveProperty(Request $request)
     {
         $pid = $request->id;
         Property::findOrFail($pid)->update([
@@ -351,5 +374,102 @@ class PropertyController extends Controller
 
         return redirect()->route('all.property')->with($notification);
     } // End Method
+
+    // TODO:
+    public function BuyPackage()
+    {
+        return view('agent.package.buy_package');
+    } // End Method
+
+    public function BuyBusinessPlan()
+    {
+        $user = Auth::user()->id;
+        $data = User::find($id);
+
+        return view('agent.package.business_plan', compact('data'));
+    } // End Method
+
+    public function StoreBusinessPlan(Request $request)
+    {
+        $id = Auth::user()->id;
+        $uid = User::findOrFail($id);
+        $nid = $uid->credit;
+
+        PackagePlan::insert([
+            'user_id' => $id,
+            'package_name' => 'Business',
+            'package_credits' => '3',
+            'invoice' => 'ERS'.mt_rand(10000000, 99999999),
+            'package_amount' => '20',
+            'created_at' => Carbon::now(),
+        ]);
+
+        User::where('id', $id)->update([
+            'credit' => DB::raw('3 + '.$nid),
+        ]);
+
+        $notification = [
+            'message' => 'You Have Purchased basic Package Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('agent.all.property')->with($notification);
+    } // End Method
+
+    public function BuyProfessionalPlan()
+    {
+        $id = Auth::user()->id;
+        $data = User::find($id);
+
+        return view('agent.package.professional_plan', compact('data'));
+    } // End Method
+
+    public function StoreProfessionalPlan(Request $request)
+    {
+        $id = Auth::user()->id;
+        $uid = User::findOrFail($id);
+        $nid = $uid->credit;
+
+        PackagePlan::insert([
+            'user_id' => $id,
+            'package_name' => 'Professional',
+            'package_credits' => '10',
+            'invoice' => 'ERS'.mt_rand(10000000, 99999999),
+            'package_amount' => '50',
+            'created_at' => Carbon::now(),
+        ]);
+
+        User::where('id', $id)->update([
+            'credit' => DB::raw('10 + '.$nid),
+        ]);
+
+        $notification = [
+            'message' => 'You Have Purchased Professional Package Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('agent.all.property')->with($notification);
+    } // End Method
+
+    public function packageHistory()
+    {
+        $id = Auth::user()->id;
+        $packageHistory = PackagePlan::where('user_id', $id)->get();
+
+        return view('agent.package.package_history', compact('packageHistory'));
+    } // End Method
+
+    public function AgentPackageInvoice($id)
+    {
+        $packageHistory = PackagePlan::where('id', $id)->first();
+
+        $pdf = Pdf::loadView('agent.package.package_history_invoice', compact('packageHistory'))->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+
+        return $pdf->download('invoice.pdf');
+    } // End Method 13-91
+    // TODO:
 
 }

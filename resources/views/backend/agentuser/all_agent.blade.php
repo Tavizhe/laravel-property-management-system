@@ -33,7 +33,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                   @foreach($allagent as $key => $item)
+                   @foreach($allAgent as $key => $item)
                       <tr>
                         <td>{{ $key+1 }}</td>
                         <td><img src="{{ (!empty($item->photo)) ? url('upload/agent_images/'.$item->photo) : url('upload/no_image.jpg') }}" style="width:70px; height:40px;"> </td> 
@@ -85,7 +85,7 @@
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/changeStatus',
+            url: '/ChangeStatus',
             data: {'status': status, 'user_id': user_id},
             success: function(data){
               // console.log(data.success)

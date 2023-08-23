@@ -163,4 +163,24 @@ class AdminController extends Controller
 
         return response()->json(['success'=>'Status Change Successfully']);
     } // End Method
+
+    public function EditAgent($id)
+    {
+        $allAgent = User::findOrFail($id);
+        [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+            'role' => 'agent',
+            'status' => 'active',
+        ]);
+        $notification = [
+            'message' => 'Agent Created Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return view()->route('all.agent')->with($notification);
+    } // End Method
 }

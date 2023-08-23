@@ -55,7 +55,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
             <div class="form-group">
                 <label>Property Type</label>
                 <div class="select-box">
-                    <select name="ptype_id" class="wide">
+                    <select name="pType_id" class="wide">
                        <option data-display="All Type">All Type</option>
                         @foreach($ptypes as $type)
    <option value="{{ $type->type_name }}">{{ $type->type_name }}</option>
@@ -112,7 +112,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
             <div class="form-group">
                 <label>Property Type</label>
                 <div class="select-box">
-                    <select name="ptype_id" class="wide">
+                    <select name="pType_id" class="wide">
                        <option data-display="All Type">All Type</option>
                         @foreach($ptypes as $type)
    <option value="{{ $type->type_name }}">{{ $type->type_name }}</option>

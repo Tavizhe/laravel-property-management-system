@@ -62,7 +62,7 @@ class AgentPropertyController extends Controller
         Image::make($image)->resize(370, 250)->save('upload/property/thambnail/'.$name_gen);
         $save_url = 'upload/property/thambnail/'.$name_gen;
         $property_id = Property::insertGetId([
-            'ptype_id' => $request->ptype_id,
+            'pType_id' => $request->pType_id,
             'amenities_id' => $amenities,
             'property_name' => $request->property_name,
             'property_slug' => strtolower(str_replace(' ', '-', $request->property_name)),
@@ -153,7 +153,7 @@ class AgentPropertyController extends Controller
         $property_id = $request->id;
         Property::findOrFail()->update([
 
-            'ptype_id' => $request->ptype_id,
+            'pType_id' => $request->pType_id,
             'amenities_id' => $amenities,
             'property_name' => $request->property_name,
             'property_slug' => strtolower(str_replace(' ', '-', $request->property_name)),

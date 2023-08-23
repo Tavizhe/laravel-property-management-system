@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Amenities;
 use App\Models\MultiImage;
+use App\Models\PackagePlan;
 use App\Models\Property;
+use App\Models\PropertyMessage;
 use App\Models\PropertyType;
+use App\Models\State;
 use App\Models\User;
 use Carbon\Carbon;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
@@ -24,10 +27,11 @@ class PropertyController extends Controller
     public function AddProperty()
     {
         $propertyType = PropertyType::latest()->get();
+        $pstate = State::latest()->get();
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('backend.property.add_property', compact('propertyType', 'amenities', 'activeAgent'));
+        return view('backend.property.add_property', compact('propertytype', 'amenities', 'activeAgent', 'pstate'));
     } // End Method
 
     public function StoreProperty(Request $request)
@@ -350,6 +354,49 @@ class PropertyController extends Controller
         ];
 
         return redirect()->route('all.property')->with($notification);
-    } // End Method
+    }
+
+    // End Method
+    public function AdminPackageHistory()
+    {
+
+        $packagehistory = PackagePlan::latest()->get();
+
+        return view('backend.package.package_history', compact('packagehistory'));
+
+    }// End Method
+
+    public function PackageInvoice($id)
+    {
+
+        $packagehistory = PackagePlan::where('id', $id)->first();
+
+        $pdf = Pdf::loadView('backend.package.package_history_invoice', compact('packagehistory'))->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+
+        return $pdf->download('invoice.pdf');
+
+    }
+
+    // End Method
+    public function AdminPropertyMessage()
+    {
+
+        $usermsg = PropertyMessage::latest()->get();
+
+        return view('backend.message.all_message', compact('usermsg'));
+
+    }// End Method
+
+    public function AgentDetails($id)
+    {
+
+        $agent = User::findOrFail($id);
+
+        return view('frontend.agent.agent_details', compact('agent'));
+
+    }// End Method
 
 }

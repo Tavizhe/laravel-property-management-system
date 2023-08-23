@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Agent;
 
 use App\Http\Controllers\Controller;
 use App\Models\Amenities;
+use App\Models\Facility;
 use App\Models\MultiImage;
 use App\Models\PackagePlan;
 use App\Models\Property;
+use App\Models\PropertyMessage;
 use App\Models\PropertyType;
+use App\Models\State;
 use App\Models\User;
 use barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -15,6 +18,9 @@ use DB;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use App\Models\Schedule;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ScheduleMail;
 
 class AgentPropertyController extends Controller
 {
@@ -30,6 +36,7 @@ class AgentPropertyController extends Controller
     {
         $propertyType = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
+        $pstate = State::latest()->get();
 
         // TODO:
         $id = Auth::user()->id;
@@ -38,7 +45,7 @@ class AgentPropertyController extends Controller
         if ($pCount == 1 || 7) {
             return redirect()->route('buy.package');
         } else {
-            return view('agent.property.all_property', compact('propertyType', 'amenities'));
+            return view('agent.property.add_property', compact('propertytype', 'amenities', 'pstate'));
         }
         // TODO:
 
@@ -139,10 +146,11 @@ class AgentPropertyController extends Controller
         $type = $property->amenities_id;
         $property_ami = explode(',', $type);
         $multiImage = MultiImage::where('property_id', $id)->get();
+        $pstate = State::latest()->get();
         $propertyType = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
 
-        return view('agent.property.edit_property', compact('property', 'propertyType', 'amenities', 'property_ami', 'multiImage', 'facilities'));
+        return view('agent.property.edit_property', compact('property', 'propertytype', 'amenities', 'property_ami', 'multiImage', 'facilities', 'pstate'));
     } // End Method
 
     public function AgentUpdateProperty(Request $request)
@@ -471,5 +479,79 @@ class AgentPropertyController extends Controller
         return $pdf->download('invoice.pdf');
     } // End Method
     // TODO:
+
+    public function AgentPropertyMessage()
+    {
+
+        $id = Auth::user()->id;
+        $usermsg = PropertyMessage::where('agent_id', $id)->get();
+
+        return view('agent.message.all_message', compact('usermsg'));
+
+    }
+
+    // End Method
+    public function AgentMessageDetails($id)
+    {
+
+        $uid = Auth::user()->id;
+        $usermsg = PropertyMessage::where('agent_id', $uid)->get();
+
+        $msgdetails = PropertyMessage::findOrFail($id);
+
+        return view('agent.message.message_details', compact('usermsg', 'msgdetails'));
+
+    }// End Method
+
+    public function AgentScheduleRequest(){
+
+        $id = Auth::user()->id;
+        $usermsg = Schedule::where('agent_id',$id)->get();
+        return view('agent.schedule.schedule_request',compact('usermsg'));
+
+    }// End Method 
+
+
+    public function AgentDetailsSchedule($id){
+
+        $schedule = Schedule::findOrFail($id);
+        return view('agent.schedule.schedule_details',compact('schedule'));
+
+    } // End Method 
+    public function AgentUpdateSchedule(Request $request){
+
+        $sid = $request->id;
+
+        Schedule::findOrFail($sid)->update([
+            'status' => '1',
+
+        ]);
+         //// Start Send Email 
+
+       $sendmail = Schedule::findOrFail($sid);
+
+       $data = [
+            'tour_date' => $sendmail->tour_date,
+            'tour_time' => $sendmail->tour_time,
+       ];
+
+       Mail::to($request->email)->send(new ScheduleMail($data));
+
+
+        /// End Send Email 
+
+         $notification = array(
+            'message' => 'You have Confirm Schedule Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('agent.schedule.request')->with($notification);
+
+
+    }// End Method 
+
+    
+
+
 
 }

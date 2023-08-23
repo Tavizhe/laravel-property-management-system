@@ -6,6 +6,7 @@ use App\Models\User;
 use illuminate\Http\Request;
 use illuminate\support\Facades\Auth;
 use illuminate\support\Facades\Hash;
+use App\Models\Schedule;
 
 class UserController extends Controller
 {
@@ -99,4 +100,39 @@ class UserController extends Controller
         return back()->with($notification);
 
     }// End Method
+
+    public function UserScheduleRequest(){
+
+        $id = Auth::user()->id;
+        $userData = User::find($id);
+
+        $srequest = Schedule::where('user_id',$id)->get();
+        return view('frontend.message.schedule_request',compact('userData','srequest'));
+
+    } // End Method 
+    public function LiveChat(){
+
+        $id = Auth::user()->id;
+        $userData = User::find($id);
+        return view('frontend.dashboard.live_chat',compact('userData'));
+
+    } // End Method 
+
+    public function GetAllUsers(){
+
+        $chats = ChatMessage::orderBy('id','DESC')
+                ->where('sender_id',auth()->id())
+                ->orWhere('receiver_id',auth()->id())
+                ->get();
+
+                $users = $chats->flatMap(function($chat){
+                    if ($chat->sender_id === auth()->id()) {
+                        return [$chat->sender, $chat->receiver];
+                    }
+        
+                    return [$chat->receiver, $chat->sender];
+                })->unique();
+        
+                return $users;
+    }// End Method 
 }

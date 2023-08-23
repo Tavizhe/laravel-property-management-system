@@ -10,7 +10,7 @@ use App\Models\Property;
 use App\Models\PropertyMessage;
 use App\Models\PropertyType;
 use App\Models\State;
-use App\Models\User;
+use App\Models\user;
 use Carbon\Carbon;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Intervention\Image\Facades\Image;
@@ -29,7 +29,7 @@ class PropertyController extends Controller
         $propertyType = PropertyType::latest()->get();
         $pstate = State::latest()->get();
         $amenities = Amenities::latest()->get();
-        $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
+        $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
         return view('backend.property.add_property', compact('propertytype', 'amenities', 'activeAgent', 'pstate'));
     } // End Method
@@ -121,7 +121,7 @@ class PropertyController extends Controller
         $multiImage = MultiImage::where('property_id', $id)->get();
         $propertyType = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
-        $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
+        $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
         return view('backend.property.edit_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'multiImage', 'facilities'));
     } // End Method
@@ -323,7 +323,7 @@ class PropertyController extends Controller
         $multiImage = MultiImage::where('property_id', $id)->get();
         $propertyType = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
-        $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
+        $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
         return view('backend.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'multiImage', 'facilities'));
     } // End Method
@@ -393,7 +393,7 @@ class PropertyController extends Controller
     public function AgentDetails($id)
     {
 
-        $agent = User::findOrFail($id);
+        $agent = user::findOrFail($id);
 
         return view('frontend.agent.agent_details', compact('agent'));
 

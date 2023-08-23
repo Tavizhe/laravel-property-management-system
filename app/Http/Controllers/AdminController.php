@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use illuminate\Http\Request;
-use illuminate\support\Facades\Auth;
-use illuminate\support\Facades\Hash;
+use App\Models\user;
+use Illuminate\Http\Request;
+use Illuminate\support\Facades\Auth;
+use Illuminate\support\Facades\Hash;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
@@ -40,7 +39,7 @@ class AdminController extends Controller
     public function AdminProfile()
     {
         $id = Auth::user()->id;
-        $profileData = User::find($id);
+        $profileData = user::find($id);
         // Render the view file named 'admin_profile_view' located in the 'admin' directory
         // and pass the compacted variable '$profileData' to the view
         return view('admin.admin_profile_view', compact('profileData'));
@@ -49,7 +48,7 @@ class AdminController extends Controller
     public function AdminProfileStore(Request $request)
     {
         $id = Auth::user()->id;
-        $Data = User::find($id);
+        $Data = user::find($id);
         $Data->username = $request->username;
         $Data->name = $request->name;
         $Data->email = $request->email;
@@ -75,7 +74,7 @@ class AdminController extends Controller
     public function AdminChangePassword()
     {
         $id = Auth::user()->id;
-        $profileData = User::find($id);
+        $profileData = user::find($id);
 
         return view('admin.admin_change_password', compact('profileData'));
     } // End Method
@@ -114,7 +113,7 @@ class AdminController extends Controller
 
     public function AllAgent(Request $request)
     {
-        $allAgent = User::where('role', 'agent');
+        $allAgent = user::where('role', 'agent');
 
         return view('backend.agentUser.all_agent', compact('allAgent'));
 
@@ -122,14 +121,15 @@ class AdminController extends Controller
 
     public function AddAgent()
     {
+        $allAgent = user::where('role', 'agent');
 
-        return view('backend.agentUser.add_agent', compact('allAgent'));
+        return view('backend.agentuser.add_agent', compact('allAgent'));
 
     } // End Method
 
     public function StoreAgent(Request $request)
     {
-        User::insert([
+        user::insert([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -148,7 +148,7 @@ class AdminController extends Controller
 
     public function DeleteAgent($id)
     {
-        User::findOrFail($id)->delete();
+        user::findOrFail($id)->delete();
         $notification = [
             'message' => 'Agent Created Successfully',
             'alert-type' => 'success',
@@ -159,16 +159,16 @@ class AdminController extends Controller
 
     public function ChangeStatus(Request $request)
     {
-        $user = User::find($request->user_id);
+        $user = user::find($request->user_id);
         $user->status = $request->status;
         $user->save();
 
-        return response()->json(['success'=>'Status Change Successfully']);
+        return response()->json(['success' => 'Status Change Successfully']);
     } // End Method
 
     public function EditAgent($id)
     {
-        $allAgent = User::findOrFail($id);
+        $allAgent = user::findOrFail($id);
         [
             'name' => $request->name,
             'email' => $request->email,
@@ -188,96 +188,104 @@ class AdminController extends Controller
 
     /////////// Admin User All Method ////////////
 
-  public function AllAdmin(){
+    public function AllAdmin()
+    {
 
-    $alladmin = User::where('role','admin')->get();
-    return view('backend.pages.admin.all_admin',compact('alladmin'));
+        $alladmin = user::where('role', 'admin')->get();
 
-  }// End Method 
+        return view('backend.pages.admin.all_admin', compact('alladmin'));
 
-  public function AddAdmin(){
+    }// End Method
 
-    $roles = Role::all();
-    return view('backend.pages.admin.add_admin',compact('roles'));
+    public function AddAdmin()
+    {
 
-  }// End Method 
+        $roles = Role::all();
 
+        return view('backend.pages.admin.add_admin', compact('roles'));
 
-  public function StoreAdmin(Request $request){
+    }// End Method
 
-    $user = new User();
-    $user->username = $request->username;
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->phone = $request->phone;
-    $user->address = $request->address;
-    $user->password =  Hash::make($request->password);
-    $user->role = 'admin';
-    $user->status = 'active';
-    $user->save();
+    public function StoreAdmin(Request $request)
+    {
 
-    if ($request->roles) {
-        $user->assignRole($request->roles);
-    }
+        $user = new User();
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->password = Hash::make($request->password);
+        $user->role = 'admin';
+        $user->status = 'active';
+        $user->save();
 
-    $notification = array(
+        if ($request->roles) {
+            $user->assignRole($request->roles);
+        }
+
+        $notification = [
             'message' => 'New Admin User Inserted Successfully',
-            'alert-type' => 'success'
-        );
+            'alert-type' => 'success',
+        ];
 
-        return redirect()->route('all.admin')->with($notification); 
+        return redirect()->route('all.admin')->with($notification);
 
-  }// End Method 
-  public function EditAdmin($id){
-
-    $user = User::findOrFail($id);
-    $roles = Role::all();
-    return view('backend.pages.admin.edit_admin',compact('user','roles'));
-
-  }// End Method
-
-   public function UpdateAdmin(Request $request,$id){
-
-    $user = User::findOrFail($id);
-    $user->username = $request->username;
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->phone = $request->phone;
-    $user->address = $request->address; 
-    $user->role = 'admin';
-    $user->status = 'active';
-    $user->save();
-
-    $user->roles()->detach();
-    if ($request->roles) {
-        $user->assignRole($request->roles);
     }
 
-    $notification = array(
+    // End Method
+    public function EditAdmin($id)
+    {
+
+        $user = user::findOrFail($id);
+        $roles = Role::all();
+
+        return view('backend.pages.admin.edit_admin', compact('user', 'roles'));
+
+    }// End Method
+
+    public function UpdateAdmin(Request $request, $id)
+    {
+
+        $user = user::findOrFail($id);
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->role = 'admin';
+        $user->status = 'active';
+        $user->save();
+
+        $user->roles()->detach();
+        if ($request->roles) {
+            $user->assignRole($request->roles);
+        }
+
+        $notification = [
             'message' => 'New Admin User Updated Successfully',
-            'alert-type' => 'success'
-        );
+            'alert-type' => 'success',
+        ];
 
-        return redirect()->route('all.admin')->with($notification); 
+        return redirect()->route('all.admin')->with($notification);
 
-  }// End Method 
+    }// End Method
 
-  public function DeleteAdmin($id){
+    public function DeleteAdmin($id)
+    {
 
-    $user = User::findOrFail($id);
-    if (!is_null($user)) {
-        $user->delete();
-    }
+        $user = user::findOrFail($id);
+        if (! is_null($user)) {
+            $user->delete();
+        }
 
-    $notification = array(
+        $notification = [
             'message' => 'New Admin User Deleted Successfully',
-            'alert-type' => 'success'
-        );
+            'alert-type' => 'success',
+        ];
 
-        return redirect()->back()->with($notification); 
+        return redirect()->back()->with($notification);
 
-  }// End Method 
-
-
+    }// End Method
 
 }

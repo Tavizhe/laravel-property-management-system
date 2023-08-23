@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Schedule;
+use App\Models\user;
 use illuminate\Http\Request;
 use illuminate\support\Facades\Auth;
 use illuminate\support\Facades\Hash;
-use App\Models\Schedule;
 
 class UserController extends Controller
 {
@@ -18,7 +18,7 @@ class UserController extends Controller
     public function UserProfile()
     {
         $id = Auth::user()->id;
-        $userData = User::find($id);
+        $userData = user::find($id);
 
         return view('frontend.dashboard.edit_profile', compact('userData'));
     } // End method
@@ -26,7 +26,7 @@ class UserController extends Controller
     public function UserProfileStore(Request $request)
     {
         $id = Auth::user()->id;
-        $Data = User::find($id);
+        $Data = user::find($id);
         $Data->username = $request->username;
         $Data->name = $request->name;
         $Data->email = $request->email;
@@ -101,38 +101,45 @@ class UserController extends Controller
 
     }// End Method
 
-    public function UserScheduleRequest(){
+    public function UserScheduleRequest()
+    {
 
         $id = Auth::user()->id;
-        $userData = User::find($id);
+        $userData = user::find($id);
 
-        $srequest = Schedule::where('user_id',$id)->get();
-        return view('frontend.message.schedule_request',compact('userData','srequest'));
+        $srequest = Schedule::where('user_id', $id)->get();
 
-    } // End Method 
-    public function LiveChat(){
+        return view('frontend.message.schedule_request', compact('userData', 'srequest'));
+
+    }
+
+    // End Method
+    public function LiveChat()
+    {
 
         $id = Auth::user()->id;
-        $userData = User::find($id);
-        return view('frontend.dashboard.live_chat',compact('userData'));
+        $userData = user::find($id);
 
-    } // End Method 
+        return view('frontend.dashboard.live_chat', compact('userData'));
 
-    public function GetAllUsers(){
+    } // End Method
 
-        $chats = ChatMessage::orderBy('id','DESC')
-                ->where('sender_id',auth()->id())
-                ->orWhere('receiver_id',auth()->id())
-                ->get();
+    public function GetAllUsers()
+    {
 
-                $users = $chats->flatMap(function($chat){
-                    if ($chat->sender_id === auth()->id()) {
-                        return [$chat->sender, $chat->receiver];
-                    }
-        
-                    return [$chat->receiver, $chat->sender];
-                })->unique();
-        
-                return $users;
-    }// End Method 
+        $chats = ChatMessage::orderBy('id', 'DESC')
+            ->where('sender_id', auth()->id())
+            ->orWhere('receiver_id', auth()->id())
+            ->get();
+
+        $users = $chats->flatMap(function ($chat) {
+            if ($chat->sender_id === auth()->id()) {
+                return [$chat->sender, $chat->receiver];
+            }
+
+            return [$chat->receiver, $chat->sender];
+        })->unique();
+
+        return $users;
+    }// End Method
 }

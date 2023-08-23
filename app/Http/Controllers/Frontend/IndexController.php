@@ -68,7 +68,7 @@ class IndexController extends Controller
     public function AgentDetails($id)
     {
 
-        $agent = User::findOrFail($id);
+        $agent = user::findOrFail($id);
         $property = Property::where('agent_id', $id)->get();
         $featured = Property::where('featured', '1')->limit(3)->get();
         $rentproperty = Property::where('property_status', 'rent')->get();

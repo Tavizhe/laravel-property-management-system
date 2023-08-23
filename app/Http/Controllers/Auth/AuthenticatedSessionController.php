@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $id = Auth::user()->id;
-        $adminData = User::find($id);
+        $adminData = user::find($id);
         $username = $adminData->name;
 
         $request->session()->regenerate();

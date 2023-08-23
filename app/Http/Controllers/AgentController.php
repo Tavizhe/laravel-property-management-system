@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\user;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use illuminate\support\Facades\Hash;
@@ -21,7 +21,7 @@ class AgentController extends Controller
 
     public function AgentRegister(Request $request)
     {
-        $user = User::create([
+        $user = user::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -55,7 +55,7 @@ class AgentController extends Controller
     public function AgentProfile()
     {
         $id = Auth::user()->id;
-        $profileData = User::find($id);
+        $profileData = user::find($id);
         // Render the view file named 'agent' located in the 'agent' directory
         // and pass the compacted variable '$profileData' to the view
         return view('agent.agent_profile_view', compact('profileData'));
@@ -64,7 +64,7 @@ class AgentController extends Controller
     public function AgentProfileStore(Request $request)
     {
         $id = Auth::user()->id;
-        $Data = User::find($id);
+        $Data = user::find($id);
         $Data->username = $request->username;
         $Data->name = $request->name;
         $Data->email = $request->email;
@@ -90,7 +90,7 @@ class AgentController extends Controller
     public function AgentChangePassword()
     {
         $id = Auth::user()->id;
-        $profileData = User::find($id);
+        $profileData = user::find($id);
 
         return view('agent.agent_change_password', compact('profileData'));
     }// End Method

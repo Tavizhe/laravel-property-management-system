@@ -3,208 +3,224 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request; 
-use App\Models\BlogCategory; 
-use Carbon\Carbon;
-use App\Models\BlogPost; 
-use App\Models\User;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Auth;
+use App\Models\BlogCategory;
+use App\Models\BlogPost;
 use App\Models\Comment;
-use App\Models\Schedule; 
+use App\Models\Schedule;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class BlogController extends Controller
 {
-    public function AllBlogCategory(){
+    public function AllBlogCategory()
+    {
 
         $category = BlogCategory::latest()->get();
-        return view('backend.category.blog_category',compact('category'));
 
-    } // End Method 
-    public function StoreBlogCategory(Request $request){ 
+        return view('backend.category.blog_category', compact('category'));
 
-        BlogCategory::insert([ 
+    }
+
+    // End Method
+    public function StoreBlogCategory(Request $request)
+    {
+
+        BlogCategory::insert([
 
             'category_name' => $request->category_name,
-            'category_slug' => strtolower(str_replace(' ','-',$request->category_name)),  
+            'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
         ]);
 
-          $notification = array(
+        $notification = [
             'message' => 'BlogCategory Create Successfully',
-            'alert-type' => 'success'
-        );
+            'alert-type' => 'success',
+        ];
 
         return redirect()->route('all.blog.category')->with($notification);
 
-    }// End Method 
+    }// End Method
 
-    public function EditBlogCategory($id){
+    public function EditBlogCategory($id)
+    {
 
         $categories = BlogCategory::findOrFail($id);
+
         return response()->json($categories);
 
-    }// End Method 
+    }// End Method
 
-    public function AllPost(){
+    public function AllPost()
+    {
 
         $post = BlogPost::latest()->get();
-        return view('backend.post.all_post',compact('post'));
-    
-       }// End Method 
 
-       public function AddPost(){
+        return view('backend.post.all_post', compact('post'));
+
+    }// End Method
+
+    public function AddPost()
+    {
 
         $blogcat = BlogCategory::latest()->get();
-        return view('backend.post.add_post',compact('blogcat'));
-    
-       }// End Method 
 
-       public function StorePost(Request $request){
+        return view('backend.post.add_post', compact('blogcat'));
+
+    }// End Method
+
+    public function StorePost(Request $request)
+    {
 
         $image = $request->file('post_image');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(370,250)->save('upload/post/'.$name_gen);
+        Image::make($image)->resize(370, 250)->save('upload/post/'.$name_gen);
         $save_url = 'upload/post/'.$name_gen;
-    
+
         BlogPost::insert([
             'blogcat_id' => $request->blogcat_id,
             'user_id' => Auth::user()->id,
             'post_title' => $request->post_title,
-            'post_slug' => strtolower(str_replace(' ','-',$request->post_title)), 
+            'post_slug' => strtolower(str_replace(' ', '-', $request->post_title)),
             'short_descp' => $request->short_descp,
             'long_descp' => $request->long_descp,
             'post_tags' => $request->post_tags,
-            'post_image' => $save_url, 
+            'post_image' => $save_url,
             'created_at' => Carbon::now(),
         ]);
-    
-         $notification = array(
-                'message' => 'BlogPost Inserted Successfully',
-                'alert-type' => 'success'
-            );
-    
-            return redirect()->route('all.post')->with($notification);
-    
-        }// End Method 
 
-        public function EditPost($id){
+        $notification = [
+            'message' => 'BlogPost Inserted Successfully',
+            'alert-type' => 'success',
+        ];
 
-            $blogcat = BlogCategory::latest()->get();
-            $post = BlogPost::findOrFail($id);
-            return view('backend.post.edit_post',compact('post','blogcat'));
-    
-        }// End Method
-    
-    
-         public function UpdatePost(Request $request){
-    
-            $post_id = $request->id;
-    
-            if ($request->file('post_image')) {
-    
-        $image = $request->file('post_image');
-        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(370,250)->save('upload/post/'.$name_gen);
-        $save_url = 'upload/post/'.$name_gen;
-    
-        BlogPost::findOrFail($post_id)->update([
-            'blogcat_id' => $request->blogcat_id,
-            'user_id' => Auth::user()->id,
-            'post_title' => $request->post_title,
-            'post_slug' => strtolower(str_replace(' ','-',$request->post_title)), 
-            'short_descp' => $request->short_descp,
-            'long_descp' => $request->long_descp,
-            'post_tags' => $request->post_tags,
-            'post_image' => $save_url, 
-            'created_at' => Carbon::now(),
-        ]);
-    
-         $notification = array(
-                'message' => 'BlogPost Updated Successfully',
-                'alert-type' => 'success'
-            );
-    
-            return redirect()->route('all.post')->with($notification);
-    
-            }else{
-    
-          BlogPost::findOrFail($post_id)->update([
-            'blogcat_id' => $request->blogcat_id,
-            'user_id' => Auth::user()->id,
-            'post_title' => $request->post_title,
-            'post_slug' => strtolower(str_replace(' ','-',$request->post_title)), 
-            'short_descp' => $request->short_descp,
-            'long_descp' => $request->long_descp,
-            'post_tags' => $request->post_tags, 
-            'created_at' => Carbon::now(),
-        ]);
-    
-         $notification = array(
-                'message' => 'BlogPost Updated Successfully',
-                'alert-type' => 'success'
-            );
-    
-            return redirect()->route('all.post')->with($notification);
-    
-            } // end else 
-    
-        }// End Method 
-    
-         public function DeletePost($id){
-    
-            $post = BlogPost::findOrFail($id);
-            $img = $post->post_image;
-            unlink($img);
-    
-            BlogPost::findOrFail($id)->delete();
-    
-             $notification = array(
-                'message' => 'BlogPost Deleted Successfully',
-                'alert-type' => 'success'
-            );
-    
-            return redirect()->back()->with($notification); 
-    
-        }// End Method
-
-        public function BlogDetails($slug){
-
-            $blog = BlogPost::where('post_slug',$slug)->first();
-    
-            $tags = $blog->post_tags;
-        $tags_all = explode(',',$tags);
-
-        $bcategory = BlogCategory::latest()->get();
-        $dpost = BlogPost::latest()->limit(3)->get();
-
-        return view('frontend.blog.blog_details',compact('blog','tags_all','bcategory','dpost'));
-
-        }// End Method
-    
-        public function BlogCatList($id){
-
-            $blog = BlogPost::where('blogcat_id',$id)->get();
-            $breadcat = BlogCategory::where('id',$id)->first();
-            $bcategory = BlogCategory::latest()->get();
-            $dpost = BlogPost::latest()->limit(3)->get();
-    
-            return view('frontend.blog.blog_cat_list', compact('blog','breadcat','bcategory','dpost'));
-    
-        }// End Method
-
-        
-    public function BlogList(){
-
-        $blog = BlogPost::latest()->get(); 
-        $bcategory = BlogCategory::latest()->get();
-        $dpost = BlogPost::latest()->limit(3)->get();
-
-        return view('frontend.blog.blog_list', compact('blog','bcategory','dpost'));
-
+        return redirect()->route('all.post')->with($notification);
 
     }// End Method
 
-    public function StoreComment(Request $request){
+    public function EditPost($id)
+    {
+
+        $blogcat = BlogCategory::latest()->get();
+        $post = BlogPost::findOrFail($id);
+
+        return view('backend.post.edit_post', compact('post', 'blogcat'));
+
+    }// End Method
+
+    public function UpdatePost(Request $request)
+    {
+
+        $post_id = $request->id;
+
+        if ($request->file('post_image')) {
+
+            $image = $request->file('post_image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(370, 250)->save('upload/post/'.$name_gen);
+            $save_url = 'upload/post/'.$name_gen;
+
+            BlogPost::findOrFail($post_id)->update([
+                'blogcat_id' => $request->blogcat_id,
+                'user_id' => Auth::user()->id,
+                'post_title' => $request->post_title,
+                'post_slug' => strtolower(str_replace(' ', '-', $request->post_title)),
+                'short_descp' => $request->short_descp,
+                'long_descp' => $request->long_descp,
+                'post_tags' => $request->post_tags,
+                'post_image' => $save_url,
+                'created_at' => Carbon::now(),
+            ]);
+
+            $notification = [
+                'message' => 'BlogPost Updated Successfully',
+                'alert-type' => 'success',
+            ];
+
+            return redirect()->route('all.post')->with($notification);
+
+        } else {
+
+            BlogPost::findOrFail($post_id)->update([
+                'blogcat_id' => $request->blogcat_id,
+                'user_id' => Auth::user()->id,
+                'post_title' => $request->post_title,
+                'post_slug' => strtolower(str_replace(' ', '-', $request->post_title)),
+                'short_descp' => $request->short_descp,
+                'long_descp' => $request->long_descp,
+                'post_tags' => $request->post_tags,
+                'created_at' => Carbon::now(),
+            ]);
+
+            $notification = [
+                'message' => 'BlogPost Updated Successfully',
+                'alert-type' => 'success',
+            ];
+
+            return redirect()->route('all.post')->with($notification);
+
+        } // end else
+
+    }// End Method
+
+    public function DeletePost($id)
+    {
+
+        $post = BlogPost::findOrFail($id);
+        $img = $post->post_image;
+        unlink($img);
+
+        BlogPost::findOrFail($id)->delete();
+
+        $notification = [
+            'message' => 'BlogPost Deleted Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
+
+    }// End Method
+
+    public function BlogDetails($slug)
+    {
+
+        $blog = BlogPost::where('post_slug', $slug)->first();
+
+        $tags = $blog->post_tags;
+        $tags_all = explode(',', $tags);
+
+        $bcategory = BlogCategory::latest()->get();
+        $dpost = BlogPost::latest()->limit(3)->get();
+
+        return view('frontend.blog.blog_details', compact('blog', 'tags_all', 'bcategory', 'dpost'));
+
+    }// End Method
+
+    public function BlogCatList($id)
+    {
+
+        $blog = BlogPost::where('blogcat_id', $id)->get();
+        $breadcat = BlogCategory::where('id', $id)->first();
+        $bcategory = BlogCategory::latest()->get();
+        $dpost = BlogPost::latest()->limit(3)->get();
+
+        return view('frontend.blog.blog_cat_list', compact('blog', 'breadcat', 'bcategory', 'dpost'));
+
+    }// End Method
+
+    public function BlogList()
+    {
+
+        $blog = BlogPost::latest()->get();
+        $bcategory = BlogCategory::latest()->get();
+        $dpost = BlogPost::latest()->limit(3)->get();
+
+        return view('frontend.blog.blog_list', compact('blog', 'bcategory', 'dpost'));
+
+    }// End Method
+
+    public function StoreComment(Request $request)
+    {
 
         $pid = $request->post_id;
 
@@ -218,30 +234,35 @@ class BlogController extends Controller
 
         ]);
 
-          $notification = array(
+        $notification = [
             'message' => 'Comment Inserted Successfully',
-            'alert-type' => 'success'
-        );
+            'alert-type' => 'success',
+        ];
 
-        return redirect()->back()->with($notification); 
-
-    }// End Method
-
-    public function AdminBlogComment(){
-
-        $comment = Comment::where('parent_id',null)->latest()->get();
-        return view('backend.comment.comment_all',compact('comment'));
+        return redirect()->back()->with($notification);
 
     }// End Method
 
-    public function AdminCommentReply($id){
+    public function AdminBlogComment()
+    {
 
-        $comment = Comment::where('id',$id)->first();
-        return view('backend.comment.reply_comment',compact('comment'));
+        $comment = Comment::where('parent_id', null)->latest()->get();
+
+        return view('backend.comment.comment_all', compact('comment'));
 
     }// End Method
 
-    public function ReplyMessage(Request $request){
+    public function AdminCommentReply($id)
+    {
+
+        $comment = Comment::where('id', $id)->first();
+
+        return view('backend.comment.reply_comment', compact('comment'));
+
+    }// End Method
+
+    public function ReplyMessage(Request $request)
+    {
 
         $id = $request->id;
         $user_id = $request->user_id;
@@ -257,16 +278,17 @@ class BlogController extends Controller
 
         ]);
 
-          $notification = array(
+        $notification = [
             'message' => 'Reply Inserted Successfully',
-            'alert-type' => 'success'
-        );
+            'alert-type' => 'success',
+        ];
 
-        return redirect()->back()->with($notification); 
+        return redirect()->back()->with($notification);
 
     }// End Method
 
-    public function StoreSchedule(Request $request){
+    public function StoreSchedule(Request $request)
+    {
         $aid = $request->agent_id;
         $pid = $request->property_id;
 
@@ -280,30 +302,26 @@ class BlogController extends Controller
                 'tour_date' => $request->tour_date,
                 'tour_time' => $request->tour_time,
                 'message' => $request->message,
-                'created_at' => Carbon::now(), 
+                'created_at' => Carbon::now(),
             ]);
 
-             $notification = array(
-            'message' => 'Send Request Successfully',
-            'alert-type' => 'success'
-        );
+            $notification = [
+                'message' => 'Send Request Successfully',
+                'alert-type' => 'success',
+            ];
 
-        return redirect()->back()->with($notification);
+            return redirect()->back()->with($notification);
 
+        } else {
 
-        }else{
+            $notification = [
+                'message' => 'Plz Login Your Account First',
+                'alert-type' => 'error',
+            ];
 
-           $notification = array(
-            'message' => 'Plz Login Your Account First',
-            'alert-type' => 'error'
-        );
-
-        return redirect()->back()->with($notification);
+            return redirect()->back()->with($notification);
 
         }
-    }// End Method 
-
-
-
+    }// End Method
 
 }

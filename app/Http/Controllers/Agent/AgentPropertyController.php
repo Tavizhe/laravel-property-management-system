@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Agent;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ScheduleMail;
 use App\Models\Amenities;
 use App\Models\Facility;
 use App\Models\MultiImage;
@@ -10,17 +11,16 @@ use App\Models\PackagePlan;
 use App\Models\Property;
 use App\Models\PropertyMessage;
 use App\Models\PropertyType;
+use App\Models\Schedule;
 use App\Models\State;
-use App\Models\User;
+use App\Models\user;
 use barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use DB;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
-use App\Models\Schedule;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ScheduleMail;
+use Intervention\Image\Facades\Image;
 
 class AgentPropertyController extends Controller
 {
@@ -40,7 +40,7 @@ class AgentPropertyController extends Controller
 
         // TODO:
         $id = Auth::user()->id;
-        $property = User::where('role', 'agent')->where('id', $id)->first();
+        $property = user::where('role', 'agent')->where('id', $id)->first();
         $pCount = $property->credit;
         if ($pCount == 1 || 7) {
             return redirect()->route('buy.package');
@@ -56,7 +56,7 @@ class AgentPropertyController extends Controller
     {
         // TODO:
         $id = Auth::user()->id;
-        $uid = User::findOFail($id);
+        $uid = user::findOFail($id);
         $nid = $uid->credits;
         // TODO:
         $amen = $request->amenities_id;
@@ -125,7 +125,7 @@ class AgentPropertyController extends Controller
                 $fCount->save();
             }
             // TODO:
-            User::where('id', $id)->update([
+            user::where('id', $id)->update([
                 'credit' => DB::raw('1 + '.$nid),
             ]);
             // TODO:
@@ -350,7 +350,7 @@ class AgentPropertyController extends Controller
         $multiImage = MultiImage::where('property_id', $id)->get();
         $propertyType = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
-        $activeAgent = User::where('status', 'active')->where('role', 'agent')->latest()->get();
+        $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
         return view('agent.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'multiImage', 'facilities'));
     } // End Method
@@ -392,7 +392,7 @@ class AgentPropertyController extends Controller
     public function BuyBusinessPlan()
     {
         $user = Auth::user()->id;
-        $data = User::find($id);
+        $data = user::find($id);
 
         return view('agent.package.business_plan', compact('data'));
     } // End Method
@@ -400,7 +400,7 @@ class AgentPropertyController extends Controller
     public function StoreBusinessPlan(Request $request)
     {
         $id = Auth::user()->id;
-        $uid = User::findOrFail($id);
+        $uid = user::findOrFail($id);
         $nid = $uid->credit;
 
         PackagePlan::insert([
@@ -412,7 +412,7 @@ class AgentPropertyController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        User::where('id', $id)->update([
+        user::where('id', $id)->update([
             'credit' => DB::raw('3 + '.$nid),
         ]);
 
@@ -427,7 +427,7 @@ class AgentPropertyController extends Controller
     public function BuyProfessionalPlan()
     {
         $id = Auth::user()->id;
-        $data = User::find($id);
+        $data = user::find($id);
 
         return view('agent.package.professional_plan', compact('data'));
     } // End Method
@@ -435,7 +435,7 @@ class AgentPropertyController extends Controller
     public function StoreProfessionalPlan(Request $request)
     {
         $id = Auth::user()->id;
-        $uid = User::findOrFail($id);
+        $uid = user::findOrFail($id);
         $nid = $uid->credit;
 
         PackagePlan::insert([
@@ -447,7 +447,7 @@ class AgentPropertyController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        User::where('id', $id)->update([
+        user::where('id', $id)->update([
             'credit' => DB::raw('10 + '.$nid),
         ]);
 
@@ -503,22 +503,28 @@ class AgentPropertyController extends Controller
 
     }// End Method
 
-    public function AgentScheduleRequest(){
+    public function AgentScheduleRequest()
+    {
 
         $id = Auth::user()->id;
-        $usermsg = Schedule::where('agent_id',$id)->get();
-        return view('agent.schedule.schedule_request',compact('usermsg'));
+        $usermsg = Schedule::where('agent_id', $id)->get();
 
-    }// End Method 
+        return view('agent.schedule.schedule_request', compact('usermsg'));
 
+    }// End Method
 
-    public function AgentDetailsSchedule($id){
+    public function AgentDetailsSchedule($id)
+    {
 
         $schedule = Schedule::findOrFail($id);
-        return view('agent.schedule.schedule_details',compact('schedule'));
 
-    } // End Method 
-    public function AgentUpdateSchedule(Request $request){
+        return view('agent.schedule.schedule_details', compact('schedule'));
+
+    }
+
+    // End Method
+    public function AgentUpdateSchedule(Request $request)
+    {
 
         $sid = $request->id;
 
@@ -526,32 +532,26 @@ class AgentPropertyController extends Controller
             'status' => '1',
 
         ]);
-         //// Start Send Email 
+        //// Start Send Email
 
-       $sendmail = Schedule::findOrFail($sid);
+        $sendmail = Schedule::findOrFail($sid);
 
-       $data = [
+        $data = [
             'tour_date' => $sendmail->tour_date,
             'tour_time' => $sendmail->tour_time,
-       ];
+        ];
 
-       Mail::to($request->email)->send(new ScheduleMail($data));
+        Mail::to($request->email)->send(new ScheduleMail($data));
 
+        /// End Send Email
 
-        /// End Send Email 
-
-         $notification = array(
+        $notification = [
             'message' => 'You have Confirm Schedule Successfully',
-            'alert-type' => 'success'
-        );
+            'alert-type' => 'success',
+        ];
 
         return redirect()->route('agent.schedule.request')->with($notification);
 
-
-    }// End Method 
-
-    
-
-
+    }// End Method
 
 }

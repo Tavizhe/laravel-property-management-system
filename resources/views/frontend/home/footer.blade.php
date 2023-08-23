@@ -11,7 +11,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                             <div class="footer-widget about-widget">
                                 <div class="widget-title">
-                                    <h3>About</h3>
+                                    <h3>درباره ما</h3>
                                 </div>
                                 <div class="text">
                                     <p>Lorem ipsum dolor amet consetetur adi pisicing elit sed eiusm tempor in cididunt ut labore dolore magna aliqua enim ad minim venitam</p>

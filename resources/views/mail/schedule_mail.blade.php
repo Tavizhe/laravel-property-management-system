@@ -351,7 +351,8 @@
 <div class="spacer" style="height:20px;"></div>
 </div>
 <div class="bee-block bee-block-2 bee-heading">
-<h1 style="color:#199e59;direction:ltr;font-family:'Roboto Slab', Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:74px;font-weight:700;letter-spacing:normal;line-height:120%;text-align:left;margin-top:0;margin-bottom:0;">Easy Realestate<br/> </h1>
+<h1 style="color:#199e59;direction:ltr;font-family:'Roboto Slab', Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:74px;font-weight:700;letter-spacing:normal;line-height:120%;text-align:left;margin-top:0;margin-bottom:0;">  Rent Property MellkGostar RealEstate  
+	Realestate<br/> </h1>
 </div>
 <div class="bee-block bee-block-3 bee-paragraph">
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>Enim nisl, eget dictum consectetur integer lectus.</p>

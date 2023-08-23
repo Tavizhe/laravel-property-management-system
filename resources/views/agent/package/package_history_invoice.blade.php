@@ -58,12 +58,12 @@
         <tr>
             <td valign="top">
                 <!-- {{-- <img src="" alt="" width="150"/> --}} -->
-                <h2 style="color: green; font-size: 26px;"><strong>EasyShop</strong></h2>
+                <h2 style="color: green; font-size: 26px;"><strong>MellkGostar</strong></h2>
             </td>
             <td align="right">
                 <pre class="font">
-               EasyShop Head Office
-               Email:support@easylearningbd.com <br>
+                    MellkGostar Head Office
+               Email:support@MellkGostar.ir <br>
                Mob: 1245454545 <br>
                Dhaka 1207,Dhanmondi:#4 <br>
               

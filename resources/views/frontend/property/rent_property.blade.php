@@ -1,7 +1,7 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
 @section('title')
-  Rent Property Easy RealEstate  
+  Rent Property MellkGostar RealEstate  
 @endsection
 
  <!--Page Title-->

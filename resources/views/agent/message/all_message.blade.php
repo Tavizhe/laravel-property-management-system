@@ -15,7 +15,7 @@
                       </button>
                       <div class="order-first">
                         <h4>Mail Service</h4>
-                        <p class="text-muted">Support@easylearningbd.com</p>
+                        <p class="text-muted">Support@MellkGostar.ir</p>
                       </div>
                     </div>
                     <div class="d-grid my-3">

@@ -1,7 +1,7 @@
   @extends('frontend.frontend_dashboard')
    @section('main')
      @section('title')
-  Agent Login | Easy RealEstate  
+  Agent Login | MellkGostar RealEstate  
 @endsection
 
   <!--Page Title-->

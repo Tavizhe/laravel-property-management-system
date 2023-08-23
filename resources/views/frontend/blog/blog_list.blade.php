@@ -2,7 +2,7 @@
 @section('main')
 
 @section('title')
-  Blog | Easy RealEstate  
+  Blog | MellkGostar RealEstate  
 @endsection
 
  <!--Page Title-->

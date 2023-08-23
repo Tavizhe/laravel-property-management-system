@@ -2,7 +2,7 @@
 @section('main')
 
 @section('title')
-  Buy Property Easy RealEstate  
+  Buy Property MellkGostar RealEstate  
 @endsection
 
 

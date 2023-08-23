@@ -52,7 +52,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
             </select>
         </div>
         <div class="select-box">
-            <select name="ptype_id" class="wide">
+            <select name="pType_id" class="wide">
                <option data-display="Type" selected="" disabled="" >Select Type</option>
                
               @foreach($ptypes as $type)

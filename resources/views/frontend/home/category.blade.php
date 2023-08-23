@@ -12,7 +12,7 @@ $ptype = App\Models\PropertyType::latest()->limit(5)->get();
 
 @foreach($ptype as $item)
 @php
-	$property = App\Models\Property::where('ptype_id',$item->id)->get();
+	$property = App\Models\Property::where('pType_id',$item->id)->get();
 @endphp
 
 <li>

@@ -201,7 +201,7 @@
         <div class="col-sm-4">
             <div class="mb-3">
                 <label class="form-label">Property Type </label>
-                <select name="ptype_id" class="form-select" id="exampleFormControlSelect1">
+                <select name="pType_id" class="form-select" id="exampleFormControlSelect1">
                 <option selected="" disabled="">Select Type</option>
                @foreach($propertytype as $ptype)
                 <option value="{{ $ptype->id }}">{{ $ptype->type_name }}</option>
@@ -416,7 +416,7 @@
                  max_price: {
                     required : true,
                 },
-                 ptype_id: {
+                 pType_id: {
                     required : true,
                 },
                  
@@ -435,7 +435,7 @@
                 max_price: {
                     required : 'Please Enter Max Price',
                 },
-                ptype_id: {
+                pType_id: {
                     required : 'Please Select Property Type',
                 }, 
                  

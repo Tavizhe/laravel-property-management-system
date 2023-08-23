@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Agent;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ScheduleMail;
-use App\Models\Amenities;
+use App\Models\amenities;
 use App\Models\Facility;
 use App\Models\MultiImage;
 use App\Models\PackagePlan;
@@ -13,7 +13,7 @@ use App\Models\PropertyMessage;
 use App\Models\PropertyType;
 use App\Models\Schedule;
 use App\Models\State;
-use App\Models\user;
+use App\Models\User;
 use barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use DB;
@@ -35,7 +35,7 @@ class AgentPropertyController extends Controller
     public function AgentAddProperty()
     {
         $propertyType = PropertyType::latest()->get();
-        $amenities = Amenities::latest()->get();
+        $amenities = amenities::latest()->get();
         $pstate = State::latest()->get();
 
         // TODO:
@@ -64,10 +64,10 @@ class AgentPropertyController extends Controller
 
         $pCode = idGenerator::generate(['table' => 'properties', 'field' => 'property_code', 'length' => 5, 'prefix' => 'PC']);
 
-        $image = $request->file('property_thambnail');
+        $image = $request->file('property_thumbnail');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(370, 250)->save('upload/property/thambnail/'.$name_gen);
-        $save_url = 'upload/property/thambnail/'.$name_gen;
+        Image::make($image)->resize(370, 250)->save('upload/property/thumbnail/'.$name_gen);
+        $save_url = 'upload/property/thumbnail/'.$name_gen;
         $property_id = Property::insertGetId([
             'pType_id' => $request->pType_id,
             'amenities_id' => $amenities,
@@ -77,8 +77,8 @@ class AgentPropertyController extends Controller
             'property_status' => $request->property_status,
             'lowest_price' => $request->lowest_price,
             'max_price' => $request->max_price,
-            'short_descp' => $request->short_descp,
-            'long_descp' => $request->long_descp,
+            'short_desc' => $request->short_desc,
+            'long_desc' => $request->long_desc,
             'bedrooms' => $request->bedrooms,
             'bathrooms' => $request->bathrooms,
             'garage' => $request->garage,
@@ -96,7 +96,7 @@ class AgentPropertyController extends Controller
             'hot' => $request->hot,
             'agent_id' => Auth::user()->id,
             'status' => 1,
-            'property_thambnail' => $save_url,
+            'property_thumbnail' => $save_url,
             'created_at' => $request->Carbon::now(),
         ]);
         /* Multiple image Upload */
@@ -145,12 +145,12 @@ class AgentPropertyController extends Controller
         $property = Property::findOrFail($id);
         $type = $property->amenities_id;
         $property_ami = explode(',', $type);
-        $multiImage = MultiImage::where('property_id', $id)->get();
+        $MultiImage = MultiImage::where('property_id', $id)->get();
         $pstate = State::latest()->get();
         $propertyType = PropertyType::latest()->get();
-        $amenities = Amenities::latest()->get();
+        $amenities = amenities::latest()->get();
 
-        return view('agent.property.edit_property', compact('property', 'propertytype', 'amenities', 'property_ami', 'multiImage', 'facilities', 'pstate'));
+        return view('agent.property.edit_property', compact('property', 'propertytype', 'amenities', 'property_ami', 'MultiImage', 'facilities', 'pstate'));
     } // End Method
 
     public function AgentUpdateProperty(Request $request)
@@ -168,8 +168,8 @@ class AgentPropertyController extends Controller
             'property_status' => $request->property_status,
             'lowest_price' => $request->lowest_price,
             'max_price' => $request->max_price,
-            'short_descp' => $request->short_descp,
-            'long_descp' => $request->long_descp,
+            'short_desc' => $request->short_desc,
+            'long_desc' => $request->long_desc,
             'bedrooms' => $request->bedrooms,
             'bathrooms' => $request->bathrooms,
             'garage' => $request->garage,
@@ -198,26 +198,26 @@ class AgentPropertyController extends Controller
 
     } // End Method
 
-    public function AgentUpdatePropertyThambnail(Request $request)
+    public function AgentUpdatePropertyThumbnail(Request $request)
     {
         $pro_id = $request->$id;
         $oldImage = $request->old_img;
 
-        $image = $request->file('property_thambnail');
+        $image = $request->file('property_thumbnail');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(370, 250)->save('upload/property/thambnail/'.$name_gen);
-        $save_url = 'upload/property/thambnail/'.$name_gen;
+        Image::make($image)->resize(370, 250)->save('upload/property/thumbnail/'.$name_gen);
+        $save_url = 'upload/property/thumbnail/'.$name_gen;
 
         if (file_exists($oldImage)) {
             unlink($oldImage);
         }
         Property::findOrFail($pro_id)->update([
-            'property_thambnail' => $save_url,
+            'property_thumbnail' => $save_url,
             'updated_at' => Carbon::now(),
         ]);
 
         $notification = [
-            'message' => 'Property Image Thambnail Updated Successfully',
+            'message' => 'Property Image thumbnail Updated Successfully',
             'alert-type' => 'success',
         ];
 
@@ -316,7 +316,7 @@ class AgentPropertyController extends Controller
     public function AgentDeleteProperty($id)
     {
         $property = Property::findOrFail($id);
-        unlink($property->property_thambnail);
+        unlink($property->property_thumbnail);
 
         Property::findOrFail($id)->delete();
 
@@ -347,12 +347,12 @@ class AgentPropertyController extends Controller
         $property = Property::findOrFail($id);
         $type = $property->amenities_id;
         $property_ami = explode(',', $type);
-        $multiImage = MultiImage::where('property_id', $id)->get();
+        $MultiImage = MultiImage::where('property_id', $id)->get();
         $propertyType = PropertyType::latest()->get();
-        $amenities = Amenities::latest()->get();
+        $amenities = amenities::latest()->get();
         $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('agent.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'multiImage', 'facilities'));
+        return view('agent.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'MultiImage', 'facilities'));
     } // End Method
 
     public function AgentInactiveProperty(Request $request)

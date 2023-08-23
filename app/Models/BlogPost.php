@@ -13,7 +13,7 @@ class BlogPost extends Model
 
     public function cat()
     {
-        return $this->belongsTo(BlogCategory::class, 'blogcat_id', 'id');
+        return $this->belongsTo(blogCategory::class, 'blogCat_id', 'id');
     }
 
     public function user()

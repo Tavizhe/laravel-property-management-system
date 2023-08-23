@@ -2978,7 +2978,7 @@
 		dotClass: 'owl-dot',
 		dotsClass: 'owl-dots',
 		dots: true,
-		dotsEach: false,
+		dotSearch: false,
 		dotsData: false,
 		dotsSpeed: false,
 		dotsContainer: false
@@ -3087,7 +3087,7 @@
 			maximum = this._core.maximum(true),
 			settings = this._core.settings,
 			size = settings.center || settings.autoWidth || settings.dotsData
-				? 1 : settings.dotsEach || settings.items;
+				? 1 : settings.dotSearch || settings.items;
 
 		if (settings.slideBy !== 'page') {
 			settings.slideBy = Math.min(settings.slideBy, settings.items);
@@ -3161,7 +3161,7 @@
 			index: $.inArray(this.current(), this._pages),
 			count: this._pages.length,
 			size: settings && (settings.center || settings.autoWidth || settings.dotsData
-				? 1 : settings.dotsEach || settings.items)
+				? 1 : settings.dotSearch || settings.items)
 		};
 	};
 

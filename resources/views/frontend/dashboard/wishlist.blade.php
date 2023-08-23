@@ -29,7 +29,7 @@
                     @php
                         
                         $id = Auth::user()->id;
-                        $userData = App\Models\user::find($id);
+                        $userData = App\Models\User::find($id);
                     @endphp
 
                     <div class="blog-sidebar">

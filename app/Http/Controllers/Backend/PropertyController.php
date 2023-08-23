@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Amenities;
 use App\Models\MultiImage;
 use App\Models\PackagePlan;
 use App\Models\Property;
 use App\Models\PropertyMessage;
 use App\Models\PropertyType;
 use App\Models\State;
-use App\Models\user;
+use App\Models\User;
 use Carbon\Carbon;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Intervention\Image\Facades\Image;
@@ -28,7 +27,7 @@ class PropertyController extends Controller
     {
         $propertyType = PropertyType::latest()->get();
         $pstate = State::latest()->get();
-        $amenities = Amenities::latest()->get();
+        $amenities = amenities::latest()->get();
         $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
         return view('backend.property.add_property', compact('propertytype', 'amenities', 'activeAgent', 'pstate'));
@@ -41,10 +40,10 @@ class PropertyController extends Controller
 
         $pCode = idGenerator::generate(['table' => 'properties', 'field' => 'property_code', 'length' => 5, 'prefix' => 'PC']);
 
-        $image = $request->file('property_thambnail');
+        $image = $request->file('property_thumbnail');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(370, 250)->save('upload/property/thambnail/'.$name_gen);
-        $save_url = 'upload/property/thambnail/'.$name_gen;
+        Image::make($image)->resize(370, 250)->save('upload/property/thumbnail/'.$name_gen);
+        $save_url = 'upload/property/thumbnail/'.$name_gen;
         $property_id = Property::insertGetId([
             'pType_id' => $request->pType_id,
             'amenities_id' => $amenities,
@@ -54,8 +53,8 @@ class PropertyController extends Controller
             'property_status' => $request->property_status,
             'lowest_price' => $request->lowest_price,
             'max_price' => $request->max_price,
-            'short_descp' => $request->short_descp,
-            'long_descp' => $request->long_descp,
+            'short_desc' => $request->short_desc,
+            'long_desc' => $request->long_desc,
             'bedrooms' => $request->bedrooms,
             'bathrooms' => $request->bathrooms,
             'garage' => $request->garage,
@@ -73,7 +72,7 @@ class PropertyController extends Controller
             'hot' => $request->hot,
             'agent_id' => $request->agent_id,
             'status' => 1,
-            'property_thambnail' => $save_url,
+            'property_thumbnail' => $save_url,
             'created_at' => $request->Carbon::now(),
         ]);
 
@@ -118,12 +117,12 @@ class PropertyController extends Controller
         $property = Property::findOrFail($id);
         $type = $property->amenities_id;
         $property_ami = explode(',', $type);
-        $multiImage = MultiImage::where('property_id', $id)->get();
+        $MultiImage = MultiImage::where('property_id', $id)->get();
         $propertyType = PropertyType::latest()->get();
-        $amenities = Amenities::latest()->get();
+        $amenities = amenities::latest()->get();
         $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('backend.property.edit_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'multiImage', 'facilities'));
+        return view('backend.property.edit_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'MultiImage', 'facilities'));
     } // End Method
 
     public function UpdateProperty(Request $request)
@@ -141,8 +140,8 @@ class PropertyController extends Controller
             'property_status' => $request->property_status,
             'lowest_price' => $request->lowest_price,
             'max_price' => $request->max_price,
-            'short_descp' => $request->short_descp,
-            'long_descp' => $request->long_descp,
+            'short_desc' => $request->short_desc,
+            'long_desc' => $request->long_desc,
             'bedrooms' => $request->bedrooms,
             'bathrooms' => $request->bathrooms,
             'garage' => $request->garage,
@@ -171,26 +170,26 @@ class PropertyController extends Controller
 
     } // End Method
 
-    public function UpdatePropertyThambnail(Request $request)
+    public function UpdatePropertyThumbnail(Request $request)
     {
         $pro_id = $request->$id;
         $oldImage = $request->old_img;
 
-        $image = $request->file('property_thambnail');
+        $image = $request->file('property_thumbnail');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(370, 250)->save('upload/property/thambnail/'.$name_gen);
-        $save_url = 'upload/property/thambnail/'.$name_gen;
+        Image::make($image)->resize(370, 250)->save('upload/property/thumbnail/'.$name_gen);
+        $save_url = 'upload/property/thumbnail/'.$name_gen;
 
         if (file_exists($oldImage)) {
             unlink($oldImage);
         }
         Property::findOrFail($pro_id)->update([
-            'property_thambnail' => $save_url,
+            'property_thumbnail' => $save_url,
             'updated_at' => Carbon::now(),
         ]);
 
         $notification = [
-            'message' => 'Property Image Thambnail Updated Successfully',
+            'message' => 'Property Image thumbnail Updated Successfully',
             'alert-type' => 'success',
         ];
 
@@ -289,7 +288,7 @@ class PropertyController extends Controller
     public function DeleteProperty($id)
     {
         $property = Property::findOrFail($id);
-        unlink($property->property_thambnail);
+        unlink($property->property_thumbnail);
 
         Property::findOrFail($id)->delete();
 
@@ -320,12 +319,12 @@ class PropertyController extends Controller
         $property = Property::findOrFail($id);
         $type = $property->amenities_id;
         $property_ami = explode(',', $type);
-        $multiImage = MultiImage::where('property_id', $id)->get();
+        $MultiImage = MultiImage::where('property_id', $id)->get();
         $propertyType = PropertyType::latest()->get();
-        $amenities = Amenities::latest()->get();
+        $amenities = amenities::latest()->get();
         $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('backend.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'multiImage', 'facilities'));
+        return view('backend.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'MultiImage', 'facilities'));
     } // End Method
 
     public function InactiveProperty(Request $request)

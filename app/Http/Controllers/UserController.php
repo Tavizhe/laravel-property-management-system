@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Schedule;
-use App\Models\user;
+use App\Models\User;
 use illuminate\Http\Request;
 use illuminate\support\Facades\Auth;
 use illuminate\support\Facades\Hash;

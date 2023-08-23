@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\BlogCategory;
+use App\Models\blogCategory;
 use App\Models\BlogPost;
 use App\Models\Comment;
 use App\Models\Schedule;
@@ -17,7 +17,7 @@ class BlogController extends Controller
     public function AllBlogCategory()
     {
 
-        $category = BlogCategory::latest()->get();
+        $category = blogCategory::latest()->get();
 
         return view('backend.category.blog_category', compact('category'));
 
@@ -27,14 +27,14 @@ class BlogController extends Controller
     public function StoreBlogCategory(Request $request)
     {
 
-        BlogCategory::insert([
+        blogCategory::insert([
 
             'category_name' => $request->category_name,
             'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
         ]);
 
         $notification = [
-            'message' => 'BlogCategory Create Successfully',
+            'message' => 'blogCategory Create Successfully',
             'alert-type' => 'success',
         ];
 
@@ -45,7 +45,7 @@ class BlogController extends Controller
     public function EditBlogCategory($id)
     {
 
-        $categories = BlogCategory::findOrFail($id);
+        $categories = blogCategory::findOrFail($id);
 
         return response()->json($categories);
 
@@ -63,9 +63,9 @@ class BlogController extends Controller
     public function AddPost()
     {
 
-        $blogcat = BlogCategory::latest()->get();
+        $blogCat = blogCategory::latest()->get();
 
-        return view('backend.post.add_post', compact('blogcat'));
+        return view('backend.post.add_post', compact('blogCat'));
 
     }// End Method
 
@@ -78,12 +78,12 @@ class BlogController extends Controller
         $save_url = 'upload/post/'.$name_gen;
 
         BlogPost::insert([
-            'blogcat_id' => $request->blogcat_id,
+            'blogCat_id' => $request->blogCat_id,
             'user_id' => Auth::user()->id,
             'post_title' => $request->post_title,
             'post_slug' => strtolower(str_replace(' ', '-', $request->post_title)),
-            'short_descp' => $request->short_descp,
-            'long_descp' => $request->long_descp,
+            'short_desc' => $request->short_desc,
+            'long_desc' => $request->long_desc,
             'post_tags' => $request->post_tags,
             'post_image' => $save_url,
             'created_at' => Carbon::now(),
@@ -101,10 +101,10 @@ class BlogController extends Controller
     public function EditPost($id)
     {
 
-        $blogcat = BlogCategory::latest()->get();
+        $blogCat = blogCategory::latest()->get();
         $post = BlogPost::findOrFail($id);
 
-        return view('backend.post.edit_post', compact('post', 'blogcat'));
+        return view('backend.post.edit_post', compact('post', 'blogCat'));
 
     }// End Method
 
@@ -121,12 +121,12 @@ class BlogController extends Controller
             $save_url = 'upload/post/'.$name_gen;
 
             BlogPost::findOrFail($post_id)->update([
-                'blogcat_id' => $request->blogcat_id,
+                'blogCat_id' => $request->blogCat_id,
                 'user_id' => Auth::user()->id,
                 'post_title' => $request->post_title,
                 'post_slug' => strtolower(str_replace(' ', '-', $request->post_title)),
-                'short_descp' => $request->short_descp,
-                'long_descp' => $request->long_descp,
+                'short_desc' => $request->short_desc,
+                'long_desc' => $request->long_desc,
                 'post_tags' => $request->post_tags,
                 'post_image' => $save_url,
                 'created_at' => Carbon::now(),
@@ -142,12 +142,12 @@ class BlogController extends Controller
         } else {
 
             BlogPost::findOrFail($post_id)->update([
-                'blogcat_id' => $request->blogcat_id,
+                'blogCat_id' => $request->blogCat_id,
                 'user_id' => Auth::user()->id,
                 'post_title' => $request->post_title,
                 'post_slug' => strtolower(str_replace(' ', '-', $request->post_title)),
-                'short_descp' => $request->short_descp,
-                'long_descp' => $request->long_descp,
+                'short_desc' => $request->short_desc,
+                'long_desc' => $request->long_desc,
                 'post_tags' => $request->post_tags,
                 'created_at' => Carbon::now(),
             ]);
@@ -189,22 +189,22 @@ class BlogController extends Controller
         $tags = $blog->post_tags;
         $tags_all = explode(',', $tags);
 
-        $bcategory = BlogCategory::latest()->get();
-        $dpost = BlogPost::latest()->limit(3)->get();
+        $bCategory = blogCategory::latest()->get();
+        $dPost = BlogPost::latest()->limit(3)->get();
 
-        return view('frontend.blog.blog_details', compact('blog', 'tags_all', 'bcategory', 'dpost'));
+        return view('frontend.blog.blog_details', compact('blog', 'tags_all', 'bCategory', 'dPost'));
 
     }// End Method
 
-    public function BlogCatList($id)
+    public function blogCatList($id)
     {
 
-        $blog = BlogPost::where('blogcat_id', $id)->get();
-        $breadcat = BlogCategory::where('id', $id)->first();
-        $bcategory = BlogCategory::latest()->get();
-        $dpost = BlogPost::latest()->limit(3)->get();
+        $blog = BlogPost::where('blogCat_id', $id)->get();
+        $breadCat = blogCategory::where('id', $id)->first();
+        $bCategory = blogCategory::latest()->get();
+        $dPost = BlogPost::latest()->limit(3)->get();
 
-        return view('frontend.blog.blog_cat_list', compact('blog', 'breadcat', 'bcategory', 'dpost'));
+        return view('frontend.blog.blog_cat_list', compact('blog', 'breadCat', 'bCategory', 'dPost'));
 
     }// End Method
 
@@ -212,10 +212,10 @@ class BlogController extends Controller
     {
 
         $blog = BlogPost::latest()->get();
-        $bcategory = BlogCategory::latest()->get();
-        $dpost = BlogPost::latest()->limit(3)->get();
+        $bCategory = blogCategory::latest()->get();
+        $dPost = BlogPost::latest()->limit(3)->get();
 
-        return view('frontend.blog.blog_list', compact('blog', 'bcategory', 'dpost'));
+        return view('frontend.blog.blog_list', compact('blog', 'bCategory', 'dPost'));
 
     }// End Method
 

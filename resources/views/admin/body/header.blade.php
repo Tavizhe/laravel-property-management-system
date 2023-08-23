@@ -215,7 +215,7 @@
              @php
                  
                  $id = Auth::user()->id;
-                 $profileData = App\Models\user::find($id);
+                 $profileData = App\Models\User::find($id);
                  
              @endphp
 

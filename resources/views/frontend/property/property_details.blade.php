@@ -77,7 +77,7 @@
                 <div class="property-details-content">
                     <div class="carousel-inner">
                         <div class="single-item-carousel owl-carousel owl-theme owl-dots-none">
-                            @foreach ($multiImage as $img)
+                            @foreach ($MultiImage as $img)
                                 <figure class="image-box"><img src="{{ asset($img->photo_name) }}" alt="">
                                 </figure>
                             @endforeach
@@ -88,7 +88,7 @@
                             <h4>Property Description</h4>
                         </div>
                         <div class="text">
-                            <p>{!! $property->long_descp !!}</p>
+                            <p>{!! $property->long_desc !!}</p>
                         </div>
                     </div>
                     <div class="details-box content-widget">
@@ -109,7 +109,7 @@
                     </div>
                     <div class="amenities-box content-widget">
                         <div class="title-box">
-                            <h4>Amenities</h4>
+                            <h4>amenities</h4>
                         </div>
                         <ul class="list clearfix">
                             @foreach ($property_amen as $amen)
@@ -286,7 +286,7 @@
 
                                 @php
                                     $id = Auth::user()->id;
-                                    $userData = App\Models\user::find($id);
+                                    $userData = App\Models\User::find($id);
                                 @endphp
 
                                 <form action="{{ route('property.message') }}" method="post" class="default-form">
@@ -406,7 +406,7 @@
                             data-wow-duration="1500ms">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="{{ asset($item->property_thambnail) }}"
+                                    <figure class="image"><img src="{{ asset($item->property_thumbnail) }}"
                                             alt=""></figure>
                                     <div class="batch"><i class="icon-11"></i></div>
                                     <span class="category">{{ $item->type->type_name }}</span>
@@ -443,7 +443,7 @@
                                             <li><a href="property-details.html"><i class="icon-13"></i></a></li>
                                         </ul>
                                     </div>
-                                    <p>{{ $item->short_descp }}</p>
+                                    <p>{{ $item->short_desc }}</p>
                                     <ul class="more-details clearfix">
                                         <li><i class="icon-14"></i>{{ $item->bedrooms }} Beds</li>
                                         <li><i class="icon-15"></i>{{ $item->bathrooms }} Baths</li>

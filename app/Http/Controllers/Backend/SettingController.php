@@ -13,7 +13,7 @@ class SettingController extends Controller
     public function SmtpSetting(){
 
         $setting = SmtpSetting::find(1);
-        return view('backend.setting.smpt_update',compact('setting'));
+        return view('backend.setting.smtp_update',compact('setting'));
 
     }// End Method 
 

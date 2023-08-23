@@ -2,7 +2,7 @@
 @section('agent')
     @php
         $id = Auth::user()->id;
-        $agentId = App\Models\user::find($id);
+        $agentId = App\Models\User::find($id);
         $status = $agentId->status;
     @endphp
 

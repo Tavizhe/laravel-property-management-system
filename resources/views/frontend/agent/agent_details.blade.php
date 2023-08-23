@@ -86,8 +86,8 @@
                                                 <div class="inner-box">
                                                     <div class="image-box">
                                                         <figure class="image"><img
-                                                                src="{{ asset($item->property_thambnail) }}"
-                                                                alt="" style="width:300px; height:350px;"></figure>
+                                                                src="{{ asset($item->property_thumbnail) }}" alt=""
+                                                                style="width:300px; height:350px;"></figure>
                                                         <div class="batch"><i class="icon-11"></i></div>
                                                         @if ($item->featured == 1)
                                                             <span class="category">Featured</span>
@@ -128,7 +128,7 @@
                                                                 </div>
                                                             @endif
                                                         </div>
-                                                        <p>{{ $item->short_descp }}</p>
+                                                        <p>{{ $item->short_desc }}</p>
                                                         <ul class="more-details clearfix">
                                                             <li><i class="icon-14"></i>{{ $item->bedrooms }} Beds</li>
                                                             <li><i class="icon-15"></i>{{ $item->bathrooms }} Baths</li>
@@ -177,7 +177,7 @@
 
                                     @php
                                         $id = Auth::user()->id;
-                                        $userData = App\Models\user::find($id);
+                                        $userData = App\Models\User::find($id);
                                     @endphp
 
                                     <form action="{{ route('agent.details.message') }}" method="post" class="default-form">
@@ -254,9 +254,8 @@
                                     <div class="feature-block-one">
                                         <div class="inner-box">
                                             <div class="image-box">
-                                                <figure class="image"><img
-                                                        src="{{ asset($feat->property_thambnail) }}" alt=""
-                                                        style="width:370px; height:250px;"></figure>
+                                                <figure class="image"><img src="{{ asset($feat->property_thumbnail) }}"
+                                                        alt="" style="width:370px; height:250px;"></figure>
                                                 <div class="batch"><i class="icon-11"></i></div>
                                                 <span class="category">Featured</span>
                                             </div>
@@ -272,7 +271,7 @@
                                                         <h4>${{ $feat->lowest_price }}</h4>
                                                     </div>
                                                 </div>
-                                                <p>{{ $feat->short_descp }}</p>
+                                                <p>{{ $feat->short_desc }}</p>
                                                 <div class="btn-box"><a
                                                         href="{{ url('property/details/' . $feat->id . '/' . $feat->property_slug) }}"
                                                         class="theme-btn btn-two">See Details</a></div>

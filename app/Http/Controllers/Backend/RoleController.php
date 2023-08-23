@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Exports\PermissionExport;
 use App\Http\Controllers\Controller;
 use App\Imports\PermissionImport;
-use App\Models\user;
+use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -196,9 +196,9 @@ class RoleController extends Controller
 
         $roles = Role::all();
         $permissions = Permission::all();
-        $permission_groups = user::getpermissionGroups();
+        $permission_groups = user::getPermissionGroups();
 
-        return view('backend.pages.rolesetup.add_roles_permission', compact('roles', 'permissions', 'permission_groups'));
+        return view('backend.pages.roleSetup.add_roles_permission', compact('roles', 'permissions', 'permission_groups'));
 
     }// End Method
 
@@ -230,7 +230,7 @@ class RoleController extends Controller
 
         $roles = Role::all();
 
-        return view('backend.pages.rolesetup.all_roles_permission', compact('roles'));
+        return view('backend.pages.roleSetup.all_roles_permission', compact('roles'));
     }
 
     public function AdminEditRoles($id)
@@ -238,9 +238,9 @@ class RoleController extends Controller
 
         $role = Role::findOrFail($id);
         $permissions = Permission::all();
-        $permission_groups = user::getpermissionGroups();
+        $permission_groups = user::getPermissionGroups();
 
-        return view('backend.pages.rolesetup.edit_roles_permission', compact('role', 'permissions', 'permission_groups'));
+        return view('backend.pages.roleSetup.edit_roles_permission', compact('role', 'permissions', 'permission_groups'));
 
     }// End Method
 

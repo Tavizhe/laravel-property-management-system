@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
-use App\Models\user;
+use App\Models\User;
 use Carbon\Carbon;
 
 class WishlistController extends Controller

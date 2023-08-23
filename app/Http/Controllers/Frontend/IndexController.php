@@ -18,12 +18,12 @@ class IndexController extends Controller
         $property = Property::findOrFail($id);
         $amenities = $property->amenities_id;
         $property_amen = explode(',', $amenities);
-        $multiImage = MultiImage::where('property_id', $id)->get();
+        $MultiImage = MultiImage::where('property_id', $id)->get();
         $facility = Facility::where('property_id', $id)->get();
         $type_id = $property->pType_id;
         $relatedProperty = Property::where('pType_id', $type_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(3)->get();
 
-        return view('frontend.pages.property-details', compact('property', 'multiImage', 'facility', 'property_amen', 'relatedProperty'));
+        return view('frontend.pages.property-details', compact('property', 'MultiImage', 'facility', 'property_amen', 'relatedProperty'));
     } // End Method
 
     public function PropertyMessage(Request $request)
@@ -153,7 +153,7 @@ class IndexController extends Controller
 
     }// End Method
 
-    public function BuyPropertySeach(Request $request)
+    public function BuyPropertySearch(Request $request)
     {
         $request->validate(['search' => 'required']);
         $item = $request->search;
@@ -173,7 +173,7 @@ class IndexController extends Controller
 
     }// End Method
 
-    public function RentPropertySeach(Request $request)
+    public function RentPropertySearch(Request $request)
     {
 
         $request->validate(['search' => 'required']);
@@ -194,7 +194,7 @@ class IndexController extends Controller
 
     }// End Method
 
-    public function AllPropertySeach(Request $request)
+    public function AllPropertySearch(Request $request)
     {
 
         $property_status = $request->property_status;

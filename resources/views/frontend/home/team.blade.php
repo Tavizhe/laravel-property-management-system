@@ -1,5 +1,5 @@
  @php
-     $agents = App\Models\user::where('status', 'active')
+     $agents = App\Models\User::where('status', 'active')
          ->where('role', 'agent')
          ->orderBy('id', 'DESC')
          ->limit(5)

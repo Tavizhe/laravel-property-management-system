@@ -133,15 +133,15 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
     });
 
-    // Amenities Type All Route
+    // amenities Type All Route
     Route::controller(PropertyTypeController::class)->group(function () {
 
-        Route::get('/all/amenitie', 'AllAmenitie')->name('all.amenitie');
-        Route::get('/add/amenitie', 'AddAmenitie')->name('add.amenitie');
-        Route::post('/store/amenitie', 'StoreAmenitie')->name('store.amenitie');
-        Route::get('/edit/amenitie/{id}', 'EditAmenitie')->name('edit.amenitie');
-        Route::post('/update/amenitie', 'UpdateAmenitie')->name('update.amenitie');
-        Route::get('/delete/amenitie/{id}', 'DeleteAmenitie')->name('delete.amenitie');
+        Route::get('/all/amenity', 'AllAmenity')->name('all.amenity');
+        Route::get('/add/amenity', 'AddAmenity')->name('add.amenity');
+        Route::post('/store/amenity', 'StoreAmenity')->name('store.amenity');
+        Route::get('/edit/amenity/{id}', 'EditAmenity')->name('edit.amenity');
+        Route::post('/update/amenity', 'UpdateAmenity')->name('update.amenity');
+        Route::get('/delete/amenity/{id}', 'DeleteAmenity')->name('delete.amenity');
 
     });
 
@@ -154,13 +154,13 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::get('/edit/property/{id}', 'EditProperty')->name('edit.property');
         Route::post('/update/property', 'UpdateProperty')->name('update.property');
 
-        Route::post('/update/property/thambnail', 'UpdatePropertyThambnail')->name('update.property.thambnail');
+        Route::post('/update/property/thumbnail', 'UpdatePropertyThumbnail')->name('update.property.thumbnail');
 
-        Route::post('/update/property/multiImage', 'UpdatePropertyMultiimage')->name('update.property.multiimage');
+        Route::post('/update/property/MultiImage', 'UpdatePropertyMultiImage')->name('update.property.MultiImage');
 
-        Route::get('/property/multiimg/delete/{id}', 'PropertyMultiImageDelete')->name('property.multiimg.delete');
+        Route::get('/property/multiImg/delete/{id}', 'PropertyMultiImageDelete')->name('property.multiImg.delete');
 
-        Route::post('/store/new/multiimage', 'StoreNewMultiimage')->name('store.new.multiimage');
+        Route::post('/store/new/MultiImage', 'StoreNewMultiImage')->name('store.new.MultiImage');
 
         Route::post('/update/property/facilities', 'UpdatePropertyFacilities')->name('update.property.facilities');
 
@@ -172,7 +172,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
         Route::post('/active/property', 'ActiveProperty')->name('active.property');
 
-        Route::get('/admin/package/history', 'AdminpackageHistory')->name('admin.package.history');
+        Route::get('/admin/package/history', 'AdminPackageHistory')->name('admin.package.history');
 
         Route::get('/package/invoice/{id}', 'PackageInvoice')->name('package.invoice');
 
@@ -218,7 +218,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
     });
 
-    // Blog Cateory All Route
+    // Blog category All Route
     Route::controller(BlogController::class)->group(function () {
 
         Route::get('/all/blog/category', 'AllBlogCategory')->name('all.blog.category');
@@ -245,7 +245,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::controller(SettingController::class)->group(function () {
 
         Route::get('/smtp/setting', 'SmtpSetting')->name('smtp.setting');
-        Route::post('/update/smpt/setting', 'UpdateSmtpSetting')->name('update.smpt.setting');
+        Route::post('/update/smtp/setting', 'UpdateSmtpSetting')->name('update.smtp.setting');
 
     });
 
@@ -325,13 +325,13 @@ Route::middleware(['auth', 'roles:agent'])->group(function () {
 
         Route::post('/agent/update/property', 'AgentUpdateProperty')->name('agent.update.property');
 
-        Route::post('/agent/update/property/thambnail', 'AgentUpdatePropertyThambnail')->name('agent.update.property.thambnail');
+        Route::post('/agent/update/property/thumbnail', 'AgentUpdatePropertyThumbnail')->name('agent.update.property.thumbnail');
 
-        Route::post('/agent/update/property/multiimage', 'AgentUpdatePropertyMultiImage')->name('agent.update.property.multiimage');
+        Route::post('/agent/update/property/MultiImage', 'AgentUpdatePropertyMultiImage')->name('agent.update.property.MultiImage');
 
-        Route::get('/agent/property/multiimg/delete/{id}', 'AgentPropertyMultiimgDelete')->name('agent.property.multiimg.delete');
+        Route::get('/agent/property/multiImg/delete/{id}', 'AgentPropertyMultiImgDelete')->name('agent.property.multiImg.delete');
 
-        Route::post('/agent/store/new/multiimage', 'AgentStoreNewMultiimage')->name('agent.store.new.multiimage');
+        Route::post('/agent/store/new/MultiImage', 'AgentStoreNewMultiImage')->name('agent.store.new.MultiImage');
 
         Route::post('/agent/update/property/facilities', 'AgentUpdatePropertyFacilities')->name('agent.update.property.facilities');
 
@@ -398,18 +398,18 @@ Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->nam
 // Get State Details Data
 Route::get('/state/details/{id}', [IndexController::class, 'StateDetails'])->name('state.details');
 
-// Home Page Buy Seach Option
-Route::post('/buy/property/search', [IndexController::class, 'BuyPropertySeach'])->name('buy.property.search');
+// Home Page Buy Search Option
+Route::post('/buy/property/search', [IndexController::class, 'BuyPropertySearch'])->name('buy.property.search');
 
-// Home Page Rent Seach Option
-Route::post('/rent/property/search', [IndexController::class, 'RentPropertySeach'])->name('rent.property.search');
+// Home Page Rent Search Option
+Route::post('/rent/property/search', [IndexController::class, 'RentPropertySearch'])->name('rent.property.search');
 
-// All Property Seach Option
-Route::post('/all/property/search', [IndexController::class, 'AllPropertySeach'])->name('all.property.search');
+// All Property Search Option
+Route::post('/all/property/search', [IndexController::class, 'AllPropertySearch'])->name('all.property.search');
 
 // Blog Details Route
 Route::get('/blog/details/{slug}', [BlogController::class, 'BlogDetails']);
-Route::get('/blog/cat/list/{id}', [BlogController::class, 'BlogCatList']);
+Route::get('/blog/cat/list/{id}', [BlogController::class, 'blogCatList']);
 Route::get('/blog', [BlogController::class, 'BlogList'])->name('blog.list');
 Route::post('/store/comment', [BlogController::class, 'StoreComment'])->name('store.comment');
 

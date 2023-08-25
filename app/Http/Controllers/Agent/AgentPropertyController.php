@@ -16,8 +16,9 @@ use App\Models\State;
 use App\Models\User;
 use barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
@@ -36,16 +37,16 @@ class AgentPropertyController extends Controller
     {
         $propertyType = PropertyType::latest()->get();
         $amenities = amenities::latest()->get();
-        $pstate = State::latest()->get();
+        $pState = State::latest()->get();
 
         // TODO:
         $id = Auth::user()->id;
         $property = user::where('role', 'agent')->where('id', $id)->first();
         $pCount = $property->credit;
-        if ($pCount == 1 || 7) {
+        if ($pCount == 1 || $pCount == 7) {
             return redirect()->route('buy.package');
         } else {
-            return view('agent.property.add_property', compact('propertytype', 'amenities', 'pstate'));
+            return view('agent.property.add_property', compact('propertyType', 'amenities', 'pState'));
         }
         // TODO:
 
@@ -57,7 +58,7 @@ class AgentPropertyController extends Controller
         // TODO:
         $id = Auth::user()->id;
         $uid = user::findOFail($id);
-        $nid = $uid->credits;
+        $nid = $uid->credit;
         // TODO:
         $amen = $request->amenities_id;
         $amenities = implode(',', $amen);
@@ -97,12 +98,12 @@ class AgentPropertyController extends Controller
             'agent_id' => Auth::user()->id,
             'status' => 1,
             'property_thumbnail' => $save_url,
-            'created_at' => $request->Carbon::now(),
+            'created_at' => Carbon::now(),
         ]);
         /* Multiple image Upload */
 
         $image = $request->file('multi_img');
-        foreach ($images as $img) {
+        foreach ($image as $img) {
             $make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
             Image::make($img)->resize(770, 520)->save('upload/property/multi-image/'.$make_name);
             $uploadPath = 'upload/property/multi-image/'.$make_name;
@@ -146,20 +147,21 @@ class AgentPropertyController extends Controller
         $type = $property->amenities_id;
         $property_ami = explode(',', $type);
         $MultiImage = MultiImage::where('property_id', $id)->get();
-        $pstate = State::latest()->get();
+        $pState = State::latest()->get();
         $propertyType = PropertyType::latest()->get();
         $amenities = amenities::latest()->get();
 
-        return view('agent.property.edit_property', compact('property', 'propertytype', 'amenities', 'property_ami', 'MultiImage', 'facilities', 'pstate'));
+        return view('agent.property.edit_property', compact('property', 'propertyType', 'amenities', 'property_ami', 'MultiImage', 'facilities', 'pState'));
     } // End Method
 
     public function AgentUpdateProperty(Request $request)
     {
-        $property = Property::findOrFail($id);
-        $type = $property->amenities_id;
+        $amen = $request->amenities_id;
+        $amenities = implode(',', $amen);
+        $property_id = $request->id;
 
         $property_id = $request->id;
-        Property::findOrFail()->update([
+        Property::findOrFail($property_id)->update([
 
             'pType_id' => $request->pType_id,
             'amenities_id' => $amenities,
@@ -186,7 +188,7 @@ class AgentPropertyController extends Controller
             'featured' => $request->featured,
             'hot' => $request->hot,
             'agent_id' => Auth::user()->id,
-            'updated_at' => $request->Carbon::now(),
+            'updated_at' => Carbon::now(),
 
         ]);
         $notification = [
@@ -200,7 +202,7 @@ class AgentPropertyController extends Controller
 
     public function AgentUpdatePropertyThumbnail(Request $request)
     {
-        $pro_id = $request->$id;
+        $pro_id = $request->id;
         $oldImage = $request->old_img;
 
         $image = $request->file('property_thumbnail');
@@ -290,7 +292,7 @@ class AgentPropertyController extends Controller
 
     public function AgentUpdatePropertyFacilities(Request $request)
     {
-        $pid = $request->$id;
+        $pid = $request->id;
 
         if ($request->facility_name == null) {
             return redirect()->back();
@@ -320,7 +322,7 @@ class AgentPropertyController extends Controller
 
         Property::findOrFail($id)->delete();
 
-        $image = MultiImages::where('property_id', $id)->get();
+        $image = MultiImage::where('property_id', $id)->get();
 
         foreach ($image as $img) {
             unlink($img->photo_name);
@@ -391,7 +393,7 @@ class AgentPropertyController extends Controller
 
     public function BuyBusinessPlan()
     {
-        $user = Auth::user()->id;
+        $id = Auth::user()->id;
         $data = user::find($id);
 
         return view('agent.package.business_plan', compact('data'));
@@ -447,7 +449,7 @@ class AgentPropertyController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        user::where('id', $id)->update([
+        User::where('id',$id)->update([
             'credit' => DB::raw('10 + '.$nid),
         ]);
 
@@ -484,9 +486,9 @@ class AgentPropertyController extends Controller
     {
 
         $id = Auth::user()->id;
-        $usermsg = PropertyMessage::where('agent_id', $id)->get();
+        $userMsg = PropertyMessage::where('agent_id', $id)->get();
 
-        return view('agent.message.all_message', compact('usermsg'));
+        return view('agent.message.all_message', compact('userMsg'));
 
     }
 
@@ -495,23 +497,23 @@ class AgentPropertyController extends Controller
     {
 
         $uid = Auth::user()->id;
-        $usermsg = PropertyMessage::where('agent_id', $uid)->get();
+        $userMsg = PropertyMessage::where('agent_id', $uid)->get();
 
-        $msgdetails = PropertyMessage::findOrFail($id);
+        $msgDetails = PropertyMessage::findOrFail($id);
 
-        return view('agent.message.message_details', compact('usermsg', 'msgdetails'));
+        return view('agent.message.message_details', compact('userMsg', 'msgDetails'));
 
-    }// End Method
+    } // End Method
 
     public function AgentScheduleRequest()
     {
 
         $id = Auth::user()->id;
-        $usermsg = Schedule::where('agent_id', $id)->get();
+        $userMsg = Schedule::where('agent_id', $id)->get();
 
-        return view('agent.schedule.schedule_request', compact('usermsg'));
+        return view('agent.schedule.schedule_request', compact('userMsg'));
 
-    }// End Method
+    } // End Method
 
     public function AgentDetailsSchedule($id)
     {
@@ -552,6 +554,6 @@ class AgentPropertyController extends Controller
 
         return redirect()->route('agent.schedule.request')->with($notification);
 
-    }// End Method
+    } // End Method
 
 }

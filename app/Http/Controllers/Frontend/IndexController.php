@@ -160,8 +160,8 @@ class IndexController extends Controller
         $sstate = $request->state;
         $stype = $request->ptype_id;
 
-        $property = Property::where('property_name', 'like', '%'.$item.'%')->where('property_status', 'buy')->with('type', 'pstate')
-            ->whereHas('pstate', function ($q) use ($sstate) {
+        $property = Property::where('property_name', 'like', '%'.$item.'%')->where('property_status', 'buy')->with('type', 'pState')
+            ->whereHas('pState', function ($q) use ($sstate) {
                 $q->where('state_name', 'like', '%'.$sstate.'%');
             })
             ->whereHas('type', function ($q) use ($stype) {
@@ -181,8 +181,8 @@ class IndexController extends Controller
         $sstate = $request->state;
         $stype = $request->ptype_id;
 
-        $property = Property::where('property_name', 'like', '%'.$item.'%')->where('property_status', 'rent')->with('type', 'pstate')
-            ->whereHas('pstate', function ($q) use ($sstate) {
+        $property = Property::where('property_name', 'like', '%'.$item.'%')->where('property_status', 'rent')->with('type', 'pState')
+            ->whereHas('pState', function ($q) use ($sstate) {
                 $q->where('state_name', 'like', '%'.$sstate.'%');
             })
             ->whereHas('type', function ($q) use ($stype) {
@@ -204,8 +204,8 @@ class IndexController extends Controller
         $bathrooms = $request->bathrooms;
 
         $property = Property::where('status', '1')->where('bedrooms', $bedrooms)->where('bathrooms', 'like', '%'.$bathrooms.'%')->where('property_status', $property_status)
-            ->with('type', 'pstate')
-            ->whereHas('pstate', function ($q) use ($sstate) {
+            ->with('type', 'pState')
+            ->whereHas('pState', function ($q) use ($sstate) {
                 $q->where('state_name', 'like', '%'.$sstate.'%');
             })
             ->whereHas('type', function ($q) use ($stype) {

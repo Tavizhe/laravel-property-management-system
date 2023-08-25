@@ -1,5 +1,5 @@
  <section class="chooseus-section">
-            <div class="auto-container">
+            {{-- <div class="auto-container">
                 <div class="inner-container bg-color-2">
                     <div class="upper-box clearfix">
                         <div class="sec-title light">
@@ -42,5 +42,5 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </section>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\amenities;
 use App\Models\PropertyType;
+use Illuminate\Http\Request;
 
 class PropertyTypeController extends Controller
 {
@@ -61,7 +63,7 @@ class PropertyTypeController extends Controller
         return redirect()->route('all.type')->with($notification);
     } // End Method
 
-    public function DeleteTypes()
+    public function DeleteTypes($id)
     {
         PropertyType::findOrFail($id)->delete();
         $notification = [
@@ -90,7 +92,7 @@ class PropertyTypeController extends Controller
     public function StoreAmenity(Request $request)
     {
         amenities::insert([
-            'amenities_name' => $request->amenitis_name,
+            'amenities_name' => $request->amenities_name,
         ]);
         $notification = [
             'message' => 'amenities Create Successfully',
@@ -109,9 +111,9 @@ class PropertyTypeController extends Controller
 
     public function UpdateAmenity(Request $request)
     {
-        $ame_id = $request->$id;
+        $ame_id = $request->id;
         amenities::findOrFail($ame_id)->update([
-            'amenitis_name' => $request->amenities_name,
+            'amenities_name' => $request->amenities_name,
         ]);
         $notification = [
             'message' => 'amenities Updated Successfully',

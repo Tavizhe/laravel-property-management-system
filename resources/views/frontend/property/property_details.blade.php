@@ -2,7 +2,7 @@
 @section('main')
 
 @section('title')
-    {{ $property->property_name }} | MellkGostar RealEstate
+{{ $property->property_name }} | MellkGostar RealEstate
 @endsection
 
 <!--Page Title-->
@@ -34,14 +34,14 @@
                 <div class="author-info clearfix">
                     <div class="author-box pull-left">
                         @if ($property->agent_id == null)
-                            <figure class="author-thumb"><img src="{{ url('upload/ariyan.jpg') }}" alt="">
-                            </figure>
-                            <h6>Admin</h6>
+                        <figure class="author-thumb"><img src="{{ url('upload/ariyan.jpg') }}" alt="">
+                        </figure>
+                        <h6>Admin</h6>
                         @else
-                            <figure class="author-thumb"><img
-                                    src="{{ !empty($property->user->photo) ? url('upload/agent_images/' . $property->user->photo) : url('upload/no_image.jpg') }}"
-                                    alt=""></figure>
-                            <h6>{{ $property->user->name }}</h6>
+                        <figure class="author-thumb"><img
+                                src="{{ !empty($property->user->photo) ? url('upload/agent_images/' . $property->user->photo) : url('upload/no_image.jpg') }}"
+                                alt=""></figure>
+                        <h6>{{ $property->user->name }}</h6>
                         @endif
 
                     </div>
@@ -78,8 +78,8 @@
                     <div class="carousel-inner">
                         <div class="single-item-carousel owl-carousel owl-theme owl-dots-none">
                             @foreach ($MultiImage as $img)
-                                <figure class="image-box"><img src="{{ asset($img->photo_name) }}" alt="">
-                                </figure>
+                            <figure class="image-box"><img src="{{ asset($img->photo_name) }}" alt="">
+                            </figure>
                             @endforeach
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                         </div>
                         <ul class="list clearfix">
                             @foreach ($property_amen as $amen)
-                                <li>{{ $amen }}</li>
+                            <li>{{ $amen }}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -124,7 +124,7 @@
                         </div>
                         <ul class="info clearfix">
                             <li><span>Address:</span> {{ $property->address }}</li>
-                            <li><span>State/county:</span> {{ $property['pstate']['state_name'] }}</li>
+                            <li><span>State/county:</span> {{ $property['pState']['state_name'] }}</li>
                             <li><span>Neighborhood:</span> {{ $property->neighborhood }}</li>
                             <li><span>Zip/Postal Code:</span> {{ $property->postal_code }}</li>
                             <li><span>City:</span> {{ $property->city }}</li>
@@ -133,10 +133,9 @@
                             <div class="google-map" id="contact-google-map" data-map-lat="{{ $property->latitude }}"
                                 data-map-lng="{{ $property->longitude }}"
                                 data-icon-path="{{ asset('frontend/assets/images/icons/map-marker.png') }}"
-                                data-map-title="Brooklyn, New York, United Kingdom" data-map-zoom="12"
-                                data-markers='{
-            "marker-1": [40.712776, -74.005974, "<h4>Branch Office</h4><p>77/99 New York</p>","{{ asset('frontend/assets/images/icons/map-marker.png') }}"]
-        }'>
+                                data-map-title="Brooklyn, New York, United Kingdom" data-map-zoom="12" data-markers='{
+            "marker-1": [40.712776, -74.005974, "<h4>Branch Office</h4><p>77/99 New York</p>","{{ asset('
+                                frontend/assets/images/icons/map-marker.png') }}"] }'>
 
                             </div>
                         </div>
@@ -153,19 +152,19 @@
                                     <h5>Places:</h5>
 
                                     @foreach ($facility as $item)
-                                        <div class="box clearfix">
-                                            <div class="text pull-left">
-                                                <h6>{{ $item->facility_name }} <span>({{ $item->distance }} km)</span>
-                                                </h6>
-                                            </div>
-                                            <ul class="rating pull-right clearfix">
-                                                <li><i class="icon-39"></i></li>
-                                                <li><i class="icon-39"></i></li>
-                                                <li><i class="icon-39"></i></li>
-                                                <li><i class="icon-39"></i></li>
-                                                <li><i class="icon-40"></i></li>
-                                            </ul>
+                                    <div class="box clearfix">
+                                        <div class="text pull-left">
+                                            <h6>{{ $item->facility_name }} <span>({{ $item->distance }} km)</span>
+                                            </h6>
                                         </div>
+                                        <ul class="rating pull-right clearfix">
+                                            <li><i class="icon-39"></i></li>
+                                            <li><i class="icon-39"></i></li>
+                                            <li><i class="icon-39"></i></li>
+                                            <li><i class="icon-39"></i></li>
+                                            <li><i class="icon-40"></i></li>
+                                        </ul>
+                                    </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -197,16 +196,15 @@
                                     <input type="hidden" name="property_id" value="{{ $property->id }}">
 
                                     @if ($property->agent_id == null)
-                                        <input type="hidden" name="agent_id" value="">
+                                    <input type="hidden" name="agent_id" value="">
                                     @else
-                                        <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
+                                    <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
                                     @endif
 
                                     <div class="col-lg-6 col-md-12 col-sm-12 column">
                                         <div class="form-group">
                                             <i class="far fa-calendar-alt"></i>
-                                            <input type="text" name="tour_date" placeholder="Tour Date"
-                                                id="datepicker">
+                                            <input type="text" name="tour_date" placeholder="Tour Date" id="datepicker">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 column">
@@ -239,44 +237,43 @@
                         <div class="author-box">
 
                             @if ($property->agent_id == null)
-                                <figure class="author-thumb"><img src="{{ url('upload/ariyan.jpg') }}"
-                                        alt=""></figure>
-                                <div class="inner">
-                                    <h4>Admin </h4>
-                                    <ul class="info clearfix">
-                                        <li><i class="fas fa-map-marker-alt"></i>84 St. John Wood High Street,
-                                            St Johns Wood</li>
-                                        <li><i class="fas fa-phone"></i><a href="tel:03030571965">030 3057 1965</a>
-                                        </li>
-                                    </ul>
-                                    <div class="btn-box"><a href="agents-details.html">View Listing</a></div>
-                                </div>
+                            <figure class="author-thumb"><img src="{{ url('upload/ariyan.jpg') }}" alt=""></figure>
+                            <div class="inner">
+                                <h4>Admin </h4>
+                                <ul class="info clearfix">
+                                    <li><i class="fas fa-map-marker-alt"></i>84 St. John Wood High Street,
+                                        St Johns Wood</li>
+                                    <li><i class="fas fa-phone"></i><a href="tel:03030571965">030 3057 1965</a>
+                                    </li>
+                                </ul>
+                                <div class="btn-box"><a href="agents-details.html">View Listing</a></div>
+                            </div>
                             @else
-                                <figure class="author-thumb"><img
-                                        src="{{ !empty($property->user->photo) ? url('upload/agent_images/' . $property->user->photo) : url('upload/no_image.jpg') }}"
-                                        alt=""></figure>
-                                <div class="inner">
-                                    <h4>{{ $property->user->name }}</h4>
-                                    <ul class="info clearfix">
-                                        <li><i class="fas fa-map-marker-alt"></i>{{ $property->user->address }}</li>
-                                        <li><i class="fas fa-phone"></i><a
-                                                href="tel:03030571965">{{ $property->user->phone }}</a></li>
-                                    </ul>
+                            <figure class="author-thumb"><img
+                                    src="{{ !empty($property->user->photo) ? url('upload/agent_images/' . $property->user->photo) : url('upload/no_image.jpg') }}"
+                                    alt=""></figure>
+                            <div class="inner">
+                                <h4>{{ $property->user->name }}</h4>
+                                <ul class="info clearfix">
+                                    <li><i class="fas fa-map-marker-alt"></i>{{ $property->user->address }}</li>
+                                    <li><i class="fas fa-phone"></i><a href="tel:03030571965">{{ $property->user->phone
+                                            }}</a></li>
+                                </ul>
 
-                                    @auth
-                                        <div id="app">
+                                @auth
+                                <div id="app">
 
-                                            <send-message :recevierid="{{ $property->agent_id }}"
-                                                receivername="{{ $property->user->name }}">
+                                    <send-message :recevierid="{{ $property->agent_id }}"
+                                        receivername="{{ $property->user->name }}">
 
-                                            </send-message>
-
-                                        </div>
-                                    @else
-                                        <span class="text-danger">For Chat Login First </span>
-                                    @endauth
+                                    </send-message>
 
                                 </div>
+                                @else
+                                <span class="text-danger">For Chat Login First </span>
+                                @endauth
+
+                            </div>
                             @endif
 
                         </div>
@@ -284,69 +281,69 @@
                         <div class="form-inner">
                             @auth
 
-                                @php
-                                    $id = Auth::user()->id;
-                                    $userData = App\Models\User::find($id);
-                                @endphp
+                            @php
+                            $id = Auth::user()->id;
+                            $userData = App\Models\User::find($id);
+                            @endphp
 
-                                <form action="{{ route('property.message') }}" method="post" class="default-form">
-                                    @csrf
+                            <form action="{{ route('property.message') }}" method="post" class="default-form">
+                                @csrf
 
-                                    <input type="hidden" name="property_id" value="{{ $property->id }}">
+                                <input type="hidden" name="property_id" value="{{ $property->id }}">
 
-                                    @if ($property->agent_id == null)
-                                        <input type="hidden" name="agent_id" value="">
-                                    @else
-                                        <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
-                                    @endif
+                                @if ($property->agent_id == null)
+                                <input type="hidden" name="agent_id" value="">
+                                @else
+                                <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
+                                @endif
 
-                                    <div class="form-group">
-                                        <input type="text" name="msg_name" placeholder="Your name"
-                                            value="{{ $userData->name }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" name="msg_email" placeholder="Your Email"
-                                            value="{{ $userData->email }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="msg_phone" placeholder="Phone"
-                                            value="{{ $userData->phone }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="message" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="form-group message-btn">
-                                        <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                    </div>
-                                </form>
+                                <div class="form-group">
+                                    <input type="text" name="msg_name" placeholder="Your name"
+                                        value="{{ $userData->name }}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="msg_email" placeholder="Your Email"
+                                        value="{{ $userData->email }}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="msg_phone" placeholder="Phone"
+                                        value="{{ $userData->phone }}">
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="message" placeholder="Message"></textarea>
+                                </div>
+                                <div class="form-group message-btn">
+                                    <button type="submit" class="theme-btn btn-one">Send Message</button>
+                                </div>
+                            </form>
                             @else
-                                <form action="{{ route('property.message') }}" method="post" class="default-form">
-                                    @csrf
+                            <form action="{{ route('property.message') }}" method="post" class="default-form">
+                                @csrf
 
-                                    <input type="hidden" name="property_id" value="{{ $property->id }}">
+                                <input type="hidden" name="property_id" value="{{ $property->id }}">
 
-                                    @if ($property->agent_id == null)
-                                        <input type="hidden" name="agent_id" value="">
-                                    @else
-                                        <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
-                                    @endif
+                                @if ($property->agent_id == null)
+                                <input type="hidden" name="agent_id" value="">
+                                @else
+                                <input type="hidden" name="agent_id" value="{{ $property->agent_id }}">
+                                @endif
 
-                                    <div class="form-group">
-                                        <input type="text" name="msg_name" placeholder="Your name" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" name="msg_email" placeholder="Your Email" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="msg_phone" placeholder="Phone" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="message" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="form-group message-btn">
-                                        <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                    </div>
-                                </form>
+                                <div class="form-group">
+                                    <input type="text" name="msg_name" placeholder="Your name" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="msg_email" placeholder="Your Email" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="msg_phone" placeholder="Phone" required="">
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="message" placeholder="Message"></textarea>
+                                </div>
+                                <div class="form-group message-btn">
+                                    <button type="submit" class="theme-btn btn-one">Send Message</button>
+                                </div>
+                            </form>
 
                             @endauth
 
@@ -401,61 +398,61 @@
             <div class="row clearfix">
 
                 @foreach ($relatedProperty as $item)
-                    <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
-                        <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
-                            data-wow-duration="1500ms">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="{{ asset($item->property_thumbnail) }}"
-                                            alt=""></figure>
-                                    <div class="batch"><i class="icon-11"></i></div>
-                                    <span class="category">{{ $item->type->type_name }}</span>
+                <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+                    <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
+                        data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image"><img src="{{ asset($item->property_thumbnail) }}" alt=""></figure>
+                                <div class="batch"><i class="icon-11"></i></div>
+                                <span class="category">{{ $item->type->type_name }}</span>
+                            </div>
+                            <div class="lower-content">
+                                <div class="author-info clearfix">
+                                    <div class="author pull-left">
+                                        @if ($item->agent_id == null)
+                                        <figure class="author-thumb"><img src="{{ url('upload/ariyan.jpg') }}" alt="">
+                                        </figure>
+                                        <h6>Admin </h6>
+                                        @else
+                                        <figure class="author-thumb"><img
+                                                src="{{ !empty($item->user->photo) ? url('upload/agent_images/' . $item->user->photo) : url('upload/no_image.jpg') }}"
+                                                alt=""></figure>
+                                        <h6>{{ $item->user->name }}</h6>
+                                        @endif
+                                    </div>
+                                    <div class="buy-btn pull-right"><a href="property-details.html">For
+                                            {{ $item->property_status }}</a></div>
                                 </div>
-                                <div class="lower-content">
-                                    <div class="author-info clearfix">
-                                        <div class="author pull-left">
-                                            @if ($item->agent_id == null)
-                                                <figure class="author-thumb"><img
-                                                        src="{{ url('upload/ariyan.jpg') }}" alt=""></figure>
-                                                <h6>Admin </h6>
-                                            @else
-                                                <figure class="author-thumb"><img
-                                                        src="{{ !empty($item->user->photo) ? url('upload/agent_images/' . $item->user->photo) : url('upload/no_image.jpg') }}"
-                                                        alt=""></figure>
-                                                <h6>{{ $item->user->name }}</h6>
-                                            @endif
-                                        </div>
-                                        <div class="buy-btn pull-right"><a href="property-details.html">For
-                                                {{ $item->property_status }}</a></div>
+                                <div class="title-text">
+                                    <h4><a
+                                            href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{
+                                            $item->property_name }}</a>
+                                    </h4>
+                                </div>
+                                <div class="price-box clearfix">
+                                    <div class="price-info pull-left">
+                                        <h6>Start From</h6>
+                                        <h4>${{ $item->lowest_price }}</h4>
                                     </div>
-                                    <div class="title-text">
-                                        <h4><a
-                                                href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{ $item->property_name }}</a>
-                                        </h4>
-                                    </div>
-                                    <div class="price-box clearfix">
-                                        <div class="price-info pull-left">
-                                            <h6>Start From</h6>
-                                            <h4>${{ $item->lowest_price }}</h4>
-                                        </div>
-                                        <ul class="other-option pull-right clearfix">
-                                            <li><a href="property-details.html"><i class="icon-12"></i></a></li>
-                                            <li><a href="property-details.html"><i class="icon-13"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <p>{{ $item->short_desc }}</p>
-                                    <ul class="more-details clearfix">
-                                        <li><i class="icon-14"></i>{{ $item->bedrooms }} Beds</li>
-                                        <li><i class="icon-15"></i>{{ $item->bathrooms }} Baths</li>
-                                        <li><i class="icon-16"></i>{{ $item->property_size }} Sq Ft</li>
+                                    <ul class="other-option pull-right clearfix">
+                                        <li><a href="property-details.html"><i class="icon-12"></i></a></li>
+                                        <li><a href="property-details.html"><i class="icon-13"></i></a></li>
                                     </ul>
-                                    <div class="btn-box"><a
-                                            href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
-                                            class="theme-btn btn-two">See Details</a></div>
                                 </div>
+                                <p>{{ $item->short_desc }}</p>
+                                <ul class="more-details clearfix">
+                                    <li><i class="icon-14"></i>{{ $item->bedrooms }} Beds</li>
+                                    <li><i class="icon-15"></i>{{ $item->bathrooms }} Baths</li>
+                                    <li><i class="icon-16"></i>{{ $item->property_size }} Sq Ft</li>
+                                </ul>
+                                <div class="btn-box"><a
+                                        href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                        class="theme-btn btn-two">See Details</a></div>
                             </div>
                         </div>
                     </div>
+                </div>
                 @endforeach
 
             </div>
@@ -466,8 +463,8 @@
 
 <!-- subscribe-section -->
 <section class="subscribe-section bg-color-3">
-    <div class="pattern-layer"
-        style="background-image: url({{ asset('frontend/assets/images/shape/shape-2.png') }});"></div>
+    <div class="pattern-layer" style="background-image: url({{ asset('frontend/assets/images/shape/shape-2.png') }});">
+    </div>
     <div class="auto-container">
         <div class="row clearfix">
             <div class="col-lg-6 col-md-6 col-sm-12 text-column">

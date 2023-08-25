@@ -1,3 +1,6 @@
 2. First issue is that all agent need to pay money to access property adding also in admin. TODO:
 
-INSERT INTO `properties` (`id`, `pType_id`, `amenities_id`, `property_name`, `property_slug`, `property_code`, `property_status`, `lowest_price`, `max_price`, `property_thumbnail`, `short_desc`, `long_desc`, `bedrooms`, `bathrooms`, `garage`, `garage_size`, `property_size`, `property_video`, `address`, `city`, `state`, `postal_code`, `neighborhood`, `latitude`, `longitude`, `featured`, `hot`, `agent_id`, `status`, `created_at`, `updated_at`) VALUES ('2', '2', '2', '2', '2', '2', '2', NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', NULL, NULL), ('2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL);
+removed parts:
+resources\views\frontend\home\chooseus.blade.php
+resources\views\frontend\home\cta.blade.php
+resources\views\frontend\home\download.blade.php

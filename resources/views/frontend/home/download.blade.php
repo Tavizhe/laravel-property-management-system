@@ -1,5 +1,5 @@
  <section class="download-section bg-color-3">
-            <div class="pattern-layer" style="background-image: url({{ asset('frontend/assets/images/shape/shape-3.png') }});"></div>
+            {{-- <div class="pattern-layer" style="background-image: url({{ asset('frontend/assets/images/shape/shape-3.png') }});"></div>
             <div class="auto-container">
                 <div class="row clearfix">
                     <div class="col-lg-6 col-md-6 col-sm-12 image-column">
@@ -29,5 +29,5 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </section>

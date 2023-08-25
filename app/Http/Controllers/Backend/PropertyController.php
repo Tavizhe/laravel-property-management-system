@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\amenities;
+use App\Models\Facility;
 use App\Models\MultiImage;
 use App\Models\PackagePlan;
 use App\Models\Property;
@@ -10,8 +12,10 @@ use App\Models\PropertyMessage;
 use App\Models\PropertyType;
 use App\Models\State;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
 class PropertyController extends Controller
@@ -26,11 +30,11 @@ class PropertyController extends Controller
     public function AddProperty()
     {
         $propertyType = PropertyType::latest()->get();
-        $pstate = State::latest()->get();
+        $pState = State::latest()->get();
         $amenities = amenities::latest()->get();
         $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('backend.property.add_property', compact('propertytype', 'amenities', 'activeAgent', 'pstate'));
+        return view('backend.property.add_property', compact('propertyType', 'amenities', 'activeAgent', 'pState'));
     } // End Method
 
     public function StoreProperty(Request $request)
@@ -73,13 +77,13 @@ class PropertyController extends Controller
             'agent_id' => $request->agent_id,
             'status' => 1,
             'property_thumbnail' => $save_url,
-            'created_at' => $request->Carbon::now(),
+            'created_at' => Carbon::now(),
         ]);
 
         /* Multiple image Upload */
 
         $image = $request->file('multi_img');
-        foreach ($images as $img) {
+        foreach ($image as $img) {
             $make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
             Image::make($img)->resize(770, 520)->save('upload/property/multi-image/'.$make_name);
             $uploadPath = 'upload/property/multi-image/'.$make_name;
@@ -127,14 +131,14 @@ class PropertyController extends Controller
 
     public function UpdateProperty(Request $request)
     {
-        $property = Property::findOrFail($id);
-        $type = $property->amenities_id;
+        // $property = Property::findOrFail($id);
+        // $type = $property->amenities_id;
 
         $property_id = $request->id;
-        Property::findOrFail()->update([
+        Property::findOrFail($property_id)->update([
 
             'pType_id' => $request->pType_id,
-            'amenities_id' => $amenities,
+            'amenities_id' => $request->amenities_id,
             'property_name' => $request->property_name,
             'property_slug' => strtolower(str_replace(' ', '-', $request->property_name)),
             'property_status' => $request->property_status,
@@ -158,7 +162,7 @@ class PropertyController extends Controller
             'featured' => $request->featured,
             'hot' => $request->hot,
             'agent_id' => $request->agent_id,
-            'updated_at' => $request->Carbon::now(),
+            'updated_at' => Carbon::now(),
 
         ]);
         $notification = [
@@ -170,9 +174,9 @@ class PropertyController extends Controller
 
     } // End Method
 
-    public function UpdatePropertyThumbnail(Request $request)
+    public function UpdatePropertyThumbnail(Request $request, $id)
     {
-        $pro_id = $request->$id;
+        $pro_id = $request->id;
         $oldImage = $request->old_img;
 
         $image = $request->file('property_thumbnail');
@@ -262,7 +266,7 @@ class PropertyController extends Controller
 
     public function UpdatePropertyFacilities(Request $request)
     {
-        $pid = $request->$id;
+        $pid = $request->id;
 
         if ($request->facility_name == null) {
             return redirect()->back();
@@ -292,7 +296,7 @@ class PropertyController extends Controller
 
         Property::findOrFail($id)->delete();
 
-        $image = MultiImages::where('property_id', $id)->get();
+        $image = MultiImage::where('property_id', $id)->get();
 
         foreach ($image as $img) {
             unlink($img->photo_name);
@@ -359,18 +363,18 @@ class PropertyController extends Controller
     public function AdminPackageHistory()
     {
 
-        $packagehistory = PackagePlan::latest()->get();
+        $packageHistory = PackagePlan::latest()->get();
 
-        return view('backend.package.package_history', compact('packagehistory'));
+        return view('backend.package.package_history', compact('packageHistory'));
 
     }// End Method
 
     public function PackageInvoice($id)
     {
 
-        $packagehistory = PackagePlan::where('id', $id)->first();
+        $packageHistory = PackagePlan::where('id', $id)->first();
 
-        $pdf = Pdf::loadView('backend.package.package_history_invoice', compact('packagehistory'))->setPaper('a4')->setOption([
+        $pdf = Pdf::loadView('backend.package.package_history_invoice', compact('packageHistory'))->setPaper('a4')->setOption([
             'tempDir' => public_path(),
             'chroot' => public_path(),
         ]);
@@ -383,9 +387,9 @@ class PropertyController extends Controller
     public function AdminPropertyMessage()
     {
 
-        $usermsg = PropertyMessage::latest()->get();
+        $userMsg = PropertyMessage::latest()->get();
 
-        return view('backend.message.all_message', compact('usermsg'));
+        return view('backend.message.all_message', compact('userMsg'));
 
     }// End Method
 

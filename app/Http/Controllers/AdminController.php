@@ -56,13 +56,13 @@ class AdminController extends Controller
         $Data->address = $request->address;
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/admin_images/'.$data->photo));
-            $filename = data('YmdHi').$file->getClientOriginalName();
-            file->move(public_path('upload/admin_images'), $filename);
+            @unlink(public_path('upload/admin_images/'.$Data->photo));
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/admin_images'), $filename);
             $data['photo'] = $filename;
         }
 
-        $data->save();
+        $Data->save();
         $notification = [
             'message' => 'Admin Profile Updated Successfully',
             'alert-type' => 'success',
@@ -123,7 +123,7 @@ class AdminController extends Controller
     {
         $allAgent = user::where('role', 'agent');
 
-        return view('backend.agentuser.add_agent', compact('allAgent'));
+        return view('backend.agentUser.add_agent', compact('allAgent'));
 
     } // End Method
 
@@ -168,22 +168,25 @@ class AdminController extends Controller
 
     public function EditAgent($id)
     {
-        $allAgent = user::findOrFail($id);
-        [
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'password' => Hash::make($request->password),
-            'role' => 'agent',
-            'status' => 'active',
-        ];
-        $notification = [
-            'message' => 'Agent Created Successfully',
-            'alert-type' => 'success',
-        ];
+        $allAgent = User::findOrFail($id);
+    return view('backend.agentUser.edit_agent',compact('allAgent'));
+        
+        // $allAgent = user::findOrFail($id);
+        // [
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'phone' => $request->phone,
+        //     'address' => $request->address,
+        //     'password' => Hash::make($request->password),
+        //     'role' => 'agent',
+        //     'status' => 'active',
+        // ];
+        // $notification = [
+        //     'message' => 'Agent Created Successfully',
+        //     'alert-type' => 'success',
+        // ];
 
-        return view()->route('all.agent')->with($notification);
+        // return view()->route('all.agent')->with($notification);
     } // End Method
 
     /////////// Admin User All Method ////////////
@@ -191,9 +194,9 @@ class AdminController extends Controller
     public function AllAdmin()
     {
 
-        $alladmin = user::where('role', 'admin')->get();
+        $allAdmin = user::where('role', 'admin')->get();
 
-        return view('backend.pages.admin.all_admin', compact('alladmin'));
+        return view('backend.pages.admin.all_admin', compact('allAdmin'));
 
     }// End Method
 

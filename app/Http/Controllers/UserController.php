@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChatMessage;
 use App\Models\Schedule;
 use App\Models\User;
 use illuminate\Http\Request;
@@ -34,13 +35,13 @@ class UserController extends Controller
         $Data->address = $request->address;
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/user_images/'.$data->photo));
-            $filename = data('YmdHi').$file->getClientOriginalName();
-            file->move(public_path('upload/user_images'), $filename);
+            @unlink(public_path('upload/user_images/'.$Data->photo));
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/user_images'), $filename);
             $data['photo'] = $filename;
         }
 
-        $data->save();
+        $Data->save();
         $notification = [
             'message' => 'User Profile Updated Successfully',
             'alert-type' => 'success',
@@ -109,7 +110,7 @@ class UserController extends Controller
 
         $srequest = Schedule::where('user_id', $id)->get();
 
-        return view('frontend.message.schedule_request', compact('userData', 'srequest'));
+        return view('frontend.message.schedule_request', compact('userData', 'sRequest'));
 
     }
 

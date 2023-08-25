@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use illuminate\support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class AgentController extends Controller
 {
@@ -72,13 +74,13 @@ class AgentController extends Controller
         $Data->address = $request->address;
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/agent_images/'.$data->photo));
-            $filename = data('YmdHi').$file->getClientOriginalName();
-            file->move(public_path('upload/agent_images'), $filename);
-            $data['photo'] = $filename;
+            @unlink(public_path('upload/agent_images/'.$Data->photo));
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/agent_images'), $filename);
+            $Data['photo'] = $filename;
         }
 
-        $data->save();
+        $Data->save();
         $notification = [
             'message' => 'Agent Profile Updated Successfully',
             'alert-type' => 'success',
@@ -122,9 +124,7 @@ class AgentController extends Controller
             'alert-type' => 'success',
         ];
 
-        return back()->with($notification);
-
-        return view('agent.agent_change_password', compact('profileData'));
+        return view('agent.agent_change_password', compact('profileData'))->with($notification);;
     }// End Method
 
 }

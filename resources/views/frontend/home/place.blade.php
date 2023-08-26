@@ -16,10 +16,10 @@ $property_3 = App\Models\Property::where('state', $skip_state_3->id)->get();
 <section class="place-section sec-pad">
     <div class="auto-container">
         <div class="sec-title centred">
-            <h5>Top Places</h5>
-            <h2>Most Popular Places</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing sed do eiusmod tempor incididunt <br />labore dolore
-                magna aliqua enim.</p>
+            <h5>جدید ترینها</h5>
+            <h2>آخرین املاک ثبت شده</h2>
+            {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing sed do eiusmod tempor incididunt <br />labore dolore
+                magna aliqua enim.</p> --}}
         </div>
         <div class="sortable-masonry">
             <div class="items-container row clearfix">
@@ -34,7 +34,7 @@ $property_3 = App\Models\Property::where('state', $skip_state_3->id)->get();
                                 <h4><a href="{{ route('state.details', $skip_state_0->id) }}">{{
                                         $skip_state_0->state_name }}</a>
                                 </h4>
-                                <p>{{ count($property_0) }} Properties</p>
+                                <p>{{ count($property_0) }} تعداد</p>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@ $property_3 = App\Models\Property::where('state', $skip_state_3->id)->get();
                                 <h4><a href="{{ route('state.details', $skip_state_1->id) }}">{{
                                         $skip_state_1->state_name }}</a>
                                 </h4>
-                                <p>{{ count($property_1) }} Properties</p>
+                                <p>{{ count($property_1) }} تعداد</p>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@ $property_3 = App\Models\Property::where('state', $skip_state_3->id)->get();
                                 <h4><a href="{{ route('state.details', $skip_state_2->id) }}">{{
                                         $skip_state_2->state_name }}</a>
                                 </h4>
-                                <p>{{ count($property_2) }} Properties</p>
+                                <p>{{ count($property_2) }} تعداد</p>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@ $property_3 = App\Models\Property::where('state', $skip_state_3->id)->get();
                                 <h4><a href="{{ route('state.details', $skip_state_3->id) }}">{{
                                         $skip_state_3->state_name }}</a>
                                 </h4>
-                                <p>{{ count($property_3) }} Properties</p>
+                                <p>{{ count($property_3) }} تعداد</p>
                             </div>
                         </div>
                     </div>

@@ -10,10 +10,10 @@
         </div>
         <div class="auto-container">
             <div class="content-box clearfix">
-                <h1> {{ $pbread->type_name }} Type Property </h1>
+                <h1> {{ $pBread->type_name }} Type Property </h1>
                 <ul class="bread-crumb clearfix">
                     <li><a href="index.html">Home</a></li>
-                    <li>{{ $pbread->type_name }} </li>
+                    <li>{{ $pBread->type_name }} </li>
                 </ul>
             </div>
         </div>

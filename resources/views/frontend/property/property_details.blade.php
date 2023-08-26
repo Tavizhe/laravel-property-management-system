@@ -57,8 +57,8 @@
             <div class="right-column pull-right clearfix">
                 <div class="price-inner clearfix">
                     <ul class="category clearfix pull-left">
-                        <li><a href="property-details.html">{{ $property->type->type_name }}</a></li>
-                        <li><a href="property-details.html">For {{ $property->property_status }}</a></li>
+                        {{-- <li><a href="property-details.html">{{ $property->type->type_name }}</a></li>
+                        <li><a href="property-details.html">For {{ $property->property_status }}</a></li> --}}
                     </ul>
                     <div class="price-box pull-right">
                         <h3>${{ $property->lowest_price }}</h3>
@@ -100,7 +100,7 @@
                             <li>Rooms: <span>{{ $property->bedrooms }}</span></li>
                             <li>Garage Size: <span>{{ $property->garage_size }} Sq Ft</span></li>
 
-                            <li>Property Type: <span>{{ $property->type->type_name }}</span></li>
+                            {{-- <li>Property Type: <span>{{ $property->type->type_name }}</span></li> --}}
                             <li>Bathrooms: <span>{{ $property->bathrooms }}</span></li>
                             <li>Property Status: <span>For {{ $property->property_status }}</span></li>
                             <li>Property Size: <span>{{ $property->property_size }} Sq Ft</span></li>

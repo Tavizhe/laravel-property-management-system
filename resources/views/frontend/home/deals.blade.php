@@ -1,4 +1,4 @@
- @php
+ {{-- @php
      $property = App\Models\Property::where('status', '1')
          ->where('hot', '1')
          ->limit(3)
@@ -79,4 +79,4 @@
          </div>
 
      </div>
- </section>
+ </section> --}}

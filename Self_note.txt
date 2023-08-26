@@ -4,3 +4,9 @@ removed parts:
 resources\views\frontend\home\chooseus.blade.php
 resources\views\frontend\home\cta.blade.php
 resources\views\frontend\home\download.blade.php
+resources\views\frontend\home\preload.blade.php
+resources\views\frontend\home\team.blade.php
+resources\views\frontend\home\video.blade.php
+resources\views\frontend\home\news.blade.php
+resources\views\frontend\home\testimonial.blade.php
+resources\views\frontend\home\deals.blade.php

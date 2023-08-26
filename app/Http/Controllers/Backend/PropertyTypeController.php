@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\amenities;
 use App\Models\PropertyType;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PropertyTypeController extends Controller
@@ -93,6 +94,7 @@ class PropertyTypeController extends Controller
     {
         amenities::insert([
             'amenities_name' => $request->amenities_name,
+            'created_at' => Carbon::now(),
         ]);
         $notification = [
             'message' => 'amenities Create Successfully',

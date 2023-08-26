@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\SmtpSetting;
@@ -45,8 +46,8 @@ class SettingController extends Controller
     }// End Method 
     public function SiteSetting(){
 
-        $sitesetting = SiteSetting::find(1);
-       return view('backend.setting.site_update',compact('sitesetting'));
+        $siteSetting = SiteSetting::find(1);
+       return view('backend.setting.site_update',compact('siteSetting'));
 
    }// End Method 
 

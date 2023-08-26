@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Agent;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ScheduleMail;
-use App\Models\amenities;
+use App\Models\Amenities;
 use App\Models\Facility;
 use App\Models\MultiImage;
 use App\Models\PackagePlan;
@@ -19,6 +19,7 @@ use Carbon\Carbon;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
 
@@ -35,7 +36,7 @@ class AgentPropertyController extends Controller
     public function AgentAddProperty()
     {
         $propertyType = PropertyType::latest()->get();
-        $amenities = amenities::latest()->get();
+        $amenities = Amenities::latest()->get();
         $pState = State::latest()->get();
 
         // TODO:
@@ -448,7 +449,7 @@ class AgentPropertyController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        User::where('id',$id)->update([
+        User::where('id', $id)->update([
             'credit' => DB::raw('10 + '.$nid),
         ]);
 

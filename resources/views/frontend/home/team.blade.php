@@ -1,4 +1,4 @@
- @php
+ {{-- @php
      $agents = App\Models\User::where('status', 'active')
          ->where('role', 'agent')
          ->orderBy('id', 'DESC')
@@ -39,4 +39,4 @@
 
          </div>
      </div>
- </section>
+ </section> --}}

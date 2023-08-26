@@ -1,4 +1,4 @@
- @php
+ {{-- @php
      
      $blog = App\Models\BlogPost::latest()
          ->limit(3)
@@ -51,4 +51,4 @@
 
          </div>
      </div>
- </section>
+ </section> --}}

@@ -1,4 +1,4 @@
-@php
+{{-- @php
  $tesimonials = App\Models\Testimonial::latest()->get();
 @endphp
 
@@ -28,4 +28,4 @@
                 
                 </div>
             </div>
-        </section>
+        </section> --}}

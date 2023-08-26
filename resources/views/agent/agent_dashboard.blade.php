@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="description" content="Responsive HTML Admin Dashboard Template based on Bootstrap 5">
   <meta name="author" content="NobleUI">
-  <meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+  <meta name="keywords"
+    content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
   <title>Agent Panel - Real Estate </title>
   @vite(['resources/js/app.js'])
@@ -23,7 +25,7 @@
 
 
 
-<!-- Plugin css for this page -->
+  <!-- Plugin css for this page -->
   <link rel="stylesheet" href="{{ asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
   <!-- End plugin css for this page -->
 
@@ -40,37 +42,38 @@
   <link rel="stylesheet" href="{{ asset('backend/assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
   <!-- endinject -->
 
-  <!-- Layout styles -->  
+  <!-- Layout styles -->
   <link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css') }}">
   <!-- End layout styles -->
 
   <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.png') }}" />
 
-   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
- 
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
- 
+
+
 </head>
+
 <body>
   <div class="main-wrapper">
 
     <!-- partial:partials/_sidebar.html -->
     @include('agent.body.sidebar')
-  
+
     <!-- partial -->
-  
+
     <div class="page-wrapper">
-          
+
       <!-- partial:partials/_navbar.html -->
-     @include('agent.body.header')
+      @include('agent.body.header')
       <!-- partial -->
 
-     @yield('agent')
+      @yield('agent')
 
       <!-- partial:partials/_footer.html -->
-    @include('agent.body.footer')
+      @include('agent.body.footer')
       <!-- partial -->
-    
+
     </div>
   </div>
 
@@ -94,8 +97,8 @@
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-<script>
- @if(Session::has('message'))
+  <script>
+    @if(Session::has('message'))
  var type = "{{ Session::get('alert-type','info') }}"
  switch(type){
     case 'info':
@@ -115,7 +118,7 @@
     break; 
  }
  @endif 
-</script>
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="{{ asset('backend/assets/js/code/code.js') }}"></script>
@@ -123,7 +126,7 @@
 
   <!-- Start datatables -->
   <script src="{{ asset('backend/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-  <script src="{{ asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script> 
+  <script src="{{ asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
   <script src="{{ asset('backend/assets/js/data-table.js') }}"></script>
   <!-- End datatables -->
 
@@ -140,13 +143,14 @@
   <script src="{{ asset('backend/assets/js/typeahead.js') }}"></script>
   <script src="{{ asset('backend/assets/js/tags-input.js') }}"></script>
 
-    <!-- Input Tags -->
+  <!-- Input Tags -->
 
- <!-- tinymce -->
-      <script src="{{ asset('backend/assets/vendors/tinymce/tinymce.min.js') }}"></script>
-     <script src="{{ asset('backend/assets/js/tinymce.js') }}"></script>
- <!-- tinymce -->
+  <!-- tinymce -->
+  <script src="{{ asset('backend/assets/vendors/tinymce/tinymce.min.js') }}"></script>
+  <script src="{{ asset('backend/assets/js/tinymce.js') }}"></script>
+  <!-- tinymce -->
 
 
 </body>
-</html>    
+
+</html>

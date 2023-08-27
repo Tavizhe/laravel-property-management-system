@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\amenities;
+use App\Models\Amenities;
 use App\Models\PropertyType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -79,7 +79,7 @@ class PropertyTypeController extends Controller
 
     public function AllAmenity()
     {
-        $amenities = amenities::latest()->get();
+        $amenities = Amenities::latest()->get();
 
         return view('backend.amenities.all_amenities', compact('amenities'));
     } // End Method
@@ -92,7 +92,7 @@ class PropertyTypeController extends Controller
     // End Method
     public function StoreAmenity(Request $request)
     {
-        amenities::insert([
+        Amenities::insert([
             'amenities_name' => $request->amenities_name,
             'created_at' => Carbon::now(),
         ]);
@@ -106,7 +106,7 @@ class PropertyTypeController extends Controller
 
     public function EditAmenity($id)
     {
-        $amenities = amenities::findOrFail($id);
+        $amenities = Amenities::findOrFail($id);
 
         return view('backend.amenities.edit_amenities', compact('amenities'));
     } // End Method
@@ -114,7 +114,7 @@ class PropertyTypeController extends Controller
     public function UpdateAmenity(Request $request)
     {
         $ame_id = $request->id;
-        amenities::findOrFail($ame_id)->update([
+        Amenities::findOrFail($ame_id)->update([
             'amenities_name' => $request->amenities_name,
         ]);
         $notification = [
@@ -127,7 +127,7 @@ class PropertyTypeController extends Controller
 
     public function DeleteAmenity($id)
     {
-        amenities::findOrFail($id)->delete();
+        Amenities::findOrFail($id)->delete();
         $notification = [
             'message' => 'amenities Deleted Successfully',
             'alert-type' => 'success',

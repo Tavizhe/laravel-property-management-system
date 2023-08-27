@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Wishlist;
 use Carbon\Carbon;
 
 class WishlistController extends Controller
@@ -11,7 +12,7 @@ class WishlistController extends Controller
         if (Auth::check()) {
             $exists = Wishlist::where('user_id', Auth::id())->where('property_id', $property_id)->first();
             if (! $exists) {
-                $wishlist::insert([
+                Wishlist::insert([
                     'user_id' => Auth::id(),
                     'property_id' => $property_id,
                     'created_at' => Carbon::now(),

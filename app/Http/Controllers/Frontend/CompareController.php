@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Compare;
+use App\Models\Wishlist;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompareController extends Controller
 {
@@ -28,12 +31,16 @@ class CompareController extends Controller
         }
     }
 
+    public function UserCompare(){ 
+        return view('frontend.dashboard.compare');
+    }// End Method 
+
     // End Method
     public function GetCompareProperty()
     {
         $compare = Compare::with('property')->where('user_id', Auth::id())->latest()->get();
 
-        return response()->json(['wishlist' => $wishlist, 'wishQty' => $wishQty]);
+        return response()->json($compare);
     } // End Method
 
     public function CompareRemoved($id)

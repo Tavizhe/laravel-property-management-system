@@ -6,7 +6,7 @@ use App\Exports\PermissionExport;
 use App\Http\Controllers\Controller;
 use App\Imports\PermissionImport;
 use App\Models\User;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Permission;
@@ -196,7 +196,7 @@ class RoleController extends Controller
 
         $roles = Role::all();
         $permissions = Permission::all();
-        $permission_groups = user::getPermissionGroups();
+        $permission_groups = User::getPermissionGroups();
 
         return view('backend.pages.roleSetup.add_roles_permission', compact('roles', 'permissions', 'permission_groups'));
 
@@ -238,7 +238,7 @@ class RoleController extends Controller
 
         $role = Role::findOrFail($id);
         $permissions = Permission::all();
-        $permission_groups = user::getPermissionGroups();
+        $permission_groups = User::getPermissionGroups();
 
         return view('backend.pages.roleSetup.edit_roles_permission', compact('role', 'permissions', 'permission_groups'));
 

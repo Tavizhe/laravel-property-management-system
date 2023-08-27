@@ -31,7 +31,7 @@ class PropertyController extends Controller
     {
         $propertyType = PropertyType::latest()->get();
         $pState = State::latest()->get();
-        $amenities = amenities::latest()->get();
+        $amenities = Amenities::latest()->get();
         $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
         return view('backend.property.add_property', compact('propertyType', 'amenities', 'activeAgent', 'pState'));
@@ -123,7 +123,7 @@ class PropertyController extends Controller
         $property_ami = explode(',', $type);
         $MultiImage = MultiImage::where('property_id', $id)->get();
         $propertyType = PropertyType::latest()->get();
-        $amenities = amenities::latest()->get();
+        $amenities = Amenities::latest()->get();
         $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
         return view('backend.property.edit_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'MultiImage', 'facilities'));
@@ -325,7 +325,7 @@ class PropertyController extends Controller
         $property_ami = explode(',', $type);
         $MultiImage = MultiImage::where('property_id', $id)->get();
         $propertyType = PropertyType::latest()->get();
-        $amenities = amenities::latest()->get();
+        $amenities = Amenities::latest()->get();
         $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
         return view('backend.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'MultiImage', 'facilities'));

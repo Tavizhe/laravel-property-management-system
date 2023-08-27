@@ -75,7 +75,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($srequest as $key => $item)
+                                            @foreach ($sRequest as $key => $item)
                                                 <tr>
                                                     <th scope="row">{{ $key + 1 }}</th>
                                                     <td>{{ $item['property']['property_name'] }}</td>

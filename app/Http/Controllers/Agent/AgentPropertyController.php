@@ -149,7 +149,7 @@ class AgentPropertyController extends Controller
         $MultiImage = MultiImage::where('property_id', $id)->get();
         $pState = State::latest()->get();
         $propertyType = PropertyType::latest()->get();
-        $amenities = amenities::latest()->get();
+        $amenities = Amenities::latest()->get();
 
         return view('agent.property.edit_property', compact('property', 'propertyType', 'amenities', 'property_ami', 'MultiImage', 'facilities', 'pState'));
     } // End Method
@@ -351,7 +351,7 @@ class AgentPropertyController extends Controller
         $property_ami = explode(',', $type);
         $MultiImage = MultiImage::where('property_id', $id)->get();
         $propertyType = PropertyType::latest()->get();
-        $amenities = amenities::latest()->get();
+        $amenities = Amenities::latest()->get();
         $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
         return view('agent.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'MultiImage', 'facilities'));

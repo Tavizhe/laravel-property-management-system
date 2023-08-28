@@ -2,7 +2,7 @@
 @section('main')
 
 @section('title')
-MellkGostar Real Estate Complete Project  
+MellkGostar Real Estate  
 @endsection
 
         <!-- banner-section -->

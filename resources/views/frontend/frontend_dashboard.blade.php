@@ -65,11 +65,11 @@
         @include('frontend.home.footer')
         <!-- main-footer end -->
 
-        <!--Scroll to top-->
+        {{-- <!--Scroll to top-->
         <button class="scroll-top scroll-to-target" data-target="html">
-            <span class="fal fa-angle-up"></span>
+            <span class="fa fa-angle-up"></span>
         </button>
-    </div>
+    </div> --}}
 
     <!-- jequery plugins -->
     <script src="{{ asset('frontend/assets/js/jquery.js') }}"></script>

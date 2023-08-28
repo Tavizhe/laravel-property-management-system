@@ -1,7 +1,7 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
 @section('title')
-    {{ $blog->post_title }} | MellkGostar RealEstate
+{{ $blog->post_title }} | MellkGostar RealEstate
 @endsection
 
 <!--Page Title-->
@@ -57,7 +57,7 @@
                                             <h5>Tags:</h5>
                                         </li>
                                         @foreach ($tags_all as $tag)
-                                            <li><a href="">{{ ucwords($tag) }}</a></li>
+                                        <li><a href="">{{ ucwords($tag) }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -66,10 +66,10 @@
                     </div>
 
                     @php
-                        $comment = App\Models\Comment::where('post_id', $blog->id)
-                            ->where('parent_id', null)
-                            ->limit(5)
-                            ->get();
+                    $comment = App\Models\Comment::where('post_id', $blog->id)
+                    ->where('parent_id', null)
+                    ->limit(5)
+                    ->get();
                     @endphp
 
                     <div class="comments-area">
@@ -79,45 +79,45 @@
                         <div class="comment-box">
 
                             @foreach ($comment as $com)
-                                <div class="comment">
-                                    <figure class="thumb-box">
-                                        <img src="{{ !empty($com->user->photo) ? url('upload/user_images/' . $com->user->photo) : url('upload/no_image.jpg') }}"
-                                            alt="">
-                                    </figure>
-                                    <div class="comment-inner">
-                                        <div class="comment-info clearfix">
-                                            <h5>{{ $com->user->name }}</h5>
-                                            <span>{{ $com->created_at->format('M d Y') }}</span>
-                                        </div>
-                                        <div class="text">
-                                            <p>{{ $com->subject }}</p>
-                                            <p>{{ $com->message }}</p>
-                                            <a href="blog-details.html"><i class="fas fa-share"></i>Reply</a>
-                                        </div>
+                            <div class="comment">
+                                <figure class="thumb-box">
+                                    <img src="{{ !empty($com->user->photo) ? url('upload/user_images/' . $com->user->photo) : url('upload/no_image.jpg') }}"
+                                        alt="">
+                                </figure>
+                                <div class="comment-inner">
+                                    <div class="comment-info clearfix">
+                                        <h5>{{ $com->user->name }}</h5>
+                                        <span>{{ $com->created_at->format('M d Y') }}</span>
+                                    </div>
+                                    <div class="text">
+                                        <p>{{ $com->subject }}</p>
+                                        <p>{{ $com->message }}</p>
+                                        <a href="blog-details.html"><i class="fas fa-share"></i>Reply</a>
                                     </div>
                                 </div>
+                            </div>
 
-                                @php
-                                    $reply = App\Models\Comment::where('parent_id', $com->id)->get();
-                                @endphp
+                            @php
+                            $reply = App\Models\Comment::where('parent_id', $com->id)->get();
+                            @endphp
 
-                                @foreach ($reply as $rep)
-                                    <div class="comment replay-comment">
-                                        <figure class="thumb-box">
-                                            <img src="{{ url('upload/ariyan.jpg') }}" alt="">
-                                        </figure>
-                                        <div class="comment-inner">
-                                            <div class="comment-info clearfix">
-                                                <h5>{{ $rep->subject }}</h5>
-                                                <span>{{ $rep->created_at->format('M d Y') }}</span>
-                                            </div>
-                                            <div class="text">
-                                                <p>{{ $rep->message }}</p>
-                                                <a href="blog-details.html"><i class="fas fa-share"></i>Reply</a>
-                                            </div>
-                                        </div>
+                            @foreach ($reply as $rep)
+                            <div class="comment replay-comment">
+                                <figure class="thumb-box">
+                                    <img src="{{ url('upload/ariyan.jpg') }}" alt="">
+                                </figure>
+                                <div class="comment-inner">
+                                    <div class="comment-info clearfix">
+                                        <h5>{{ $rep->subject }}</h5>
+                                        <span>{{ $rep->created_at->format('M d Y') }}</span>
                                     </div>
-                                @endforeach
+                                    <div class="text">
+                                        <p>{{ $rep->message }}</p>
+                                        <a href="blog-details.html"><i class="fas fa-share"></i>Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
                             @endforeach
 
                         </div>
@@ -127,27 +127,27 @@
                             <h4>Leave a Comment</h4>
                         </div>
                         @auth
-                            <form action="{{ route('store.comment') }}" method="post" class="comment-form default-form">
-                                @csrf
+                        <form action="{{ route('store.comment') }}" method="post" class="comment-form default-form">
+                            @csrf
 
-                                <input type="hidden" name="post_id" value="{{ $blog->id }}">
+                            <input type="hidden" name="post_id" value="{{ $blog->id }}">
 
-                                <div class="row">
+                            <div class="row">
 
-                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                        <input type="text" name="subject" placeholder="Subject" required="">
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                        <textarea name="message" placeholder="Your message"></textarea>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                        <button type="submit" class="theme-btn btn-one">Submit Now</button>
-                                    </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <input type="text" name="subject" placeholder="Subject" required="">
                                 </div>
-                            </form>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <textarea name="message" placeholder="Your message"></textarea>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
+                                    <button type="submit" class="theme-btn btn-one">Submit Now</button>
+                                </div>
+                            </div>
+                        </form>
                         @else
-                            <p><b>For Add Comment You need to login first <a href="{{ route('login') }}"> Login Here </a>
-                                </b></p>
+                        <p><b>For Add Comment You need to login first <a href="{{ route('login') }}"> Login Here </a>
+                            </b></p>
                         @endauth
 
                     </div>
@@ -187,13 +187,13 @@
                         <div class="widget-content">
                             <ul class="category-list clearfix">
                                 @foreach ($bCategory as $cat)
-                                    @php
-                                        $post = App\Models\BlogPost::where('blogCat_id', $cat->id)->get();
-                                    @endphp
+                                @php
+                                $post = App\Models\BlogPost::where('blogCat_id', $cat->id)->get();
+                                @endphp
 
-                                    <li><a
-                                            href="{{ url('blog/cat/list/' . $cat->id) }}">{{ $cat->category_name }}<span>({{ count($post) }})</span></a>
-                                    </li>
+                                <li><a href="{{ url('blog/cat/list/' . $cat->id) }}">{{ $cat->category_name }}<span>({{
+                                            count($post) }})</span></a>
+                                </li>
                                 @endforeach
                             </ul>
                         </div>
@@ -205,12 +205,12 @@
                         <div class="post-inner">
 
                             @foreach ($dPost as $post)
-                                <div class="post">
-                                    <figure class="post-thumb"><a href="blog-details.html"><img
-                                                src="{{ asset($post->post_image) }}" alt=""></a></figure>
-                                    <h5><a href="blog-details.html">{{ $post->post_title }}</a></h5>
-                                    <span class="post-date">{{ $post->created_at->format('M d Y') }}</span>
-                                </div>
+                            <div class="post">
+                                <figure class="post-thumb"><a href="blog-details.html"><img
+                                            src="{{ asset($post->post_image) }}" alt=""></a></figure>
+                                <h5><a href="blog-details.html">{{ $post->post_title }}</a></h5>
+                                <span class="post-date">{{ $post->created_at->format('M d Y') }}</span>
+                            </div>
                             @endforeach
 
                         </div>
@@ -224,7 +224,7 @@
 <!-- sidebar-page-container -->
 
 <!-- subscribe-section -->
-<section class="subscribe-section bg-color-3">
+{{-- <section class="subscribe-section bg-color-3">
     <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-2.png);"></div>
     <div class="auto-container">
         <div class="row clearfix">
@@ -246,7 +246,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- subscribe-section end -->
 
 @endsection

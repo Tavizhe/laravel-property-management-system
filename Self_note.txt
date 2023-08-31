@@ -10,3 +10,11 @@ resources\views\frontend\home\video.blade.php
 resources\views\frontend\home\news.blade.php
 resources\views\frontend\home\testimonial.blade.php
 resources\views\frontend\home\deals.blade.php
+
+
+
+mellk_gostar
+F@rd9231
+
+mellkg
+5OncoRatuiIliC

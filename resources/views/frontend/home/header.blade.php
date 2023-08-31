@@ -43,11 +43,12 @@ $setting = App\Models\SiteSetting::find(1);
         </div>
     </div>
     <!-- header-lower -->
-    <div class="header-lower">
+    <div style="display: flex; justify-content:center; " class="header-lower">
         <div class="outer-box">
             <div class="main-box">
                 <div class="logo-box">
-                    <figure class="logo"><a href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}" alt=""></a>
+                    <figure class="logo"><a href="{{ url('/') }}"><img style="width:140px; height:60px;"
+                                src="{{ asset($setting->logo) }}" alt=""></a>
                     </figure>
                 </div>
                 <div class="menu-area clearfix">
@@ -88,9 +89,9 @@ $setting = App\Models\SiteSetting::find(1);
                         </div>
                     </nav>
                 </div>
-                <div class="btn-box">
+                {{-- <div class="btn-box">
                     <a href="index.html" class="theme-btn btn-one"><span>+</span>ثبت ملک</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

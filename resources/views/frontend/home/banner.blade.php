@@ -10,24 +10,22 @@ $ptypes = App\Models\PropertyType::latest()->get();
         <div class="inner-container">
             <div class="content-box centred">
                 <h2 style="color: #FFD700">گروه مشاورین املاک ملک گستر</h2>
-                <p>بهترین املاک شهر و محل اقامت خود را پیدا کنید.</p>
+                <p>بهترین املاک شهر و محل اقامت خود را پیدا کنید</p>
             </div>
             <div class="search-field">
                 <div class="tabs-box">
                     <div class="tab-btn-box">
                         <ul class="tab-btns tab-buttons centred clearfix">
-                            <li class="tab-btn active-btn" data-tab="#tab-1">خرید</li>
-                            <li class="tab-btn" data-tab="#tab-2">رهن</li>
+                            <li class="tab-btn active-btn" data-tab="#tab-1">خرید و فروش</li>
+                            <li class="tab-btn" data-tab="#tab-2">رهن و اجاره</li>
                         </ul>
                     </div>
                     <div class="tabs-content info-group">
                         <div class="tab active-tab" id="tab-1">
                             <div class="inner-box">
                                 <div class="top-search">
-
                                     <form action="{{ route('buy.property.search') }}" method="post" class="search-form">
                                         @csrf
-
                                         <div class="row clearfix">
                                             <div class="col-lg-4 col-md-12 col-sm-12 column">
                                                 <div class="form-group">

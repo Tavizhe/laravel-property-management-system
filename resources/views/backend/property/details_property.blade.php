@@ -52,7 +52,7 @@
                                 </tr>
                                 <tr>
                                     <td>Garage Size </td>
-                                    <td><code>{{ $property->garage_size }}</code></td>
+                                    <td><code>{{ $property->foundation_size }}</code></td>
                                 </tr>
                                 <tr>
                                     <td>Address </td>

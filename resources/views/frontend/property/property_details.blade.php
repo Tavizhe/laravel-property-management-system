@@ -104,7 +104,7 @@
                         <ul class="list clearfix">
                             <li>Property ID: <span>{{ $property->property_code }}</span></li>
                             <li>Rooms: <span>{{ $property->bedrooms }}</span></li>
-                            <li>Garage Size: <span>{{ $property->garage_size }} Sq Ft</span></li>
+                            <li>Garage Size: <span>{{ $property->foundation_size }} Sq Ft</span></li>
 
                             {{-- <li>نوع ملک: <span>{{ $property->type->type_name }}</span></li> --}}
                             <li>Bathrooms: <span>{{ $property->bathrooms }}</span></li>

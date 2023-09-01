@@ -37,7 +37,7 @@ class properties_seeder extends Seeder
                         'bedrooms' => $data['13'],
                         'bathrooms' => $data['14'],
                         'garage' => $data['15'],
-                        'garage_size' => $data['16'],
+                        'foundation_size' => $data['16'],
                         'property_size' => $data['17'],
                         'property_video' => $data['18'],
                         'address' => $data['19'],

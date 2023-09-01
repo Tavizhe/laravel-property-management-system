@@ -96,9 +96,9 @@
 
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label class="form-label">متراژ پارکینگ</label>
-                                        <input type="text" name="garage_size" class="form-control"
-                                            value="{{ $property->garage_size }}">
+                                        <label class="form-label">متراژ زیربنا</label>
+                                        <input type="text" name="foundation_size" class="form-control"
+                                            value="{{ $property->foundation_size }}">
                                     </div>
                                 </div><!-- Col -->
 

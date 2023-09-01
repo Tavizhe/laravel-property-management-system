@@ -27,7 +27,7 @@ return new class extends Migration {
             $table->string('bedrooms')->nullable();
             $table->string('bathrooms')->nullable();
             $table->string('garage')->nullable();
-            $table->string('garage_size')->nullable();
+            $table->string('foundation_size')->nullable();
             $table->string('property_size')->nullable();
             $table->string('property_video')->nullable();
             $table->string('address')->nullable();

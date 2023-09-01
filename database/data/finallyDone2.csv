@@ -1,4 +1,4 @@
-id,pType_id,amenities_id ,property_name ,property_slug,property_code,property_status,lowest_price,max_price,property_thumbnail,short_desc ,long_desc ,bedrooms,bathrooms ,garage ,garage_size ,property_size,property_video ,address,city ,state ,postal_code ,neighborhood ,latitude,longitude,featured ,hot ,agent_id ,status 
+id,pType_id,amenities_id ,property_name ,property_slug,property_code,property_status,lowest_price,max_price,property_thumbnail,short_desc ,long_desc ,bedrooms,bathrooms ,garage ,foundation_size ,property_size,property_video ,address,city ,state ,postal_code ,neighborhood ,latitude,longitude,featured ,hot ,agent_id ,status 
 1,مسکونی,,,133,,6دانگ,0,,photo_2022-11-12_09-14-52.jpg,,,2,,,,92,,خیابان فرخی-کوچه سعادت-پلاک47شمالی,,,,,300000000,0,,,1,
 2,مسکونی,,,253,,6دانگ,3476000000,,photo_2022-11-10_11-16-43.jpg,,,1,,,,233,,خیابان15خردادشمالی-کوچه سلیمانی-پلاک13جنوبی,,,,,0,0,,,1,
 3,آپارتمان,,,67,,6دانگ,3603000000,,photo_2022-11-12_10-48-46.jpg,,,1,,,,95,,خیابان22بهمن مرکزی-بن بست ساربان-پلاک67شمالی,,,,,0,0,,,1,

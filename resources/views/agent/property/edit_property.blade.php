@@ -37,7 +37,7 @@
                                             id="exampleFormControlSelect1">
                                             <option selected="" disabled="">Select Status</option>
                                             <option value="rent" {{ $property->property_status == 'rent' ? 'selected' :
-                                                '' }}>For Rent
+                                                '' }}>For rent
                                             </option>
                                             <option value="buy" {{ $property->property_status == 'buy' ? 'selected' : ''
                                                 }}>For Buy
@@ -48,40 +48,62 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group mb-3">
-                                        <label class="form-label">Lowest Price </label>
+                                        <label class="form-label">مبلغ</label>
                                         <input type="text" name="lowest_price" class="form-control"
                                             value="{{ $property->lowest_price }}">
                                     </div>
                                 </div><!-- Col -->
-
                                 <div class="col-sm-6">
                                     <div class="form-group mb-3">
-                                        <label class="form-label">Max Price </label>
-                                        <input type="text" name="max_price" class="form-control"
-                                            value="{{ $property->max_price }}">
+                                        <label class="form-label">رهن</label>
+                                        <input type="text" name="house_mortgage" class="form-control"
+                                            value="{{ $property->house_mortgage }}">
                                     </div>
                                 </div><!-- Col -->
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">اجاره</label>
+                                        <input type="text" name="rent" class="form-control"
+                                            value="{{ $property->rent }}">
+                                    </div>
+                                </div><!-- Col -->
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Lowest Price </label>
+                                        <input type="text" name="house_mortgage" class="form-control"
+                                            value="{{ $property->house_mortgage }}">
+                                    </div>
+                                </div><!-- Col -->
+                                <div class="col-sm-6">
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Lowest Price </label>
+                                        <input type="text" name="rent" class="form-control"
+                                            value="{{ $property->rent }}">
+                                    </div>
+                                </div><!-- Col -->
+
+
 
                             </div><!-- Row -->
 
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label class="form-label">BedRooms</label>
+                                        <label class="form-label">تعداد خواب</label>
                                         <input type="text" name="bedrooms" class="form-control"
                                             value="{{ $property->bedrooms }}">
                                     </div>
                                 </div><!-- Col -->
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Bathrooms</label>
+                                        <label class="form-label">سرویس</label>
                                         <input type="text" name="bathrooms" class="form-control"
                                             value="{{ $property->bathrooms }}">
                                     </div>
                                 </div><!-- Col -->
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Garage</label>
+                                        <label class="form-label">پارکینگ</label>
                                         <input type="text" name="garage" class="form-control"
                                             value="{{ $property->garage }}">
                                     </div>
@@ -89,7 +111,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Garage Size</label>
+                                        <label class="form-label">متراژ پارکینگ</label>
                                         <input type="text" name="garage_size" class="form-control"
                                             value="{{ $property->garage_size }}">
                                     </div>
@@ -100,19 +122,19 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Address</label>
+                                        <label class="form-label">حدود آدرس</label>
                                         <input type="text" name="address" class="form-control"
                                             value="{{ $property->address }}">
                                     </div>
                                 </div><!-- Col -->
-                                <div class="col-sm-3">
+                                {{-- <div class="col-sm-3">
                                     <div class="mb-3">
                                         <label class="form-label">City</label>
                                         <input type="text" name="city" class="form-control"
                                             value="{{ $property->city }}">
                                     </div>
-                                </div><!-- Col -->
-                                <div class="col-sm-3">
+                                </div><!-- Col --> --}}
+                                {{-- <div class="col-sm-3">
                                     <div class="mb-3">
                                         <label class="form-label">State</label>
                                         <select name="state" class="form-select" id="exampleFormControlSelect1">
@@ -124,60 +146,60 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div><!-- Col -->
+                                </div><!-- Col --> --}}
 
-                                <div class="col-sm-3">
+                                {{-- <div class="col-sm-3">
                                     <div class="mb-3">
                                         <label class="form-label">Postal Code </label>
                                         <input type="text" name="postal_code" class="form-control"
                                             value="{{ $property->postal_code }}">
                                     </div>
-                                </div><!-- Col -->
+                                </div><!-- Col --> --}}
 
                             </div><!-- Row -->
 
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Property Size</label>
+                                        <label class="form-label">متراژ ملک</label>
                                         <input type="text" name="property_size" class="form-control"
                                             value="{{ $property->property_size }}">
                                     </div>
                                 </div><!-- Col -->
                                 <div class="col-sm-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Property Video</label>
+                                        <label class="form-label">فیلم ملک</label>
                                         <input type="text" name="property_video" class="form-control"
                                             value="{{ $property->property_video }}">
                                     </div>
                                 </div><!-- Col -->
-                                <div class="col-sm-4">
+                                {{-- <div class="col-sm-4">
                                     <div class="mb-3">
                                         <label class="form-label">Neighborhood</label>
                                         <input type="text" name="neighborhood" class="form-control"
                                             value="{{ $property->neighborhood }}">
                                     </div>
-                                </div><!-- Col -->
+                                </div><!-- Col --> --}}
 
                             </div><!-- Row -->
 
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Latitude</label>
+                                        <label class="form-label">عرض ملک</label>
                                         <input type="text" name="latitude" class="form-control"
                                             value="{{ $property->latitude }}">
                                         <a href="https://www.latlong.net/convert-address-to-lat-long.html"
-                                            target="_blank">Go here to get Latitude from address</a>
+                                            target="_blank">Go here to get عرض ملک from address</a>
                                     </div>
                                 </div><!-- Col -->
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Longitude</label>
+                                        <label class="form-label">طول ملک</label>
                                         <input type="text" name="longitude" class="form-control"
                                             value="{{ $property->longitude }}">
                                         <a href="https://www.latlong.net/convert-address-to-lat-long.html"
-                                            target="_blank">Go here to get Longitude from address</a>
+                                            target="_blank">Go here to get طول ملک from address</a>
                                     </div>
                                 </div><!-- Col -->
                             </div><!-- Row -->
@@ -185,10 +207,10 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Property Type </label>
+                                        <label class="form-label">نوع ملک </label>
                                         <select name="pType_id" class="form-select" id="exampleFormControlSelect1">
                                             <option selected="" disabled="">Select Type</option>
-                                            @foreach ($propertytype as $ptype)
+                                            @foreach ($propertyType as $ptype)
                                             <option value="{{ $ptype->id }}" {{ $ptype->id == $property->pType_id ?
                                                 'selected' : '' }}>
                                                 {{ $ptype->type_name }}</option>
@@ -198,7 +220,7 @@
                                 </div><!-- Col -->
                                 <div class="col-sm-4">
                                     <div class="mb-3">
-                                        <label class="form-label">Property amenities </label>
+                                        <label class="form-label">امکانات ملک </label>
                                         <select name="amenities_id[]" class="js-example-basic-multiple form-select"
                                             multiple="multiple" data-width="100%">
 
@@ -216,7 +238,7 @@
 
                             <div class="col-sm-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Short Description</label>
+                                    <label class="form-label">خلاصه توضیحات</label>
                                     <textarea name="short_desc" class="form-control" id="exampleFormControlTextarea1"
                                         rows="3">
  {{ $property->short_desc }} 
@@ -227,7 +249,7 @@
 
                             <div class="col-sm-12">
                                 <div class="mb-3">
-                                    <label class="form-label">Long Description</label>
+                                    <label class="form-label">توضیحات کامل</label>
 
                                     <textarea name="long_desc" class="form-control" name="tinymce" id="tinymceExample"
                                         rows="10">
@@ -244,7 +266,7 @@
                                     <input type="checkbox" name="featured" value="1" class="form-check-input"
                                         id="checkInline1" {{ $property->featured == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="checkInline1">
-                                        Features Property
+                                        امکانات بیشتر
                                     </label>
                                 </div>
 
@@ -252,7 +274,7 @@
                                     <input type="checkbox" name="hot" value="1" class="form-check-input"
                                         id="checkInline" {{ $property->hot == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="checkInline">
-                                        Hot Property
+                                        املاک فوق العاده
                                     </label>
                                 </div>
 
@@ -414,7 +436,7 @@
 
 <!--  /// Facility Update //// -->
 
-<div class="page-content" style="margin-top: -35px;">
+{{-- <div class="page-content" style="margin-top: -35px;">
 
     <div class="row profile-body">
         <div class="col-md-12 col-xl-12 middle-wrapper">
@@ -505,11 +527,11 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!--  ///End Facility Update //// -->
 
 <!--========== Start of add multiple class with ajax ==============-->
-<div style="visibility: hidden">
+{{-- <div style="visibility: hidden">
     <div class="whole_extra_item_add" id="whole_extra_item_add">
         <div class="whole_extra_item_delete" id="whole_extra_item_delete">
             <div class="container mt-2">
@@ -546,7 +568,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <!----For Section-------->
 <script type="text/javascript">
@@ -576,11 +598,15 @@
                         required: true,
                     },
                     lowest_price: {
-                        required: true,
+                        required: false,
                     },
-                    max_price: {
-                        required: true,
+                    house_mortgage: {
+                        required: false,
                     },
+                    rent: {
+                        required: false,
+                    },
+                    
                     pType_id: {
                         required: true,
                     },
@@ -597,11 +623,14 @@
                     lowest_price: {
                         required: 'Please Enter Lowest Price',
                     },
-                    max_price: {
-                        required: 'Please Enter Max Price',
+                    house_mortgage: {
+                        required: 'Please Enter Lowest Price',
+                    },
+                    rent: {
+                        required: 'Please Enter Lowest Price',
                     },
                     pType_id: {
-                        required: 'Please Select Property Type',
+                        required: 'Please Select نوع ملک',
                     },
 
 

@@ -34,7 +34,7 @@ class PropertyTypeController extends Controller
             'type_icon' => $request->type_icon,
         ]);
         $notification = [
-            'message' => 'Property Type Create Successfully',
+            'message' => 'نوع ملک Create Successfully',
             'alert-type' => 'success',
         ];
 
@@ -57,7 +57,7 @@ class PropertyTypeController extends Controller
             'type_icon' => $request->type_icon,
         ]);
         $notification = [
-            'message' => 'Property Type Updated Successfully',
+            'message' => 'نوع ملک Updated Successfully',
             'alert-type' => 'success',
         ];
 
@@ -68,7 +68,7 @@ class PropertyTypeController extends Controller
     {
         PropertyType::findOrFail($id)->delete();
         $notification = [
-            'message' => 'Property Type Deleted Successfully',
+            'message' => 'نوع ملک Deleted Successfully',
             'alert-type' => 'success',
         ];
 

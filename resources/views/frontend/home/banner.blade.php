@@ -1,5 +1,5 @@
 @php
-$states = App\Models\State::latest()->get();
+// $states = App\Models\State::latest()->get();
 $ptypes = App\Models\PropertyType::latest()->get();
 
 @endphp
@@ -37,7 +37,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12 column">
+                                            {{-- <div class="col-lg-4 col-md-6 col-sm-12 column">
                                                 <div class="form-group">
                                                     <label>مکان</label>
                                                     <div class="select-box">
@@ -52,7 +52,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-lg-4 col-md-6 col-sm-12 column">
                                                 <div class="form-group">
                                                     <label>نوع ملک</label>
@@ -94,7 +94,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12 column">
+                                            {{-- <div class="col-lg-4 col-md-6 col-sm-12 column">
                                                 <div class="form-group">
                                                     <label>مکان</label>
                                                     <div class="select-box">
@@ -109,7 +109,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-lg-4 col-md-6 col-sm-12 column">
                                                 <div class="form-group">
                                                     <label>نوع ملک</label>

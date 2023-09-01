@@ -24,14 +24,19 @@
                                     <td><code>{{ $property->property_status }}</code></td>
                                 </tr>
                                 <tr>
-                                    <td>Lowest Price </td>
+                                    <td>مبلغ</td>
                                     <td><code>{{ $property->lowest_price }}</code></td>
                                 </tr>
-
                                 <tr>
-                                    <td>Max Price </td>
-                                    <td><code>{{ $property->max_price }}</code></td>
+                                    <td>رهن</td>
+                                    <td><code>{{ $property->house_mortgage }}</code></td>
                                 </tr>
+                                <tr>
+                                    <td>اجاره</td>
+                                    <td><code>{{ $property->rent }}</code></td>
+                                </tr>
+
+
                                 <tr>
                                     <td>BedRooms </td>
                                     <td><code>{{ $property->bedrooms }}</code></td>
@@ -53,19 +58,19 @@
                                     <td>Address </td>
                                     <td><code>{{ $property->address }}</code></td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <td>City </td>
                                     <td><code>{{ $property->city }}</code></td>
-                                </tr>
-                                <tr>
+                                </tr> --}}
+                                {{-- <tr>
                                     <td>State </td>
                                     <td><code>{{ $property['pState']['state_name'] }}</code></td>
-                                </tr>
+                                </tr> --}}
 
-                                <tr>
+                                {{-- <tr>
                                     <td>Postal Code </td>
                                     <td><code>{{ $property->postal_code }}</code></td>
-                                </tr>
+                                </tr> --}}
 
                                 <tr>
                                     <td>Main Image </td>
@@ -106,37 +111,37 @@
                                 </tr>
 
                                 <tr>
-                                    <td>Property Size </td>
+                                    <td>متراژ ملک </td>
                                     <td><code>{{ $property->property_size }}</code></td>
                                 </tr>
 
                                 <tr>
-                                    <td>Property Video</td>
+                                    <td>فیلم ملک</td>
                                     <td><code>{{ $property->property_video }}</code></td>
                                 </tr>
 
-                                <tr>
+                                {{-- <tr>
                                     <td>Neighborhood </td>
                                     <td><code>{{ $property->neighborhood }}</code></td>
-                                </tr>
+                                </tr> --}}
 
                                 <tr>
-                                    <td>Latitude </td>
+                                    <td>عرض ملک </td>
                                     <td><code>{{ $property->latitude }}</code></td>
                                 </tr>
 
                                 <tr>
-                                    <td>Longitude </td>
+                                    <td>طول ملک </td>
                                     <td><code>{{ $property->longitude }}</code></td>
                                 </tr>
 
                                 <tr>
-                                    <td>Property Type </td>
+                                    <td>نوع ملک </td>
                                     <td><code>{{ $property['type']['type_name'] }}</code></td>
                                 </tr>
 
                                 <tr>
-                                    <td>Property amenities </td>
+                                    <td>امکانات ملک </td>
                                     <td>
                                         <select name="amenities_id[]" class="js-example-basic-multiple form-select"
                                             multiple="multiple" data-width="100%">

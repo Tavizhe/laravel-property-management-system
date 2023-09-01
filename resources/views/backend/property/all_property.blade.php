@@ -23,7 +23,7 @@
                                     <th>Name </th>
                                     <th>P Type </th>
                                     <th>Status Type </th>
-                                    <th>City </th>
+                                    {{-- <th>City </th> --}}
                                     <th>Code </th>
                                     <th>Status </th>
                                     <th>Action </th>
@@ -38,7 +38,7 @@
                                     <td>{{ $item->property_name }}</td>
                                     <td>{{ $item->pType_id }}</td>
                                     <td>{{ $item->property_status }}</td>
-                                    <td>{{ $item->city }}</td>
+                                    {{-- <td>{{ $item->city }}</td> --}}
                                     <td>{{ $item->property_code }}</td>
                                     <td>
                                         @if ($item->status == 1)

@@ -63,6 +63,12 @@
                     <div class="price-box pull-right">
                         <h3>${{ $property->lowest_price }}</h3>
                     </div>
+                    <div class="price-box pull-right">
+                        <h3>${{ $property->house_mortgage }}</h3>
+                    </div>
+                    <div class="price-box pull-right">
+                        <h3>${{ $property->rent }}</h3>
+                    </div>
                 </div>
                 <ul class="other-option pull-right clearfix">
                     <li><a href="property-details.html"><i class="icon-37"></i></a></li>
@@ -98,12 +104,12 @@
                         <ul class="list clearfix">
                             <li>Property ID: <span>{{ $property->property_code }}</span></li>
                             <li>Rooms: <span>{{ $property->bedrooms }}</span></li>
-                            <li>Garage Size: <span>{{ $property->garage_size }} Sq Ft</span></li>
+                            <li>Garage Size: <span>{{ $property->foundation_size }} Sq Ft</span></li>
 
-                            {{-- <li>Property Type: <span>{{ $property->type->type_name }}</span></li> --}}
+                            {{-- <li>نوع ملک: <span>{{ $property->type->type_name }}</span></li> --}}
                             <li>Bathrooms: <span>{{ $property->bathrooms }}</span></li>
                             <li>Property Status: <span>For {{ $property->property_status }}</span></li>
-                            <li>Property Size: <span>{{ $property->property_size }} Sq Ft</span></li>
+                            <li>متراژ ملک: <span>{{ $property->property_size }} Sq Ft</span></li>
                             <li>Garage: <span>{{ $property->garage }}</span></li>
                         </ul>
                     </div>
@@ -124,10 +130,10 @@
                         </div>
                         <ul class="info clearfix">
                             <li><span>Address:</span> {{ $property->address }}</li>
-                            <li><span>State/county:</span> {{ $property['pState']['state_name'] }}</li>
-                            <li><span>Neighborhood:</span> {{ $property->neighborhood }}</li>
-                            <li><span>Zip/Postal Code:</span> {{ $property->postal_code }}</li>
-                            <li><span>City:</span> {{ $property->city }}</li>
+                            {{-- <li><span>State/county:</span> {{ $property['pState']['state_name'] }}</li> --}}
+                            {{-- <li><span>Neighborhood:</span> {{ $property->neighborhood }}</li> --}}
+                            {{-- <li><span>Zip/Postal Code:</span> {{ $property->postal_code }}</li> --}}
+                            {{-- <li><span>City:</span> {{ $property->city }}</li> --}}
                         </ul>
                         <div class="google-map-area">
                             <div class="google-map" id="contact-google-map" data-map-lat="{{ $property->latitude }}"
@@ -146,7 +152,7 @@
                         </div>
                         <div class="inner-box">
 
-                            <div class="single-item">
+                            {{-- <div class="single-item">
                                 <div class="icon-box"><i class="fas fa-book-reader"></i></div>
                                 <div class="inner">
                                     <h5>Places:</h5>
@@ -167,13 +173,13 @@
                                     </div>
                                     @endforeach
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
                     <div class="statistics-box content-widget">
                         <div class="title-box">
-                            <h4>Property Video </h4>
+                            <h4>فیلم ملک </h4>
                         </div>
                         <figure class="image-box">
                             <iframe width="700" height="415" src="{{ $property->property_video }}"
@@ -432,8 +438,12 @@
                                 </div>
                                 <div class="price-box clearfix">
                                     <div class="price-info pull-left">
-                                        <h6>Start From</h6>
+                                        <h6>مبلغ</h6>
                                         <h4>${{ $item->lowest_price }}</h4>
+                                        <h6>رهن</h6>
+                                        <h4>${{ $item->house_mortgage }}</h4>
+                                        <h6>اجاره</h6>
+                                        <h4>${{ $item->rent }}</h4>
                                     </div>
                                     <ul class="other-option pull-right clearfix">
                                         <li><a href="property-details.html"><i class="icon-12"></i></a></li>

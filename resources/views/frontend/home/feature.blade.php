@@ -50,8 +50,16 @@ $property = App\Models\Property::where('status', '1')
                             </div>
                             <div class="price-box clearfix">
                                 <div class="price-info pull-left">
-                                    <h6>Start From</h6>
+                                    <h6>مبلغ</h6>
                                     <h4>${{ $item->lowest_price }}</h4>
+                                </div>
+                                <div class="price-info pull-left">
+                                    <h6>رهن</h6>
+                                    <h4>${{ $item->house_mortgage }}</h4>
+                                </div>
+                                <div class="price-info pull-left">
+                                    <h6>اجاره</h6>
+                                    <h4>${{ $item->rent }}</h4>
                                 </div>
                                 <ul class="other-option pull-right clearfix">
                                     <li><a aria-label="Compare" class="action-btn" id="{{ $item->id }}"

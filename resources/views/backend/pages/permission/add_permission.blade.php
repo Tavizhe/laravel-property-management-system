@@ -29,8 +29,8 @@
                                 <label for="exampleInputEmail1" class="form-label">Group Name </label>
                                 <select name="group_name" class="form-select" id="exampleFormControlSelect1">
                                     <option selected="" disabled="">Select Group</option>
-                                    <option value="type">Property Type</option>
-                                    <option value="state">State</option>
+                                    <option value="type">نوع ملک</option>
+                                    {{-- <option value="state">State</option> --}}
                                     <option value="amenities">amenities</option>
                                     <option value="property">Property</option>
                                     <option value="history">Package History </option>

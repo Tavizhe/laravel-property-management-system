@@ -111,7 +111,7 @@ Buy Property MellkGostar RealEstate
                             <h5>Status Of Property</h5>
                         </div>
                         <ul class="category-list clearfix">
-                            <li><a href="{{ route('rent.property') }}">For Rent <span>(200)</span></a></li>
+                            <li><a href="{{ route('rent.property') }}">For rent <span>(200)</span></a></li>
                             <li><a href="{{ route('buy.property') }}">For Buy <span>(700)</span></a></li>
                         </ul>
                     </div>
@@ -156,8 +156,16 @@ Buy Property MellkGostar RealEstate
                                         </div>
                                         <div class="price-box clearfix">
                                             <div class="price-info pull-left">
-                                                <h6>Start From</h6>
+                                                <h6>مبلغ</h6>
                                                 <h4>${{ $item->lowest_price }}</h4>
+                                            </div>
+                                            <div class="price-info pull-left">
+                                                <h6>رهن</h6>
+                                                <h4>${{ $item->house_mortgage }}</h4>
+                                            </div>
+                                            <div class="price-info pull-left">
+                                                <h6>اجاره</h6>
+                                                <h4>${{ $item->rent }}</h4>
                                             </div>
 
                                             @if ($item->agent_id == null)

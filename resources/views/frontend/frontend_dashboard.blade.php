@@ -356,12 +356,12 @@
                
             </tr>    
             <tr>
-                <td>
-                    <p>City</p>
-                </td>
-                <td>
-                    <p>${value.property.city}</p>
-                </td>
+                // <td>
+                //     <p>City</p>
+                // </td>
+                // <td>
+                //     <p>{value.property.city}</p>
+                // </td>
                  
             </tr>
             <tr>

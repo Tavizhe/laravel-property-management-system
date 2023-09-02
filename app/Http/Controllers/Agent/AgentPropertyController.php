@@ -12,7 +12,7 @@ use App\Models\Property;
 use App\Models\PropertyMessage;
 use App\Models\PropertyType;
 use App\Models\Schedule;
-use App\Models\State;
+// use App\Models\State;
 use App\Models\User;
 use barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -37,7 +37,7 @@ class AgentPropertyController extends Controller
     {
         $propertyType = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
-        $pState = State::latest()->get();
+        // $pState = State::latest()->get();
 
         // TODO:
         $id = Auth::user()->id;
@@ -46,7 +46,7 @@ class AgentPropertyController extends Controller
         if ($pCount == 1 || $pCount == 7) {
             return redirect()->route('buy.package');
         } else {
-            return view('agent.property.add_property', compact('propertyType', 'amenities', 'pState'));
+            return view('agent.property.add_property', compact('propertyType', 'amenities'));
         }
         // TODO:
 
@@ -66,9 +66,9 @@ class AgentPropertyController extends Controller
         $pCode = idGenerator::generate(['table' => 'properties', 'field' => 'property_code', 'length' => 5, 'prefix' => 'PC']);
 
         $image = $request->file('property_thumbnail');
-        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(370, 250)->save('upload/property/thumbnail/'.$name_gen);
-        $save_url = 'upload/property/thumbnail/'.$name_gen;
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(370, 250)->save('upload/property/thumbnail/' . $name_gen);
+        $save_url = 'upload/property/thumbnail/' . $name_gen;
         $property_id = Property::insertGetId([
             'pType_id' => $request->pType_id,
             'amenities_id' => $amenities,
@@ -77,20 +77,21 @@ class AgentPropertyController extends Controller
             'property_code' => $pCode,
             'property_status' => $request->property_status,
             'lowest_price' => $request->lowest_price,
-            'max_price' => $request->max_price,
+            'house_mortgage' => $request->house_mortgage,
+            'rent' => $request->rent,
             'short_desc' => $request->short_desc,
             'long_desc' => $request->long_desc,
             'bedrooms' => $request->bedrooms,
             'bathrooms' => $request->bathrooms,
             'garage' => $request->garage,
-            'garage_size' => $request->garage_size,
+            'foundation_size' => $request->foundation_size,
             'property_size' => $request->property_size,
             'property_video' => $request->property_video,
             'address' => $request->address,
-            'city' => $request->city,
-            'state' => $request->state,
-            'postal_code' => $request->postal_code,
-            'neighborhood' => $request->neighborhood,
+            // 'city' => $request->city,
+            // 'state' => $request->state,
+            // 'postal_code' => $request->postal_code,
+            // 'neighborhood' => $request->neighborhood,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
             'featured' => $request->featured,
@@ -104,9 +105,9 @@ class AgentPropertyController extends Controller
 
         $image = $request->file('multi_img');
         foreach ($image as $img) {
-            $make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
-            Image::make($img)->resize(770, 520)->save('upload/property/multi-image/'.$make_name);
-            $uploadPath = 'upload/property/multi-image/'.$make_name;
+            $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(770, 520)->save('upload/property/multi-image/' . $make_name);
+            $uploadPath = 'upload/property/multi-image/' . $make_name;
 
             MultiImage::insert([
                 'property_id' => $property_id,
@@ -116,21 +117,21 @@ class AgentPropertyController extends Controller
         } // End Foreach
 
         /* Facilities Add */
-        $facilities = count($request->facility_name);
-        if ($facilities != null) {
-            for ($i = 0; $i < $facilities; $i++) {
-                $fCount = new Facility();
-                $fCount->property_id = $property_id;
-                $fCount->facility_name = $request->facility_name[$i];
-                $fCount->distance = $request->distance[$i];
-                $fCount->save();
-            }
-            // TODO:
-            user::where('id', $id)->update([
-                'credit' => DB::raw('1 + '.$nid),
-            ]);
-            // TODO:
-        }
+        // $facilities = count($request->facility_name);
+        // if ($facilities != null) {
+        //     for ($i = 0; $i < $facilities; $i++) {
+        //         $fCount = new Facility();
+        //         $fCount->property_id = $property_id;
+        //         $fCount->facility_name = $request->facility_name[$i];
+        //         $fCount->distance = $request->distance[$i];
+        //         $fCount->save();
+        //     }
+        //     // TODO:
+        //     user::where('id', $id)->update([
+        //         'credit' => DB::raw('1 + ' . $nid),
+        //     ]);
+        //     // TODO:
+        // }
         $notification = [
             'message' => 'Property Inserted Successfully',
             'alert-type' => 'success',
@@ -142,16 +143,16 @@ class AgentPropertyController extends Controller
 
     public function AgentEditProperty($id)
     {
-        $facilities = Facility::where('property_id', $id)->get();
+        // $facilities = Facility::where('property_id', $id)->get();
         $property = Property::findOrFail($id);
         $type = $property->amenities_id;
         $property_ami = explode(',', $type);
         $MultiImage = MultiImage::where('property_id', $id)->get();
-        $pState = State::latest()->get();
+        // $pState = State::latest()->get();
         $propertyType = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
 
-        return view('agent.property.edit_property', compact('property', 'propertyType', 'amenities', 'property_ami', 'MultiImage', 'facilities', 'pState'));
+        return view('agent.property.edit_property', compact('property', 'propertyType', 'amenities', 'property_ami', 'MultiImage'));
     } // End Method
 
     public function AgentUpdateProperty(Request $request)
@@ -169,20 +170,21 @@ class AgentPropertyController extends Controller
             'property_slug' => strtolower(str_replace(' ', '-', $request->property_name)),
             'property_status' => $request->property_status,
             'lowest_price' => $request->lowest_price,
-            'max_price' => $request->max_price,
+            'house_mortgage' => $request->house_mortgage,
+            'rent' => $request->rent,
             'short_desc' => $request->short_desc,
             'long_desc' => $request->long_desc,
             'bedrooms' => $request->bedrooms,
             'bathrooms' => $request->bathrooms,
             'garage' => $request->garage,
-            'garage_size' => $request->garage_size,
+            'foundation_size' => $request->foundation_size,
             'property_size' => $request->property_size,
             'property_video' => $request->property_video,
             'address' => $request->address,
-            'city' => $request->city,
-            'state' => $request->state,
-            'postal_code' => $request->postal_code,
-            'neighborhood' => $request->neighborhood,
+            // 'city' => $request->city,
+            // 'state' => $request->state,
+            // 'postal_code' => $request->postal_code,
+            // 'neighborhood' => $request->neighborhood,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
             'featured' => $request->featured,
@@ -206,9 +208,9 @@ class AgentPropertyController extends Controller
         $oldImage = $request->old_img;
 
         $image = $request->file('property_thumbnail');
-        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(370, 250)->save('upload/property/thumbnail/'.$name_gen);
-        $save_url = 'upload/property/thumbnail/'.$name_gen;
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(370, 250)->save('upload/property/thumbnail/' . $name_gen);
+        $save_url = 'upload/property/thumbnail/' . $name_gen;
 
         if (file_exists($oldImage)) {
             unlink($oldImage);
@@ -235,9 +237,9 @@ class AgentPropertyController extends Controller
             $imgDel = MultiImage::findOrFail($id);
             unlink($imgDel->photo_name);
 
-            $make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
-            Image::make($img)->resize(770, 520)->save('upload/property/multi-image/'.$make_name);
-            $uploadPath = 'upload/property/multi-image/'.$make_name;
+            $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(770, 520)->save('upload/property/multi-image/' . $make_name);
+            $uploadPath = 'upload/property/multi-image/' . $make_name;
             MultiImage::where('id', $id)->update([
                 'photo_name' => $uploadPath,
                 'updated_at' => Carbon::now(),
@@ -273,9 +275,9 @@ class AgentPropertyController extends Controller
         $new_multi = $request->imageId;
         $image = $request->file('multi_img');
 
-        $make_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(770, 520)->save('upload/property/multi-image/'.$make_name);
-        $uploadPath = 'upload/property/multi-image/'.$make_name;
+        $make_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(770, 520)->save('upload/property/multi-image/' . $make_name);
+        $uploadPath = 'upload/property/multi-image/' . $make_name;
         MultiImage::insert([
             'property_id' => $new_multi,
             'photo_name' => $uploadPath,
@@ -290,30 +292,30 @@ class AgentPropertyController extends Controller
         return redirect()->back()->with($notification);
     } // End Method
 
-    public function AgentUpdatePropertyFacilities(Request $request)
-    {
-        $pid = $request->id;
+    // public function AgentUpdatePropertyFacilities(Request $request)
+    // {
+    //     $pid = $request->id;
 
-        if ($request->facility_name == null) {
-            return redirect()->back();
-        } else {
-            Facility::where('property_id', $pid)->delete();
-            $facilities = count($request->facility_name);
-            for ($i = 0; $i < $facilities; $i++) {
-                $fCount = new Facility();
-                $fCount->property_id = $pid;
-                $fCount->facility_name = $request->facility_name[$i];
-                $fCount->distance = $request->distance[$i];
-                $fCount->save();
-            } // End For
-        }
-        $notification = [
-            'message' => 'Property Facilities Updated Successfully',
-            'alert-type' => 'success',
-        ];
+    //     if ($request->facility_name == null) {
+    //         return redirect()->back();
+    //     } else {
+    //         Facility::where('property_id', $pid)->delete();
+    //         $facilities = count($request->facility_name);
+    //         for ($i = 0; $i < $facilities; $i++) {
+    //             $fCount = new Facility();
+    //             $fCount->property_id = $pid;
+    //             $fCount->facility_name = $request->facility_name[$i];
+    //             $fCount->distance = $request->distance[$i];
+    //             $fCount->save();
+    //         } // End For
+    //     }
+    //     $notification = [
+    //         'message' => 'Property Facilities Updated Successfully',
+    //         'alert-type' => 'success',
+    //     ];
 
-        return redirect()->back()->with($notification);
-    } // End Method
+    //     return redirect()->back()->with($notification);
+    // } // End Method
 
     public function AgentDeleteProperty($id)
     {
@@ -329,11 +331,11 @@ class AgentPropertyController extends Controller
             MultiImage::where('property_id', $id)->delete();
         }
 
-        $facilitiesData = Facility::where('property_id', $id)->get();
-        foreach ($facilitiesData as $item) {
-            $item->facility_name;
-            Facility::where('property_id', $id)->delete();
-        }
+        // $facilitiesData = Facility::where('property_id', $id)->get();
+        // foreach ($facilitiesData as $item) {
+        //     $item->facility_name;
+        //     Facility::where('property_id', $id)->delete();
+        // }
         $notification = [
             'message' => 'Property Deleted Successfully',
             'alert-type' => 'success',
@@ -345,7 +347,7 @@ class AgentPropertyController extends Controller
 
     public function AgentDetailsProperty($id)
     {
-        $facilities = Facility::where('property_id', $id)->get();
+        // $facilities = Facility::where('property_id', $id)->get();
         $property = Property::findOrFail($id);
         $type = $property->amenities_id;
         $property_ami = explode(',', $type);
@@ -354,7 +356,7 @@ class AgentPropertyController extends Controller
         $amenities = Amenities::latest()->get();
         $activeAgent = user::where('status', 'active')->where('role', 'agent')->latest()->get();
 
-        return view('agent.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'MultiImage', 'facilities'));
+        return view('agent.property.details_property', compact('property', 'propertyType', 'amenities', 'activeAgent', 'property_ami', 'MultiImage'));
     } // End Method
 
     public function AgentInactiveProperty(Request $request)
@@ -409,13 +411,13 @@ class AgentPropertyController extends Controller
             'user_id' => $id,
             'package_name' => 'Business',
             'package_credits' => '3',
-            'invoice' => 'ERS'.mt_rand(10000000, 99999999),
+            'invoice' => 'ERS' . mt_rand(10000000, 99999999),
             'package_amount' => '20',
             'created_at' => Carbon::now(),
         ]);
 
         user::where('id', $id)->update([
-            'credit' => DB::raw('3 + '.$nid),
+            'credit' => DB::raw('3 + ' . $nid),
         ]);
 
         $notification = [
@@ -444,13 +446,13 @@ class AgentPropertyController extends Controller
             'user_id' => $id,
             'package_name' => 'Professional',
             'package_credits' => '10',
-            'invoice' => 'ERS'.mt_rand(10000000, 99999999),
+            'invoice' => 'ERS' . mt_rand(10000000, 99999999),
             'package_amount' => '50',
             'created_at' => Carbon::now(),
         ]);
 
         User::where('id', $id)->update([
-            'credit' => DB::raw('10 + '.$nid),
+            'credit' => DB::raw('10 + ' . $nid),
         ]);
 
         $notification = [

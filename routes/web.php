@@ -9,7 +9,7 @@ use App\Http\Controllers\Backend\PropertyController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SettingController;
-use App\Http\Controllers\Backend\StateController;
+// use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Frontend\CompareController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -76,7 +76,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 /// Admin Group Middleware
 Route::middleware(['auth', 'roles:admin'])->group(function () {
@@ -121,7 +121,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.
 /// Admin Group Middleware
 Route::middleware(['auth', 'roles:admin'])->group(function () {
 
-    // Property Type All Route
+    // نوع ملک All Route
     Route::controller(PropertyTypeController::class)->group(function () {
 
         Route::get('/all/type', 'AllType')->name('all.type')->middleware('permission:all.type');
@@ -162,7 +162,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
         Route::post('/store/new/MultiImage', 'StoreNewMultiImage')->name('store.new.MultiImage');
 
-        Route::post('/update/property/facilities', 'UpdatePropertyFacilities')->name('update.property.facilities');
+        // Route::post('/update/property/facilities', 'UpdatePropertyFacilities')->name('update.property.facilities');
 
         Route::get('/delete/property/{id}', 'DeleteProperty')->name('delete.property');
 
@@ -195,16 +195,16 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     });
 
     // State  All Route
-    Route::controller(StateController::class)->group(function () {
+    // Route::controller(StateController::class)->group(function () {
 
-        Route::get('/all/state', 'AllState')->name('all.state');
-        Route::get('/add/state', 'AddState')->name('add.state');
-        Route::post('/store/state', 'StoreState')->name('store.state');
-        Route::get('/edit/state/{id}', 'EditState')->name('edit.state');
-        Route::post('/update/state', 'UpdateState')->name('update.state');
-        Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
+    //     Route::get('/all/state', 'AllState')->name('all.state');
+    //     Route::get('/add/state', 'AddState')->name('add.state');
+    //     Route::post('/store/state', 'StoreState')->name('store.state');
+    //     Route::get('/edit/state/{id}', 'EditState')->name('edit.state');
+    //     Route::post('/update/state', 'UpdateState')->name('update.state');
+    //     Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
 
-    });
+    // });
 
     // Testimonials  All Route
     Route::controller(TestimonialController::class)->group(function () {
@@ -333,7 +333,7 @@ Route::middleware(['auth', 'roles:agent'])->group(function () {
 
         Route::post('/agent/store/new/MultiImage', 'AgentStoreNewMultiImage')->name('agent.store.new.MultiImage');
 
-        Route::post('/agent/update/property/facilities', 'AgentUpdatePropertyFacilities')->name('agent.update.property.facilities');
+        // Route::post('/agent/update/property/facilities', 'AgentUpdatePropertyFacilities')->name('agent.update.property.facilities');
 
         Route::get('/agent/details/property/{id}', 'AgentDetailsProperty')->name('agent.details.property');
 
@@ -386,13 +386,13 @@ Route::get('/agent/details/{id}', [IndexController::class, 'AgentDetails'])->nam
 // Send Message from Agent Details Page
 Route::post('/agent/details/message', [IndexController::class, 'AgentDetailsMessage'])->name('agent.details.message');
 
-// Get All Rent Property
+// Get All rent Property
 Route::get('/rent/property', [IndexController::class, 'RentProperty'])->name('rent.property');
 
 // Get All Buy Property
 Route::get('/buy/property', [IndexController::class, 'BuyProperty'])->name('buy.property');
 
-// Get All Property Type Data
+// Get All نوع ملک Data
 Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->name('property.type');
 
 // Get State Details Data
@@ -401,7 +401,7 @@ Route::get('/state/details/{id}', [IndexController::class, 'StateDetails'])->nam
 // Home Page Buy Search Option
 Route::post('/buy/property/search', [IndexController::class, 'BuyPropertySearch'])->name('buy.property.search');
 
-// Home Page Rent Search Option
+// Home Page rent Search Option
 Route::post('/rent/property/search', [IndexController::class, 'RentPropertySearch'])->name('rent.property.search');
 
 // All Property Search Option

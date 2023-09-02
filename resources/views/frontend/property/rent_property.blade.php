@@ -1,7 +1,7 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
 @section('title')
-Rent Property MellkGostar RealEstate
+rent Property MellkGostar RealEstate
 @endsection
 
 <!--Page Title-->
@@ -14,10 +14,10 @@ Rent Property MellkGostar RealEstate
     </div>
     <div class="auto-container">
         <div class="content-box clearfix">
-            <h1>Rent Property </h1>
+            <h1>rent Property </h1>
             <ul class="bread-crumb clearfix">
                 <li><a href="index.html">Home</a></li>
-                <li>Rent Property List</li>
+                <li>rent Property List</li>
             </ul>
         </div>
     </div>
@@ -36,7 +36,7 @@ Rent Property MellkGostar RealEstate
                         </div>
 
                         @php
-                        $states = App\Models\State::latest()->get();
+                        // $states = App\Models\State::latest()->get();
                         $ptypes = App\Models\PropertyType::latest()->get();
 
                         @endphp
@@ -48,7 +48,7 @@ Rent Property MellkGostar RealEstate
                                 <div class="select-box">
                                     <select name="property_status" class="wide">
                                         <option data-display="All Type">All Status</option>
-                                        <option value="rent">Rent</option>
+                                        <option value="rent">rent</option>
                                         <option value="buy">Buy</option>
                                     </select>
                                 </div>
@@ -62,14 +62,14 @@ Rent Property MellkGostar RealEstate
 
                                     </select>
                                 </div>
-                                <div class="select-box">
+                                {{-- <div class="select-box">
                                     <select name="state" class="wide">
                                         <option data-display="State" selected="" disabled="">Select State</option>
                                         @foreach ($states as $state)
                                         <option value="{{ $state->state_name }}">{{ $state->state_name }}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="select-box">
                                     <select name="bedrooms" class="wide">
                                         <option data-display="Rooms">Max Rooms</option>
@@ -117,7 +117,7 @@ Rent Property MellkGostar RealEstate
                             <h5>Status Of Property</h5>
                         </div>
                         <ul class="category-list clearfix">
-                            <li><a href="{{ route('rent.property') }}">For Rent <span>(200)</span></a></li>
+                            <li><a href="{{ route('rent.property') }}">For rent <span>(200)</span></a></li>
                             <li><a href="{{ route('buy.property') }}">For Buy <span>(700)</span></a></li>
                         </ul>
                     </div>
@@ -162,8 +162,16 @@ Rent Property MellkGostar RealEstate
                                         </div>
                                         <div class="price-box clearfix">
                                             <div class="price-info pull-left">
-                                                <h6>Start From</h6>
+                                                <h6>مبلغ</h6>
                                                 <h4>${{ $item->lowest_price }}</h4>
+                                            </div>
+                                            <div class="price-info pull-left">
+                                                <h6>رهن</h6>
+                                                <h4>${{ $item->house_mortgage }}</h4>
+                                            </div>
+                                            <div class="price-info pull-left">
+                                                <h6>اجاره</h6>
+                                                <h4>${{ $item->rent }}</h4>
                                             </div>
 
                                             @if ($item->agent_id == null)

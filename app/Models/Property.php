@@ -21,8 +21,8 @@ class Property extends Model
         return $this->belongsTo(user::class, 'agent_id', 'id');
     }
 
-    public function pState()
-    {
-        return $this->belongsTo(State::class, 'state', 'id');
-    }
+    // public function pState()
+    // {
+    //     return $this->belongsTo(State::class, 'state', 'id');
+    // }
 }

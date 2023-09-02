@@ -189,7 +189,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="mb-3">
-                                        <label class="form-label">نوع ملک </label>
+                                        <label class="form-label">نوع ملک</label>
                                         <select name="pType_id" class="form-select" id="exampleFormControlSelect1">
                                             <option selected="" disabled="">Select Type</option>
                                             @foreach ($propertyType as $ptype)

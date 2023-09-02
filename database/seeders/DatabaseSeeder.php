@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(properties_seeder::class);
         $this->call(SiteSettingsSeeder::class);
+        $this->call(Property_Types::class);
+        $this->call(Amenities_Seeder::class);
         \App\Models\User::factory(5)->create();
     }
 }

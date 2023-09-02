@@ -71,7 +71,7 @@ $property = App\Models\Property::where('status', '1')
                                     class="theme-btn btn-two">See Details</a></div>
                         </div>
                     </div>
-                </div>
+                </div>5
             </div>
             @endforeach
 

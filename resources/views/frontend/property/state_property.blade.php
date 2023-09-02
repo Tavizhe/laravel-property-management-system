@@ -166,14 +166,14 @@
                                             @if ($item->agent_id == null)
                                             <div class="author-box pull-right">
                                                 <figure class="author-thumb">
-                                                    <img src="{{ url('upload/ariyan.jpg') }}" alt="">
+                                                    <img src="{{ url('upload/logo/1775858854860294.png') }}" alt="">
                                                     <span>Admin</span>
                                                 </figure>
                                             </div>
                                             @else
                                             <div class="author-box pull-right">
                                                 <figure class="author-thumb">
-                                                    <img src="{{ !empty($item->user->photo) ? url('upload/agent_images/' . $item->user->photo) : url('upload/no_image.jpg') }}"
+                                                    <img src="{{ !empty($item->user->photo) ? url('upload/agent_images/' . $item->user->photo) : url('upload/logo/1775858854860294.png') }}"
                                                         alt="">
                                                     <span>{{ $item->user->name }}</span>
                                                 </figure>

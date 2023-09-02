@@ -34,7 +34,7 @@
                 <div class="author-info clearfix">
                     <div class="author-box pull-left">
                         @if ($property->agent_id == null)
-                        <figure class="author-thumb"><img src="{{ url('upload/ariyan.jpg') }}" alt="">
+                        <figure class="author-thumb"><img src="{{ url('upload/logo/1775858854860294.png') }}" alt="">
                         </figure>
                         <h6>Admin</h6>
                         @else
@@ -243,7 +243,8 @@
                         <div class="author-box">
 
                             @if ($property->agent_id == null)
-                            <figure class="author-thumb"><img src="{{ url('upload/ariyan.jpg') }}" alt=""></figure>
+                            <figure class="author-thumb"><img src="{{ url('upload/logo/1775858854860294.png') }}"
+                                    alt=""></figure>
                             <div class="inner">
                                 <h4>Admin </h4>
                                 <ul class="info clearfix">
@@ -417,7 +418,8 @@
                                 <div class="author-info clearfix">
                                     <div class="author pull-left">
                                         @if ($item->agent_id == null)
-                                        <figure class="author-thumb"><img src="{{ url('upload/ariyan.jpg') }}" alt="">
+                                        <figure class="author-thumb"><img
+                                                src="{{ url('upload/logo/1775858854860294.png') }}" alt="">
                                         </figure>
                                         <h6>Admin </h6>
                                         @else

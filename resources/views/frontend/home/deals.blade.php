@@ -28,7 +28,8 @@ $property = App\Models\Property::where('status', '1')
                                 <div class="author pull-left">
 
                                     @if ($item->agent_id == null)
-                                    <figure class="author-thumb"><img src="{{ url('upload/ariyan.jpg') }}" alt="">
+                                    <figure class="author-thumb"><img
+                                            src="{{ url('upload/logo/1775858854860294.png') }}" alt="">
                                     </figure>
                                     <h6>Admin </h6>
                                     @else

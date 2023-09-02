@@ -104,7 +104,7 @@
                             @foreach ($reply as $rep)
                             <div class="comment replay-comment">
                                 <figure class="thumb-box">
-                                    <img src="{{ url('upload/ariyan.jpg') }}" alt="">
+                                    <img src="{{ url('upload/logo/1775858854860294.png') }}" alt="">
                                 </figure>
                                 <div class="comment-inner">
                                     <div class="comment-info clearfix">

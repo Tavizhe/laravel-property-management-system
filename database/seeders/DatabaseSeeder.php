@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SiteSettingsSeeder::class);
         $this->call(Property_Types::class);
         $this->call(Amenities_Seeder::class);
-        \App\Models\User::factory(5)->create();
+        //\App\Models\User::factory(5)->create();
     }
 }

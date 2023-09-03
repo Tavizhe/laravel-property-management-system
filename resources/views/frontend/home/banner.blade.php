@@ -1,9 +1,7 @@
 @php
 // $states = App\Models\State::latest()->get();
 $ptypes = App\Models\PropertyType::latest()->get();
-
 @endphp
-
 <section class="banner-section"
     style="background-image: url({{ asset('frontend/assets/images/banner/banner-1.jpg') }});">
     <div class="auto-container">
@@ -27,13 +25,13 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                     <form action="{{ route('buy.property.search') }}" method="post" class="search-form">
                                         @csrf
                                         <div class="row clearfix">
-                                            <div class="col-lg-4 col-md-12 col-sm-12 column">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 column">
                                                 <div class="form-group">
-                                                    <label>ملک</label>
+                                                    <label>اطلاعات ملک</label>
                                                     <div class="field-input">
                                                         <i class="fas fa-search"></i>
-                                                        <input type="search" name="search" placeholder="نام ملک"
-                                                            required="">
+                                                        <input type="search" name="search"
+                                                            placeholder="اطلاعات ملک را وارد فرمایید" required="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -53,12 +51,12 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                                     </div>
                                                 </div>
                                             </div> --}}
-                                            <div class="col-lg-4 col-md-6 col-sm-12 column">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 column">
                                                 <div class="form-group">
                                                     <label>نوع ملک</label>
                                                     <div class="select-box">
                                                         <select name="pType_id" class="wide">
-                                                            <option data-display="زمین یا منزل">All Type</option>
+                                                            <option data-display="زمین یا منزل">لیست املاک</option>
                                                             @foreach ($ptypes as $type)
                                                             <option value="{{ $type->type_name }}">
                                                                 {{ $type->type_name }}</option>
@@ -73,7 +71,6 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                         </div>
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                         <div class="tab" id="tab-2">
@@ -82,15 +79,14 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                     <form action="{{ route('rent.property.search') }}" method="post"
                                         class="search-form">
                                         @csrf
-
                                         <div class="row clearfix">
-                                            <div class="col-lg-4 col-md-12 col-sm-12 column">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 column">
                                                 <div class="form-group">
-                                                    <label>ملک</label>
+                                                    <label>اطلاعات ملک</label>
                                                     <div class="field-input">
                                                         <i class="fas fa-search"></i>
-                                                        <input type="search" name="search" placeholder="نام ملک"
-                                                            required="">
+                                                        <input type="search" name="search"
+                                                            placeholder="اطلاعات ملک را وارد فرمایید" required="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -110,12 +106,12 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                                     </div>
                                                 </div>
                                             </div> --}}
-                                            <div class="col-lg-4 col-md-6 col-sm-12 column">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 column">
                                                 <div class="form-group">
                                                     <label>نوع ملک</label>
                                                     <div class="select-box">
                                                         <select name="pType_id" class="wide">
-                                                            <option data-display="منزل یا باغ">All Type</option>
+                                                            <option data-display="منزل یا باغ">لیست املاک</option>
                                                             @foreach ($ptypes as $type)
                                                             <option value="{{ $type->type_name }}">
                                                                 {{ $type->type_name }}</option>
@@ -130,7 +126,6 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                         </div>
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>

@@ -66,9 +66,10 @@ $blog = App\Models\BlogPost::latest()->limit(2)->get();
                         <div class="widget-content">
                             <ul class="info-list clearfix">
                                 <li><i class="fas fa-map-marker-alt"></i>{{ $setting->company_address }}</li>
-                                <li><i class="fas fa-microphone"></i><a href="tel:23055873407">+{{
+                                <li><i class="fas fa-microphone"></i><a href="tel:09133310337">+{{
                                         $setting->support_phone }}</a></li>
-                                <li><i class="fas fa-envelope"></i><a href="mailto:info@example.com">{{ $setting->email
+                                <li><i class="fas fa-envelope"></i><a href="mailto:support@mellkgostar.ir">{{
+                                        $setting->email
                                         }}</a></li>
                             </ul>
                         </div>

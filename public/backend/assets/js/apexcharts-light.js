@@ -5,7 +5,7 @@ $(function() {
   'use strict';
 
   var colors = {
-    primary        : "#6571ff",
+    primary        : "#FFD700",
     secondary      : "#7987a1",
     success        : "#05a34a",
     info           : "#66d1d1",

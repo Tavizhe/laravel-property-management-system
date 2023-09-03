@@ -19,35 +19,36 @@ class Property_Types extends Seeder
             [
                 'id' => '1',
                 'type_name' => 'مسکونی',
-                'type_icon' => '',
+                'type_icon' => 'fa-solid fa-house',
+
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => '2',
                 'type_name' => 'زمین',
-                'type_icon' => '',
+                'type_icon' => 'fa-regular fa-map',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => '3',
                 'type_name' => 'ویلایی',
-                'type_icon' => '',
+                'type_icon' => 'fa-solid fa-house-water',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => '4',
                 'type_name' => 'باغ',
-                'type_icon' => '',
+                'type_icon' => 'fa-regular fa-flower-tulip',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => '5',
                 'type_name' => 'تجاری',
-                'type_icon' => '',
+                'type_icon' => 'fa-thin fa-phone-office',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],

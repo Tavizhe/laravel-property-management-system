@@ -3,7 +3,6 @@
 @section('title')
 rent Property MellkGostar RealEstate
 @endsection
-
 <!--Page Title-->
 <section class="page-title-two bg-color-1 centred">
     <div class="pattern-layer">
@@ -23,7 +22,6 @@ rent Property MellkGostar RealEstate
     </div>
 </section>
 <!--End Page Title-->
-
 <!-- property-page-section -->
 <section class="property-page-section property-list">
     <div class="auto-container">
@@ -34,16 +32,12 @@ rent Property MellkGostar RealEstate
                         <div class="widget-title">
                             <h5>Property</h5>
                         </div>
-
                         @php
                         // $states = App\Models\State::latest()->get();
                         $ptypes = App\Models\PropertyType::latest()->get();
-
                         @endphp
-
                         <form action="{{ route('all.property.search') }}" method="post" class="search-form">
                             @csrf
-
                             <div class="widget-content">
                                 <div class="select-box">
                                     <select name="property_status" class="wide">
@@ -55,11 +49,9 @@ rent Property MellkGostar RealEstate
                                 <div class="select-box">
                                     <select name="pType_id" class="wide">
                                         <option data-display="Type" selected="" disabled="">Select Type</option>
-
                                         @foreach ($ptypes as $type)
                                         <option value="{{ $type->type_name }}">{{ $type->type_name }}</option>
                                         @endforeach
-
                                     </select>
                                 </div>
                                 {{-- <div class="select-box">
@@ -90,14 +82,12 @@ rent Property MellkGostar RealEstate
                                         <option value="5">5 BathRoom</option>
                                     </select>
                                 </div>
-
                                 <div class="filter-btn">
                                     <button type="submit" class="theme-btn btn-one"><i
                                             class="fas fa-filter"></i>&nbsp;Filter</button>
                                 </div>
                             </div>
                         </form>
-
                     </div>
                     <div class="price-filter sidebar-widget">
                         <div class="widget-title">
@@ -121,7 +111,6 @@ rent Property MellkGostar RealEstate
                             <li><a href="{{ route('buy.property') }}">For Buy <span>(700)</span></a></li>
                         </ul>
                     </div>
-
                 </div>
             </div>
             <div class="col-lg-8 col-md-12 col-sm-12 content-side">
@@ -131,12 +120,10 @@ rent Property MellkGostar RealEstate
                             <h5>Search Reasults: <span>Showing {{ count($property) }} Listings</span></h5>
                         </div>
                         <div class="right-column pull-right clearfix">
-
                         </div>
                     </div>
                     <div class="wrapper list">
                         <div class="deals-list-content list-item">
-
                             @foreach ($property as $item)
                             <div class="deals-block-one">
                                 <div class="inner-box">
@@ -149,7 +136,6 @@ rent Property MellkGostar RealEstate
                                         @else
                                         <span class="category">New</span>
                                         @endif
-
                                         <div class="buy-btn"><a href="property-details.html">For
                                                 {{ $item->property_status }}</a></div>
                                     </div>
@@ -160,11 +146,7 @@ rent Property MellkGostar RealEstate
                                                     $item->property_name }}</a>
                                             </h4>
                                         </div>
-                                        <div class="price-box clearfix">
-                                            <div class="price-info pull-left">
-                                                <h6>مبلغ</h6>
-                                                <h4>${{ $item->lowest_price }}</h4>
-                                            </div>
+                                        <div class="price-box clearfix">                                            
                                             <div class="price-info pull-left">
                                                 <h6>رهن</h6>
                                                 <h4>${{ $item->house_mortgage }}</h4>
@@ -173,12 +155,11 @@ rent Property MellkGostar RealEstate
                                                 <h6>اجاره</h6>
                                                 <h4>${{ $item->rent }}</h4>
                                             </div>
-
                                             @if ($item->agent_id == null)
                                             <div class="author-box pull-right">
                                                 <figure class="author-thumb">
                                                     <img src="{{ url('upload/logo/1775858854860294.png') }}" alt="">
-                                                    <span>Admin</span>                                                   
+                                                    <span>Admin</span>
                                                 </figure>
                                             </div>
                                             @else
@@ -204,7 +185,6 @@ rent Property MellkGostar RealEstate
                                             <ul class="other-option pull-right clearfix">
                                                 <li><a aria-label="Compare" class="action-btn" id="{{ $item->id }}"
                                                         onclick="addToCompare(this.id)"><i class="icon-12"></i></a></li>
-
                                                 <li><a aria-label="Add To Wishlist" class="action-btn"
                                                         id="{{ $item->id }}" onclick="addToWishList(this.id)"><i
                                                             class="icon-13"></i></a></li>
@@ -214,9 +194,7 @@ rent Property MellkGostar RealEstate
                                 </div>
                             </div>
                             @endforeach
-
                         </div>
-
                     </div>
                     <div class="pagination-wrapper">
                         {{ $property->links('vendor.pagination.custom') }}
@@ -227,7 +205,6 @@ rent Property MellkGostar RealEstate
     </div>
 </section>
 <!-- property-page-section end -->
-
 <!-- subscribe-section -->
 {{-- <section class="subscribe-section bg-color-3">
     <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-2.png);"></div>
@@ -253,5 +230,4 @@ rent Property MellkGostar RealEstate
     </div>
 </section> --}}
 <!-- subscribe-section end -->
-
 @endsection

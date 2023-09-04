@@ -54,7 +54,6 @@ MellkGostar Real Estate
 @include('frontend.home.cta')
 <!-- cta-section end -->
 
-
 <!-- news-section -->
 @include('frontend.home.news')
 <!-- news-section end -->

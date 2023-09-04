@@ -1,10 +1,10 @@
 @php
 $property = App\Models\Property::where('status', '1')
-->where('featured', '1')
 ->limit(3)
+->latest()
 ->get();
-@endphp
 
+@endphp
 <section class="feature-section sec-pad bg-color-1">
     <div class="auto-container">
         <div class="sec-title centred">
@@ -13,7 +13,6 @@ $property = App\Models\Property::where('status', '1')
             <p>با انتخاب مشاهده املاک از آخرین وضعیت املاک مورد نظر خود با خبر شوید.</p>
         </div>
         <div class="row clearfix">
-
             @foreach ($property as $item)
             <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
                 <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
@@ -27,7 +26,6 @@ $property = App\Models\Property::where('status', '1')
                         <div class="lower-content">
                             <div class="author-info clearfix">
                                 <div class="author pull-left">
-
                                     @if ($item->agent_id == null)
                                     <figure class="author-thumb"><img
                                             src="{{ url('upload/logo/1775858854860294.png') }}" alt="">
@@ -39,7 +37,6 @@ $property = App\Models\Property::where('status', '1')
                                             alt=""></figure>
                                     <h6>{{ $item->user->name }}</h6>
                                     @endif
-
                                 </div>
                                 <div class="buy-btn pull-right"><a href="property-details.html">For
                                         {{ $item->property_status }}</a></div>
@@ -65,7 +62,6 @@ $property = App\Models\Property::where('status', '1')
                                 <ul class="other-option pull-right clearfix">
                                     <li><a aria-label="Compare" class="action-btn" id="{{ $item->id }}"
                                             onclick="addToCompare(this.id)"><i class="icon-12"></i></a></li>
-
                                     <li><a aria-label="Add To Wishlist" class="action-btn" id="{{ $item->id }}"
                                             onclick="addToWishList(this.id)"><i class="icon-13"></i></a></li>
                                 </ul>
@@ -84,7 +80,6 @@ $property = App\Models\Property::where('status', '1')
                 </div>
             </div>
             @endforeach
-
         </div>
         <div class="more-btn centred"><a href="property-list.html" class="theme-btn btn-one">مشاهده املاک</a></div>
     </div>

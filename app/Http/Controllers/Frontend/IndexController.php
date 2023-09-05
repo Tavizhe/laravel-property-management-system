@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat\NumberFormatter;
 // use App\Models\Facility;
 use App\Models\MultiImage;
 use App\Models\Property;
@@ -102,6 +103,10 @@ class IndexController extends Controller
     } // End Method
     public function rentProperty()
     {
+        // $rent1 = $request->rent;
+        // $house_mortgage1 = $request->house_mortgage;
+        // $rent2 = number_format($rent1);
+        // $house_mortgage2 = number_format($house_mortgage1);
         $property = Property::where('status', '1')->where('property_status', 'rent')->paginate(3);
         return view('frontend.property.rent_property', compact('property'));
     } // End Method
@@ -143,6 +148,7 @@ class IndexController extends Controller
         $request->validate(['search' => 'required']);
         $item = $request->search;
         $sType = $request->pType_id;
+        // $lowest_price = number_format($request->lowest_price, 0, '', ',');        
         $property = Property::where('property_name', 'like', '%' . $item . '%')
             ->where('property_status', 'rent')
             ->get();
@@ -159,6 +165,7 @@ class IndexController extends Controller
                 ->where('property_status', 'rent')
                 ->get();
         }
+
         //$property = Property::where('property_name', 'like', '%' . $item . '%')->where('property_status', 'rent')->get();
         return view('frontend.property.property_search', compact('property'));
     } // End Method

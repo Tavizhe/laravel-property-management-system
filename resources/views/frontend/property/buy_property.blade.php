@@ -148,11 +148,18 @@ Buy Property MellkGostar RealEstate
                                             </h4>
                                         </div>
                                         <div class="price-box clearfix">
-                                            <div class="price-info pull-left">
+                                            <div class="price-info pull-right">
                                                 <h6>مبلغ</h6>
-                                                <h4>تومان {{ $item->lowest_price }}</h4>
+                                                <?php
+                                                        $lowestPrice = $item->lowest_price;
+                                                        $formattedLowestPrice = number_format($lowestPrice, 0, '.', ',');
+                                                        ?>
+                                                <h4>
+                                                    <?php echo $formattedLowestPrice; ?>
+                                                    میلیون تومان
+                                                </h4>
                                             </div>
-                                            @if ($item->agent_id == null)
+                                            {{-- @if ($item->agent_id == null)
                                             <div class="author-box pull-right">
                                                 <figure class="author-thumb">
                                                     <img src="{{ url('upload/logo/1775858854860294.png') }}" alt="">
@@ -167,7 +174,7 @@ Buy Property MellkGostar RealEstate
                                                     <span>{{ $item->user->name }}</span>
                                                 </figure>
                                             </div>
-                                            @endif
+                                            @endif --}}
                                         </div>
                                         <p>{{ $item->short_desc }}</p>
                                         <ul class="more-details clearfix">

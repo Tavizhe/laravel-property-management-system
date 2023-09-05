@@ -54,14 +54,6 @@ rent Property MellkGostar RealEstate
                                         @endforeach
                                     </select>
                                 </div>
-                                {{-- <div class="select-box">
-                                    <select name="state" class="wide">
-                                        <option data-display="State" selected="" disabled="">Select State</option>
-                                        @foreach ($states as $state)
-                                        <option value="{{ $state->state_name }}">{{ $state->state_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div> --}}
                                 <div class="select-box">
                                     <select name="bedrooms" class="wide">
                                         <option data-display="Rooms">Max Rooms</option>
@@ -146,16 +138,37 @@ rent Property MellkGostar RealEstate
                                                     $item->property_name }}</a>
                                             </h4>
                                         </div>
-                                        <div class="price-box clearfix">                                            
-                                            <div class="price-info pull-left">
-                                                <h6>رهن</h6>
-                                                <h4>${{ $item->house_mortgage }}</h4>
+                                        <div class="price-box clearfix">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="price-info">
+                                                        <h6 id="rent-1">رهن</h6>
+                                                        <?php
+                                                        $houseMortgage = $item->house_mortgage;
+                                                        $formattedHouseMortgage1 = number_format($houseMortgage, 0, '.', ',');
+                                                        $formatter = NumberFormat::getInstance()->getNumberFormatter('fa');
+                                                        $formattedHouseMortgage = $formatter->format($formattedHouseMortgage1)
+                                                        ?>
+                                                        <h4 id="rent-1-a">
+                                                            <?php echo $formattedHouseMortgage; ?> میلیون تومان
+                                                        </h4>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="price-info">
+                                                        <h6 id="rent-2">اجاره</h6>
+                                                        <?php
+                                                        $rent = $item->rent;
+                                                        $formattedrent = number_format($rent, 0, '.', ',');
+                                                        ?>
+                                                        <h4 id="rent-2-a">
+                                                            <?php echo $formattedrent; ?> تومان
+                                                        </h4>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="price-info pull-left">
-                                                <h6>اجاره</h6>
-                                                <h4>${{ $item->rent }}</h4>
-                                            </div>
-                                            @if ($item->agent_id == null)
+                                            {{-- @if ($item->agent_id == null)
                                             <div class="author-box pull-right">
                                                 <figure class="author-thumb">
                                                     <img src="{{ url('upload/logo/1775858854860294.png') }}" alt="">
@@ -170,7 +183,7 @@ rent Property MellkGostar RealEstate
                                                     <span>{{ $item->user->name }}</span>
                                                 </figure>
                                             </div>
-                                            @endif
+                                            @endif --}}
                                         </div>
                                         <p>{{ $item->short_desc }}</p>
                                         <ul class="more-details clearfix">
@@ -204,30 +217,4 @@ rent Property MellkGostar RealEstate
         </div>
     </div>
 </section>
-<!-- property-page-section end -->
-<!-- subscribe-section -->
-{{-- <section class="subscribe-section bg-color-3">
-    <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-2.png);"></div>
-    <div class="auto-container">
-        <div class="row clearfix">
-            <div class="col-lg-6 col-md-6 col-sm-12 text-column">
-                <div class="text">
-                    <span>Subscribe</span>
-                    <h2>Sign Up To Our Newsletter To Get The Latest News And Offers.</h2>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 form-column">
-                <div class="form-inner">
-                    <form action="contact.html" method="post" class="subscribe-form">
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Enter your email" required="">
-                            <button type="submit">Subscribe Now</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
-<!-- subscribe-section end -->
 @endsection

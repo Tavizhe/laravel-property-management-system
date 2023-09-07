@@ -146,11 +146,11 @@ rent Property MellkGostar RealEstate
                                                         <?php
                                                         $houseMortgage = $item->house_mortgage;
                                                         $formattedHouseMortgage1 = number_format($houseMortgage, 0, '.', ',');
-                                                        $formatter = NumberFormat::getInstance()->getNumberFormatter('fa');
-                                                        $formattedHouseMortgage = $formatter->format($formattedHouseMortgage1)
+                                                        //$formatter = NumberFormat::getInstance()->getNumberFormatter('fa');
+                                                        //$formattedHouseMortgage = $formatter->format($formattedHouseMortgage1)
                                                         ?>
                                                         <h4 id="rent-1-a">
-                                                            <?php echo $formattedHouseMortgage; ?> میلیون تومان
+                                                            <?php echo $formattedHouseMortgage1; ?> میلیون تومان
                                                         </h4>
                                                     </div>
                                                 </div>

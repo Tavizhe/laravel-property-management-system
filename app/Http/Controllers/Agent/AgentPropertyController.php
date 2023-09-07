@@ -106,12 +106,19 @@ class AgentPropertyController extends Controller
         $image = $request->file('multi_img');
         foreach ($image as $img) {
             $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
-            Image::make($img)->resize(770, 520)->save('upload/property/multi-image/' . $make_name);
-            $uploadPath = 'upload/property/multi-image/' . $make_name;
-
+            //Image::make($img)->resize(770, 520)->save('upload/property/multi-image/' . $make_name);
+            //$uploadPath = 'upload/property/multi-image/' . $make_name;
+            $latest_property = Property::select('id')->latest()->first();
+            $id = (int) $latest_property->id;
+            $folderPath = 'upload/property/multi-image/' . ($id + 1);
+            if (!is_dir($folderPath)) {
+                mkdir($folderPath, 0777, true);
+            }
+            $uploadName = 'upload/property/multi-image/' . $folderPath . '/' . $make_name;
+            Image::make($img)->resize(770, 520)->save($folderPath . '/' . $make_name); 
             MultiImage::insert([
                 'property_id' => $property_id,
-                'photo_name' => $uploadPath,
+                'photo_name' => $uploadName,
                 'created_at' => Carbon::now(),
             ]);
         } // End Foreach
@@ -239,9 +246,9 @@ class AgentPropertyController extends Controller
 
             $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
             Image::make($img)->resize(770, 520)->save('upload/property/multi-image/' . $make_name);
-            $uploadPath = 'upload/property/multi-image/' . $make_name;
+            $folderPath = 'upload/property/multi-image/' . $make_name;
             MultiImage::where('id', $id)->update([
-                'photo_name' => $uploadPath,
+                'photo_name' => $folderPath,
                 'updated_at' => Carbon::now(),
             ]);
         } // End Foreach

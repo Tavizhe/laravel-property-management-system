@@ -1,7 +1,7 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
 @section('title')
-Agent Login | MellkGostar RealEstate
+    Agent Login | MellkGostar RealEstate
 @endsection
 
 <!--Page Title-->
@@ -16,14 +16,13 @@ Agent Login | MellkGostar RealEstate
         <div class="content-box clearfix">
             <h1>Sign In</h1>
             <ul class="bread-crumb clearfix">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{ route('home') }}">خانه</a></li>
                 <li>Sign In</li>
             </ul>
         </div>
     </div>
 </section>
 <!--End Page Title-->
-
 
 <!-- ragister-section -->
 <section class="ragister-section centred sec-pad">
@@ -73,7 +72,6 @@ Agent Login | MellkGostar RealEstate
                                 <form action="{{ route('agent.register') }}" method="post" class="default-form">
                                     @csrf
 
-
                                     <div class="form-group">
 
                                         <label>Agent Company Name</label>
@@ -89,12 +87,10 @@ Agent Login | MellkGostar RealEstate
                                         <input type="text" name="phone" id="phone" required="">
                                     </div>
 
-
                                     <div class="form-group">
                                         <label>Password</label>
                                         <input type="password" name="password" id="password" required="">
                                     </div>
-
 
                                     <div class="form-group message-btn">
                                         <button type="submit" class="theme-btn btn-one">Register</button>
@@ -112,7 +108,6 @@ Agent Login | MellkGostar RealEstate
     </div>
 </section>
 <!-- ragister-section end -->
-
 
 <!-- subscribe-section -->
 <section class="subscribe-section bg-color-3">
@@ -139,5 +134,4 @@ Agent Login | MellkGostar RealEstate
     </div>
 </section>
 <!-- subscribe-section end -->
-
 @endsection

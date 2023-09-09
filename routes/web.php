@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // User Frontend All Route
-Route::get('/', [UserController::class, 'Index']);
+Route::get('/', [UserController::class, 'Index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

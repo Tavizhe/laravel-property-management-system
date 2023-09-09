@@ -19,7 +19,7 @@ class Property_Types extends Seeder
             [
                 'id' => '1',
                 'type_name' => 'مسکونی',
-                'type_icon' => 'fa-solid fa-house',
+                'type_icon' => 'upload/p_Types/house.jpg',
 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -27,28 +27,28 @@ class Property_Types extends Seeder
             [
                 'id' => '2',
                 'type_name' => 'زمین',
-                'type_icon' => 'fa-regular fa-map',
+                'type_icon' => 'upload/p_Types/land.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => '3',
                 'type_name' => 'ویلایی',
-                'type_icon' => 'fa-solid fa-house-water',
+                'type_icon' => 'upload/p_Types/villa.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => '4',
                 'type_name' => 'باغ',
-                'type_icon' => 'fa-regular fa-flower-tulip',
+                'type_icon' => 'upload/p_Types/houseGarden.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => '5',
                 'type_name' => 'تجاری',
-                'type_icon' => 'fa-thin fa-phone-office',
+                'type_icon' => 'upload/p_Types/businessOffice.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],

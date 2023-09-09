@@ -1,5 +1,5 @@
 @php
-$setting = App\Models\SiteSetting::find(1);
+    $setting = App\Models\SiteSetting::find(1);
 @endphp
 <header class="main-header">
     <!-- header-top -->
@@ -9,7 +9,7 @@ $setting = App\Models\SiteSetting::find(1);
                 <ul class="info clearfix">
                     <li><i class="far fa-map-marker-alt"></i>{{ $setting->company_address }}</li>
                     <li><i class="far fa-clock"></i>شنبه تا پنج شنبه، صبح ها از 9 تا 1 و عصر ها از 5 الی 10</li>
-                    <li><i class="far fa-phone"></i><a href="tel:2512353256">+{{ $setting->support_phone }}</a></li>
+                    <li><i class="far fa-phone"></i><a href="tel:09133310337">+{{ $setting->support_phone }}</a></li>
                 </ul>
             </div>
             <div class="right-column pull-right">
@@ -21,14 +21,14 @@ $setting = App\Models\SiteSetting::find(1);
                     <li><a href=""><i class="fab fa-vimeo-v"></i></a></li>
                 </ul> --}}
                 @auth
-                <div class="sign-box">
-                    <a href="{{ route('dashboard') }}"><i class="fas fa-user"></i>میز کار</a>
-                    <a href="{{ route('user.logout') }}"><i class="fas fa-user"></i>خروج</a>
-                </div>
+                    <div class="sign-box">
+                        <a href="{{ route('dashboard') }}"><i class="fas fa-user"></i>میز کار</a>
+                        <a href="{{ route('user.logout') }}"><i class="fas fa-user"></i>خروج</a>
+                    </div>
                 @else
-                <div class="sign-box">
-                    <a href="{{ route('login') }}"><i class="fas fa-user"></i>ورود</a>
-                </div>
+                    <div class="sign-box">
+                        <a href="{{ route('login') }}"><i class="fas fa-user"></i>ورود</a>
+                    </div>
                 @endauth
             </div>
         </div>
@@ -53,20 +53,20 @@ $setting = App\Models\SiteSetting::find(1);
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
                                 <li><a href="{{ url('/') }}"><span>خانه</span></a> </li>
-                                <li><a href="{{ url('/') }}"><span>درباره ما</span></a> </li>
-                                <li class="dropdown"><a href="index.html"><span>املاک</span></a>
+                                {{-- <li><a href="{{ url('/') }}"><span>درباره ما</span></a> </li> --}}
+                                <li class="dropdown"><a href="#"><span>املاک</span></a>
                                     <ul>
                                         <li><a href="{{ route('rent.property') }}">املاک برای رهن و اجاره</a></li>
                                         <li><a href="{{ route('buy.property') }}">املاک برای خرید</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ url('/') }}"><span>تیم ما</span></a> </li>
-                                <li><a href="{{ route('blog.list') }}"><span>مقالات</span></a> </li>
-                                <li><a href="contact.html"><span>تماس با ما</span></a></li>
-                                <li>
+                                {{-- <li><a href="{{ url('/') }}"><span>تیم ما</span></a> </li> --}}
+                                {{-- <li><a href="{{ route('blog.list') }}"><span>مقالات</span></a> </li> --}}
+                                {{-- <li><a href="contact.html"><span>تماس با ما</span></a></li> --}}
+                                {{-- <li>
                                     <a href="{{ route('agent.login') }}" class="btn-lg"><span>+</span>ثبت
                                         ملک</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </nav>
@@ -82,7 +82,8 @@ $setting = App\Models\SiteSetting::find(1);
         <div class="outer-box">
             <div class="main-box">
                 <div class="logo-box">
-                    <figure class="logo"><a href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}" alt=""></a>
+                    <figure class="logo"><a href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}"
+                                alt=""></a>
                     </figure>
                 </div>
                 <div class="menu-area clearfix center">

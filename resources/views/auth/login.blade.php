@@ -1,7 +1,7 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
 @section('title')
-User Login | MellkGostar RealEstate
+    User Login | MellkGostar RealEstate
 @endsection
 
 <!--Page Title-->
@@ -16,14 +16,13 @@ User Login | MellkGostar RealEstate
         <div class="content-box clearfix">
             <h1>Sign In</h1>
             <ul class="bread-crumb clearfix">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{ route('home') }}">خانه</a></li>
                 <li>Sign In</li>
             </ul>
         </div>
     </div>
 </section>
 <!--End Page Title-->
-
 
 <!-- ragister-section -->
 <section class="ragister-section centred sec-pad">
@@ -73,7 +72,6 @@ User Login | MellkGostar RealEstate
                                 <form action="{{ route('register') }}" method="post" class="default-form">
                                     @csrf
 
-
                                     <div class="form-group">
 
                                         <label>User name</label>
@@ -111,7 +109,6 @@ User Login | MellkGostar RealEstate
 </section>
 <!-- ragister-section end -->
 
-
 <!-- subscribe-section -->
 <section class="subscribe-section bg-color-3">
     <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-2.png);"></div>
@@ -137,5 +134,4 @@ User Login | MellkGostar RealEstate
     </div>
 </section>
 <!-- subscribe-section end -->
-
 @endsection

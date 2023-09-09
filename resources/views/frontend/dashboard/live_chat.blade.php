@@ -9,7 +9,7 @@
             <div class="content-box clearfix">
                 <h1>Live Chat </h1>
                 <ul class="bread-crumb clearfix">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{ route('home') }}">خانه</a></li>
                     <li>Live Chat</li>
                 </ul>
             </div>

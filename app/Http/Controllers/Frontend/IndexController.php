@@ -16,16 +16,25 @@ use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
-    public function PropertyDetails($id, $slug)
+    public function PropertyDetails($id, $slug, Request $request)
     {
         $property = Property::findOrFail($id);
+        $property2 = Property::where('id', $id)->get();
         $amenities = $property->amenities_id;
         $property_amen = explode(',', $amenities);
-        $MultiImage = MultiImage::where('property_id', $id)->get();
+        $thumbnailImage = Property::where('id', $id)->select('property_thumbnail')->get();
+        $imageUrl = '/' . $thumbnailImage[0]->property_thumbnail;
+        //$MultiImageString = strval($MultiImage);
+        //$images = glob($MultiImagePath . '/*.jpg');
         // $facility = Facility::where('property_id', $id)->get();
         $type_id = $property->pType_id;
+        // $property_thumbnail = Property::select('property_thumbnail')->get();
+        $property_id = Property::where('id', $id)->first();
+        if ($property_id) {
+            $property_thumbnail = $property->property_thumbnail;
+        }
         $relatedProperty = Property::where('pType_id', $type_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(3)->get();
-        return view('frontend.property.property_details', compact('property', 'MultiImage', 'property_amen', 'relatedProperty'));
+        return view('frontend.property.property_details', compact('property', 'imageUrl', 'property_amen', 'relatedProperty', 'property_thumbnail', 'property2'));
     } // End Method
     public function PropertyMessage(Request $request)
     {
@@ -62,6 +71,7 @@ class IndexController extends Controller
         $featured = Property::where('featured', '1')->limit(3)->get();
         $rentProperty = Property::where('property_status', 'rent')->get();
         $buyProperty = Property::where('property_status', 'buy')->get();
+
         return view('frontend.agent.agent_details', compact('agent', 'property', 'featured', 'rentProperty', 'buyProperty'));
     } // End Method
     public function AgentDetailsMessage(Request $request)

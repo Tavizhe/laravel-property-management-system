@@ -1,7 +1,7 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
 @section('title')
-rent Property MellkGostar RealEstate
+   املاک رهنی | MellkGostar RealEstate
 @endsection
 <!--Page Title-->
 <section class="page-title-two bg-color-1 centred">
@@ -13,10 +13,10 @@ rent Property MellkGostar RealEstate
     </div>
     <div class="auto-container">
         <div class="content-box clearfix">
-            <h1>rent Property </h1>
+            <h1>املاک برای رهن و اجاره</h1>
             <ul class="bread-crumb clearfix">
-                <li><a href="index.html">Home</a></li>
-                <li>rent Property List</li>
+                <li><a href="{{ route('home') }}">خانه</a></li>
+                <li>لیست املاک رهنی</li>
             </ul>
         </div>
     </div>
@@ -26,15 +26,15 @@ rent Property MellkGostar RealEstate
 <section class="property-page-section property-list">
     <div class="auto-container">
         <div class="row clearfix">
-            <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
+            {{-- <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
                 <div class="default-sidebar property-sidebar">
                     <div class="filter-widget sidebar-widget">
                         <div class="widget-title">
                             <h5>Property</h5>
                         </div>
                         @php
-                        // $states = App\Models\State::latest()->get();
-                        $ptypes = App\Models\PropertyType::latest()->get();
+                            // $states = App\Models\State::latest()->get();
+                            $ptypes = App\Models\PropertyType::latest()->get();
                         @endphp
                         <form action="{{ route('all.property.search') }}" method="post" class="search-form">
                             @csrf
@@ -50,7 +50,7 @@ rent Property MellkGostar RealEstate
                                     <select name="pType_id" class="wide">
                                         <option data-display="Type" selected="" disabled="">Select Type</option>
                                         @foreach ($ptypes as $type)
-                                        <option value="{{ $type->type_name }}">{{ $type->type_name }}</option>
+                                            <option value="{{ $type->type_name }}">{{ $type->type_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -104,12 +104,12 @@ rent Property MellkGostar RealEstate
                         </ul>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-8 col-md-12 col-sm-12 content-side">
+            </div> --}}
+            <div class="col-lg-12 col-md-12 col-sm-12 content-side">
                 <div class="property-content-side">
                     <div class="item-shorting clearfix">
                         <div class="left-column pull-left">
-                            <h5>Search Reasults: <span>Showing {{ count($property) }} Listings</span></h5>
+                            <h5>نتیجه جستجو: <span>نمایش {{ count($property) }} مورد</span></h5>
                         </div>
                         <div class="right-column pull-right clearfix">
                         </div>
@@ -117,58 +117,57 @@ rent Property MellkGostar RealEstate
                     <div class="wrapper list">
                         <div class="deals-list-content list-item">
                             @foreach ($property as $item)
-                            <div class="deals-block-one">
-                                <div class="inner-box">
-                                    <div class="image-box">
-                                        <figure class="image"><img src="{{ asset($item->property_thumbnail) }}" alt=""
-                                                style="width:300px; height:350px;"></figure>
-                                        <div class="batch"><i class="icon-11"></i></div>
-                                        @if ($item->featured == 1)
-                                        <span class="category">Featured</span>
-                                        @else
-                                        <span class="category">New</span>
-                                        @endif
-                                        <div class="buy-btn"><a href="property-details.html">For
-                                                {{ $item->property_status }}</a></div>
-                                    </div>
-                                    <div class="lower-content">
-                                        <div class="title-text">
-                                            <h4><a
-                                                    href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{
-                                                    $item->property_name }}</a>
-                                            </h4>
+                                <div class="deals-block-one">
+                                    <div class="inner-box">
+                                        <div class="image-box">
+                                            <figure class="image"><img src="{{ asset($item->property_thumbnail) }}"
+                                                    alt="" style="width:300px; height:350px;"></figure>
+                                            <div class="batch"><i class="icon-11"></i></div>
+                                            {{-- @if ($item->featured == 1)
+                                                <span class="category">Featured</span>
+                                            @else
+                                                <span class="category">New</span>
+                                            @endif --}}
+                                            {{-- <div class="buy-btn"><a href="property-details.html">For
+                                                {{ $item->property_status }}</a></div> --}}
                                         </div>
-                                        <div class="price-box clearfix">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="price-info">
-                                                        <h6 id="rent-1">رهن</h6>
-                                                        <?php
-                                                        $houseMortgage = $item->house_mortgage;
-                                                        $formattedHouseMortgage1 = number_format($houseMortgage, 0, '.', ',');
-                                                        //$formatter = NumberFormat::getInstance()->getNumberFormatter('fa');
-                                                        //$formattedHouseMortgage = $formatter->format($formattedHouseMortgage1)
-                                                        ?>
-                                                        <h4 id="rent-1-a">
-                                                            <?php echo $formattedHouseMortgage1; ?> میلیون تومان
-                                                        </h4>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="price-info">
-                                                        <h6 id="rent-2">اجاره</h6>
-                                                        <?php
-                                                        $rent = $item->rent;
-                                                        $formattedrent = number_format($rent, 0, '.', ',');
-                                                        ?>
-                                                        <h4 id="rent-2-a">
-                                                            <?php echo $formattedrent; ?> تومان
-                                                        </h4>
-                                                    </div>
-                                                </div>
+                                        <div class="lower-content">
+                                            <div class="title-text">
+                                                <h4><a
+                                                        href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{ $item->property_name }}</a>
+                                                </h4>
                                             </div>
-                                            {{-- @if ($item->agent_id == null)
+                                            <div class="price-box clearfix">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="price-info">
+                                                            <h6 id="rent-1">رهن</h6>
+                                                            <?php
+                                                            $houseMortgage = $item->house_mortgage;
+                                                            $formattedHouseMortgage1 = number_format($houseMortgage, 0, '.', ',');
+                                                            //$formatter = NumberFormat::getInstance()->getNumberFormatter('fa');
+                                                            //$formattedHouseMortgage = $formatter->format($formattedHouseMortgage1)
+                                                            ?>
+                                                            <h4 id="rent-1-a">
+                                                                <?php echo $formattedHouseMortgage1; ?> میلیون تومان
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="price-info">
+                                                            <h6 id="rent-2">اجاره</h6>
+                                                            <?php
+                                                            $rent = $item->rent;
+                                                            $formattedrent = number_format($rent, 0, '.', ',');
+                                                            ?>
+                                                            <h4 id="rent-2-a">
+                                                                <?php echo $formattedrent; ?> تومان
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- @if ($item->agent_id == null)
                                             <div class="author-box pull-right">
                                                 <figure class="author-thumb">
                                                     <img src="{{ url('upload/logo/1775858854860294.png') }}" alt="">
@@ -184,28 +183,31 @@ rent Property MellkGostar RealEstate
                                                 </figure>
                                             </div>
                                             @endif --}}
-                                        </div>
-                                        <p>{{ $item->short_desc }}</p>
-                                        <ul class="more-details clearfix">
-                                            <li><i class="icon-14"></i>{{ $item->bedrooms }} Beds</li>
-                                            <li><i class="icon-15"></i>{{ $item->bathrooms }} Baths</li>
-                                            <li><i class="icon-16"></i>{{ $item->property_size }} Sq Ft</li>
-                                        </ul>
-                                        <div class="other-info-box clearfix">
-                                            <div class="btn-box pull-left"><a
-                                                    href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
-                                                    class="theme-btn btn-two">See Details</a></div>
-                                            <ul class="other-option pull-right clearfix">
-                                                <li><a aria-label="Compare" class="action-btn" id="{{ $item->id }}"
-                                                        onclick="addToCompare(this.id)"><i class="icon-12"></i></a></li>
-                                                <li><a aria-label="Add To Wishlist" class="action-btn"
-                                                        id="{{ $item->id }}" onclick="addToWishList(this.id)"><i
-                                                            class="icon-13"></i></a></li>
+                                            </div>
+                                            <p>{{ $item->short_desc }}</p>
+                                            <ul class="more-details clearfix">
+                                                <li><i class="icon-14"></i>{{ $item->bedrooms }} تعداد خواب</li>
+                                                <li><i class="icon-15"></i>{{ $item->bathrooms }} دارای سرویس</li>
+                                                <li><i class="icon-16"></i>{{ $item->property_size }} مساحت متراژ</li>
                                             </ul>
+                                            <div class="other-info-box clearfix">
+                                                <div class="btn-box pull-left"><a
+                                                        href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                                        class="theme-btn btn-two">نمایش اطلاعات بیشتر</a></div>
+                                                <ul class="other-option pull-right clearfix">
+                                                    <li><a aria-label="Compare" class="action-btn"
+                                                            id="{{ $item->id }}"
+                                                            onclick="addToCompare(this.id)"><i
+                                                                class="icon-12"></i></a></li>
+                                                    <li><a aria-label="Add To Wishlist" class="action-btn"
+                                                            id="{{ $item->id }}"
+                                                            onclick="addToWishList(this.id)"><i
+                                                                class="icon-13"></i></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>

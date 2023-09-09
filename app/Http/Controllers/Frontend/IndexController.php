@@ -102,12 +102,13 @@ class IndexController extends Controller
     } // End Method
     public function buyProperty()
     {
-        $property = Property::where('status', '1')->where('property_status', 'buy')->get();
+        $property = Property::where('status', '1')->where('property_status', 'buy')->orderByDesc('id')->paginate(5);
+
         return view('frontend.property.buy_property', compact('property'));
     } // End Method
     public function PropertyType($id)
     {
-        $property = Property::where('status', '1')->where('pType_id', $id)->get();
+        $property = Property::where('status', '1')->where('pType_id', $id);
         $pBread = PropertyType::where('id', $id)->first();
         return view('frontend.property.property_type', compact('property', 'pBread'));
     } // End Method
@@ -117,7 +118,7 @@ class IndexController extends Controller
         // $house_mortgage1 = $request->house_mortgage;
         // $rent2 = number_format($rent1);
         // $house_mortgage2 = number_format($house_mortgage1);
-        $property = Property::where('status', '1')->where('property_status', 'rent')->paginate(3);
+        $property = Property::where('status', '1')->where('property_status', 'rent')->orderByDesc('id')->paginate(5);
         return view('frontend.property.rent_property', compact('property'));
     } // End Method
     // public function StateDetails($id)

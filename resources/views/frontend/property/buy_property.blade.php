@@ -125,6 +125,7 @@
                     </div>
                     <div class="wrapper list">
                         <div class="deals-list-content list-item">
+
                             @foreach ($property as $item)
                                 <div class="deals-block-one">
                                     <div class="inner-box">
@@ -187,13 +188,12 @@
                                                         class="theme-btn btn-two">نمایش اطلاعات بیشتر</a></div>
                                                 <ul class="other-option pull-right clearfix">
                                                     <li><a aria-label="Compare" class="action-btn"
-                                                            id="{{ $item->id }}"
-                                                            onclick="addToCompare(this.id)"><i
+                                                            id="{{ $item->id }}" onclick="addToCompare(this.id)"><i
                                                                 class="icon-12"></i></a></li>
                                                     <li><a aria-label="Add To Wishlist" class="action-btn"
                                                             id="{{ $item->id }}"
-                                                            onclick="addToWishList(this.id)"><i
-                                                                class="icon-13"></i></a></li>
+                                                            onclick="addToWishList(this.id)"><i class="icon-13"></i></a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -203,11 +203,7 @@
                         </div>
                     </div>
                     <div class="pagination-wrapper">
-                        <ul class="pagination clearfix">
-                            <li><a href="property-list.html" class="current">1</a></li>
-                            <li><a href="property-list.html">2</a></li>
-                            <li><a href="property-list.html">3</a></li>
-                            <li><a href="property-list.html"><i class="fas fa-angle-right"></i></a></li>
+                        {{ $property->links('vendor.pagination.custom') }}                           
                         </ul>
                     </div>
                 </div>

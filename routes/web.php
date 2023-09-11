@@ -400,6 +400,7 @@ Route::get('/state/details/{id}', [IndexController::class, 'StateDetails'])->nam
 
 // Home Page Buy Search Option
 Route::post('/buy/property/search', [IndexController::class, 'BuyPropertySearch'])->name('buy.property.search');
+Route::get('/frontend/team', [IndexController::class, 'showTeam'])->name('team.home');
 
 // Home Page rent Search Option
 Route::post('/rent/property/search', [IndexController::class, 'RentPropertySearch'])->name('rent.property.search');

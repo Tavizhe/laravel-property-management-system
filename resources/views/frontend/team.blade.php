@@ -1,11 +1,18 @@
- {{-- @php
+ @php
      $agents = App\Models\User::where('status', 'active')
          ->where('role', 'agent')
          ->orderBy('id', 'DESC')
          ->limit(5)
          ->get();
  @endphp
-
+ @extends('frontend.frontend_dashboard')
+ @section('main')
+ @section('title')
+     MellkGostar Real Estate
+ @endsection
+ <!-- banner-section -->
+ @include('frontend.home.banner')
+ <!-- banner-section end -->
  <section class="team-section sec-pad centred bg-color-1">
      <div class="pattern-layer" style="background-image: url({{ asset('frontend/assets/images/shape/shape-1.png') }});">
      </div>
@@ -15,7 +22,6 @@
              <h2>Meet Our Excellent Agents</h2>
          </div>
          <div class="single-item-carousel owl-carousel owl-theme owl-dots-none nav-style-one">
-
              @foreach ($agents as $item)
                  <div class="team-block-one">
                      <div class="inner-box">
@@ -36,7 +42,13 @@
                      </div>
                  </div>
              @endforeach
-
          </div>
      </div>
- </section> --}}
+ </section>
+ @php
+     $setting = App\Models\SiteSetting::find(1);
+     $blog = App\Models\BlogPost::latest()
+         ->limit(2)
+         ->get();
+ @endphp
+@endsection

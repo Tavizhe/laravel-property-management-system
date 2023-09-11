@@ -1,9 +1,9 @@
 @php
-// $states = App\Models\State::latest()->get();
-$ptypes = App\Models\PropertyType::latest()->get();
+    // $states = App\Models\State::latest()->get();
+    $ptypes = App\Models\PropertyType::latest()->get();
 @endphp
-<section class="banner-section"
-    style="background-image: url({{ asset('frontend/assets/images/banner/banner-1.jpg') }});">
+<section class="banner-section" style="background-color: black;">
+    {{-- style="background-image: url({{ asset('frontend/assets/images/banner/banner-1.jpg') }});"> --}}
     <div class="auto-container">
         <div class="inner-container">
             <div class="content-box centred">
@@ -22,7 +22,8 @@ $ptypes = App\Models\PropertyType::latest()->get();
                         <div class="tab active-tab" id="tab-1">
                             <div class="inner-box">
                                 <div class="top-search">
-                                    <form action="{{ route('buy.property.search') }}" method="post" class="search-form">
+                                    <form action="{{ route('buy.property.search') }}" method="post"
+                                        class="search-form">
                                         @csrf
                                         <div class="row clearfix">
                                             <div class="col-lg-6 col-md-12 col-sm-12 column">
@@ -58,8 +59,8 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                                         <select name="pType_id" class="wide">
                                                             <option data-display="زمین یا منزل">لیست املاک</option>
                                                             @foreach ($ptypes as $type)
-                                                            <option value="{{ $type->type_name }}">
-                                                                {{ $type->type_name }}</option>
+                                                                <option value="{{ $type->type_name }}">
+                                                                    {{ $type->type_name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -113,8 +114,8 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                                         <select name="pType_id" class="wide">
                                                             <option data-display="منزل یا باغ">لیست املاک</option>
                                                             @foreach ($ptypes as $type)
-                                                            <option value="{{ $type->type_name }}">
-                                                                {{ $type->type_name }}</option>
+                                                                <option value="{{ $type->type_name }}">
+                                                                    {{ $type->type_name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

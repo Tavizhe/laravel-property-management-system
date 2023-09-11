@@ -70,7 +70,7 @@
  body {
 
    @font-face {
-     font-family: "Peyda-Regular";
+     font-family: "Sans-serif";
      src: "/fonts/Peyda-Regular.ttf";
      font-size: 16px;
      color: #93959e;
@@ -124,8 +124,8 @@
 
  a {
    @font-face {
-     font-family: "Peyda-Regular";
-     src: "/fonts/Peyda-Regular.ttf";
+     font-family: "Sans";
+     src: "/fonts/Sans.ttf";
      text-decoration: none;
      transition: all 500ms ease;
      -moz-transition: all 500ms ease;
@@ -145,8 +145,8 @@
  select,
  textarea {
    @font-face {
-     font-family: "Peyda-Regular";
-     src: "/fonts/Peyda-Regular.ttf";
+     font-family: "Sans";
+     src: "/fonts/Sans.ttf";
      font-weight: 400;
      font-size: 15px;
    }
@@ -185,8 +185,8 @@
 
  p {
    @font-face {
-     font-family: "Peyda-Regular";
-     src: "/fonts/Peyda-Regular.ttf";
+     font-family: "Sans";
+     src: "/fonts/Sans.ttf";
      position: relative;
 
      color: #93959e;
@@ -206,8 +206,8 @@
  h5,
  h6 {
    @font-face {
-     font-family: "Peyda-Bold";
-     src: "/fonts/Peyda-Bold.ttf";
+     font-family: "Sans-bold";
+     src: "/fonts/Sans-bold.ttf";
      font-weight: bold;
      position: relative;
      font-weight: 400;
@@ -418,8 +418,8 @@
 
  .theme-btn {
    @font-face {
-     font-family: "Peyda-Regular";
-     src: "/fonts/Peyda-Regular.ttf";
+     font-family: "Sans";
+     src: "/fonts/Sans.ttf";
      position: relative;
      display: inline-block;
      overflow: hidden;
@@ -1599,7 +1599,7 @@
    font-size: 55px;
    line-height: 65px;
    color: #ffffff;
-   font-weight: 700;
+   font-weight: 400;
    margin-bottom: 10px;
  }
 
@@ -2763,8 +2763,8 @@
 
  .testimonial-block-one .inner-box .thumb-box:before {
    @font-face {
-     font-family: "Peyda-Regular";
-     src: "/fonts/Peyda-Regular.ttf";
+     font-family: "Sans";
+     src: "/fonts/Sans.ttf";
      position: absolute;
      content: '\e911';
      font-style: 16px;

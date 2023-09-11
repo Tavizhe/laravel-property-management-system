@@ -190,4 +190,14 @@ class IndexController extends Controller
         $property = Property::where('status', '1')->where('bedrooms', $bedrooms)->where('bathrooms', 'like', '%' . $bathrooms . '%')->get();
         return view('frontend.property.property_search', compact('property'));
     } // End Method
+    public function showTeam()
+    {
+        //$allAgent = user::where('role', 'agent');
+
+        return view(
+            'frontend.team'
+            // ,compact('allAgent')
+        );
+    }
+
 }

@@ -46,7 +46,7 @@ MellkGostar Real Estate
 
 
 <!-- team-section -->
-@include('frontend.home.team')
+{{-- @include('frontend.home.team') --}}
 <!-- team-section end -->
 
 

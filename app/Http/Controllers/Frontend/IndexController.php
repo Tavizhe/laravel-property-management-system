@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\amenities;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat\NumberFormatter;
 // use App\Models\Facility;
 use App\Models\MultiImage;
@@ -21,46 +22,31 @@ class IndexController extends Controller
         $property = Property::findOrFail($id);
         $property2 = Property::where('id', $id)->get();
         $amenities = $property->amenities_id;
+        $amenities2 = amenities::where('id', $amenities)->pluck('amenities_name')->first();
+
+        $amenities_names = $property->amenities_name;
         $property_amen = explode(',', $amenities);
+        $amenities_name = explode(',', $amenities_names);
+        // $amenities = amenities::where('id', $id)->pluck('amenities_name')->first();
+
+
+
         $thumbnailImage = Property::where('id', $id)->select('property_thumbnail')->get();
         $imageUrl = '/' . $thumbnailImage[0]->property_thumbnail;
-        // $MultiImage = MultiImage::where('property_id', $id)->select('photo_name')->get();
-        // $MultiImagePathStr = strval($MultiImage);
-        // $MultiImageId = MultiImage::where('property_id', $id)->select('id')->get();
-        // $MultiImageIdStr = strval($MultiImageId);
-        // $DirectPath = $MultiImagePathStr . $MultiImageIdStr;
         $multiImages = MultiImage::where('property_id', $id)->select('photo_name')->get();
         $photoName = $multiImages[0]->photo_name;
         $idString = strval($id);
         $multiImage = $photoName . "/" . $idString;
-        //$multiImagePath = str_replace("\\", "/", $multiImage);
-        //$image = rtrim($multiImagePath, '/'); 
         $images = glob('upload/property/multiImage/' . $idString . '/*.jpg');
-        // $imagesSTR = implode(', ', $images);
-        // $imagesSTR1 = strval($imagesSTR);
-
-
-
-        // $directPaths = [];
-        // foreach ($images as $image) {
-        //     $directPaths[] = $image->photo_name . strval($image->id);
-        // }
-        // //$directPath = implode('', $directPaths);
-        // $directPath = $directPaths;
-
-
-
-        //$MultiImagePath = strval($MultiImage);
-        //$images = glob($MultiImagePath . '/*.jpg');
-        // $facility = Facility::where('property_id', $id)->get();
+        $video = glob('upload/property/multiImage/' . $idString . '/*.mp4');
+        $videos = implode(' ', $video);
         $type_id = $property->pType_id;
-        // $property_thumbnail = Property::select('property_thumbnail')->get();
         $property_id = Property::where('id', $id)->first();
         if ($property_id) {
             $property_thumbnail = $property->property_thumbnail;
         }
         $relatedProperty = Property::where('pType_id', $type_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(3)->get();
-        return view('frontend.property.property_details', compact('images', 'property', 'imageUrl', 'property_amen', 'relatedProperty', 'property_thumbnail', 'property2'));
+        return view('frontend.property.property_details', compact('amenities2','property2', 'videos', 'images', 'property', 'imageUrl', 'property_amen', 'relatedProperty', 'property_thumbnail'));
     } // End Method
     public function PropertyMessage(Request $request)
     {
@@ -97,7 +83,6 @@ class IndexController extends Controller
         $featured = Property::where('featured', '1')->limit(3)->get();
         $rentProperty = Property::where('property_status', 'rent')->get();
         $buyProperty = Property::where('property_status', 'buy')->get();
-
         return view('frontend.agent.agent_details', compact('agent', 'property', 'featured', 'rentProperty', 'buyProperty'));
     } // End Method
     public function AgentDetailsMessage(Request $request)
@@ -129,7 +114,6 @@ class IndexController extends Controller
     public function buyProperty()
     {
         $property = Property::where('status', '1')->where('property_status', 'buy')->orderByDesc('id')->paginate(5);
-
         return view('frontend.property.buy_property', compact('property'));
     } // End Method
     public function PropertyType($id)
@@ -155,7 +139,6 @@ class IndexController extends Controller
     // } // End Method
     public function buyPropertySearch(Request $request)
     {
-
         $request->validate([
             'search' => 'required'
         ]);
@@ -202,7 +185,6 @@ class IndexController extends Controller
                 ->where('property_status', 'rent')
                 ->get();
         }
-
         //$property = Property::where('property_name', 'like', '%' . $item . '%')->where('property_status', 'rent')->get();
         return view('frontend.property.property_search', compact('property'));
     } // End Method
@@ -219,11 +201,9 @@ class IndexController extends Controller
     public function showTeam()
     {
         //$allAgent = user::where('role', 'agent');
-
         return view(
             'frontend.team'
             // ,compact('allAgent')
         );
     }
-
 }

@@ -1,15 +1,12 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
 @section('title')
-    {{ $property->property_name }} | Easy RealEstate
+{{ $property->property_name }} | Easy RealEstate
 @endsection
-
 <!-- CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
 <!-- JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <!--Page Title-->
 <section class="page-title-two bg-color-1 centred">
     <div class="pattern-layer">
@@ -27,36 +24,6 @@
         </div>
     </div>
 </section>
-<!--End Page Title-->
-<?php
-echo '<div class="row">';
-foreach ($images as $image) {
-    echo '<div class="col-md-4 mt-4">';
-    echo '<img src="' . '/' . $image . '" class="img-fluid" alt="Property Image">';
-    echo '</div>';
-}
-echo '</div>';
-?>
-{{-- @foreach ($images as $image)
-    <img src="{{ $image }}" alt="Image">
-@endforeach --}}
-{{-- <div id="slideshow-carousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        @foreach ($imagesSTR as $index => $image)
-            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                <img src="{{ $image }}" alt="Slide {{ $index + 1 }}" class="d-block w-100">
-            </div>
-        @endforeach
-    </div>
-</div> --}}
-
-{{-- <div class="carousel-inner">
-    <div class="single-item-carousel owl-carousel owl-theme owl-dots-none">
-        @foreach ($DirectPath as $img)
-            <figure class="image-box"><img src="{{ asset($img->photo_name) }}" alt=""></figure>
-        @endforeach
-    </div>
-</div> --}}
 <!-- property-details -->
 <section class="property-details property-details-one">
     <div class="auto-container">
@@ -98,7 +65,7 @@ echo '</div>';
                 </ul>
             </div>
         </div>
-        <img src="{{ $imageUrl }}" alt="Image">
+
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 content-side">
                 <div class="property-details-content">
@@ -107,57 +74,110 @@ echo '</div>';
                         </div>
                     </div>
                     <div class="discription-box content-widget">
-                        <div class="title-box">
-                            <h4>توضیحات مربوطه:</h4>
-                        </div>
-                        <div class="text">
-                            <p>{!! $property->long_descp !!}</p>
+                        <h4 class="list clearfix">توضیحات:
+                            <h6 class="list clearfix"> {!! $property->long_desc !!} </h6>
+                        </h4>
+                        <hr>
+                        <h4>حدود آدرس:
+                            <h6> {{ $property->address }} </h6>
+                        </h4>
+                    </div>
+                    <div class="top-details clearfix">
+                        <div class="right-column pull-right clearfix">
+                            <h3 id="buy">
+                                عکس های ملک:
+                            </h3>
+                            <?php
+                                if (!empty($images)) {
+                                    $count = count($images);
+                            ?>
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    @foreach ($images as $index => $image)
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}"
+                                        class="@if ($index === 0) active @endif"></li>
+                                    @endforeach
+                                </ol>
+                                <div class="carousel-inner">
+                                    @foreach ($images as $index => $image)
+                                    <div class="carousel-item @if ($index === 0) active @endif">
+                                        <img src="{{ asset($image) }}" alt="">
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">قبل</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">بعد</span>
+                                </a>
+                            </div>
+                            @php
+                            }
+                            @endphp
                         </div>
                     </div>
-                    <div class="details-box content-widget">
-                        <div class="title-box">
-                            <h4>امکانات ملک:</h4>
-                        </div>
+                    <div class="details-box content-widget text-end">
+                        <h4>امکانات ملک:</h4>
                         <ul class="list clearfix">
-                            <li>کد ملک: <span>{{ $property->property_code }}</span></li>
-                            <li>تعداد خواب: <span>{{ $property->bedrooms }}</span></li>
-                            <li>نوع ملک: <span>{{ $property->type->type_name }}</span></li>
-                            <li>وضعیت ملک: <span>برای {{ $property->property_status }}</span></li>
-                            <li>مساحت ملک: <span>{{ $property->property_size }} مساحت متراژ</span></li>
-                            <li>پارکینگ: <span>{{ $property->garage }}</span></li>
+                            @php
+                            // Assign the nested properties to variables to avoid multiple access
+                            $propertyCode = $property->property_code ?? null;
+                            $bedrooms = $property->bedrooms ?? null;
+                            $typeName = $property->type->type_name ?? null;
+                            $propertyStatus = $property->property_status ?? null;
+                            $propertySize = $property->property_size ?? null;
+                            $garage = $property->garage ?? null;
+                            @endphp
+                            {{-- Property Code --}}
+                            @if($propertyCode)
+                            <li class="float-end">کد ملک: {{ $propertyCode }}</li>
+                            @endif
+                            {{-- Bedrooms --}}
+                            @if($bedrooms)
+                            <li class="float-end">تعداد خواب: {{ $bedrooms }}</li>
+                            @endif
+                            {{-- Type Name --}}
+                            @if($typeName)
+                            <li class="float-end">نوع ملک: {{ $typeName }}</li>
+                            @endif
+                            {{-- Property Status --}}
+                            @if($propertyStatus)
+                            <li class="float-end">وضعیت ملک: برای {{ $propertyStatus }}</li>
+                            @endif
+                            {{-- Property Size --}}
+                            @if($propertySize)
+                            <li class="float-end">مساحت ملک: {{ $propertySize }} مساحت متراژ</li>
+                            @endif
+                            {{-- Garage --}}
+                            @if($garage)
+                            <li class="float-end">پارکینگ: {{ $garage }}</li>
+                            @endif
                         </ul>
-                    </div>
+                    </div> @if(!empty($amenities2))
                     <div class="amenities-box content-widget">
-                        <div class="title-box">
-                            <h4>امکانات اضافی:</h4>
-                        </div>
+                        <h4>اطلاعات بیشتر</h4>
                         <ul class="list clearfix">
-                            @foreach ($property_amen as $amen)
-                                <li>{{ $amen }}</li>
-                            @endforeach
+                            <li>سند:{{ $amenities2 }}</li>
                         </ul>
-                    </div>
-                    <div class="location-box content-widget">
-                        <div class="title-box">
-                            <h4>حدوده محدوده بر نقشه</h4>
-                        </div>
-                        <ul class="info clearfix">
-                            <span>حدود آدرس:</span> {{ $property->address }}
-                        </ul>
-                    </div>
-                    <div class="nearby-box content-widget">
-                    </div>
+                    </div>@endif
+                    @if ($videos && filter_var($videos, FILTER_VALIDATE_URL))
                     <div class="statistics-box content-widget">
                         <div class="title-box">
                             <h4>فیلم ملک</h4>
                         </div>
-                        <figure class="image-box">
-                            <iframe width="700" height="415" src="{{ $property->property_video }}"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                        </figure>
+                        <div class="video-box">
+                            <video width="640" height="480" controls>
+                                <source src="{{ asset($videos) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -186,6 +206,10 @@ echo '</div>';
                 {
                     id: "rent-2-a",
                     property: "rent"
+                },
+                {
+                    id: "rent-2-a",
+                    property: "rent"
                 }
             ];
             for (var i = 0; i < elements.length; i++) {
@@ -197,10 +221,6 @@ echo '</div>';
                 }
             }
         </script>
-        <script>
-            new bootstrap.Carousel(document.getElementById('slideshow-carousel'))
-        </script>
-
 </section>
 <!-- property-details end -->
 @endsection

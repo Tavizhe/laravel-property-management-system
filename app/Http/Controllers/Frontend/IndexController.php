@@ -24,7 +24,33 @@ class IndexController extends Controller
         $property_amen = explode(',', $amenities);
         $thumbnailImage = Property::where('id', $id)->select('property_thumbnail')->get();
         $imageUrl = '/' . $thumbnailImage[0]->property_thumbnail;
-        //$MultiImageString = strval($MultiImage);
+        // $MultiImage = MultiImage::where('property_id', $id)->select('photo_name')->get();
+        // $MultiImagePathStr = strval($MultiImage);
+        // $MultiImageId = MultiImage::where('property_id', $id)->select('id')->get();
+        // $MultiImageIdStr = strval($MultiImageId);
+        // $DirectPath = $MultiImagePathStr . $MultiImageIdStr;
+        $multiImages = MultiImage::where('property_id', $id)->select('photo_name')->get();
+        $photoName = $multiImages[0]->photo_name;
+        $idString = strval($id);
+        $multiImage = $photoName . "/" . $idString;
+        //$multiImagePath = str_replace("\\", "/", $multiImage);
+        //$image = rtrim($multiImagePath, '/'); 
+        $images = glob('upload/property/multiImage/' . $idString . '/*.jpg');
+        // $imagesSTR = implode(', ', $images);
+        // $imagesSTR1 = strval($imagesSTR);
+
+
+
+        // $directPaths = [];
+        // foreach ($images as $image) {
+        //     $directPaths[] = $image->photo_name . strval($image->id);
+        // }
+        // //$directPath = implode('', $directPaths);
+        // $directPath = $directPaths;
+
+
+
+        //$MultiImagePath = strval($MultiImage);
         //$images = glob($MultiImagePath . '/*.jpg');
         // $facility = Facility::where('property_id', $id)->get();
         $type_id = $property->pType_id;
@@ -34,7 +60,7 @@ class IndexController extends Controller
             $property_thumbnail = $property->property_thumbnail;
         }
         $relatedProperty = Property::where('pType_id', $type_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(3)->get();
-        return view('frontend.property.property_details', compact('property', 'imageUrl', 'property_amen', 'relatedProperty', 'property_thumbnail', 'property2'));
+        return view('frontend.property.property_details', compact('images', 'property', 'imageUrl', 'property_amen', 'relatedProperty', 'property_thumbnail', 'property2'));
     } // End Method
     public function PropertyMessage(Request $request)
     {

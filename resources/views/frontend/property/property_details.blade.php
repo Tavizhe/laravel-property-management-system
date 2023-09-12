@@ -3,6 +3,13 @@
 @section('title')
     {{ $property->property_name }} | Easy RealEstate
 @endsection
+
+<!-- CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <!--Page Title-->
 <section class="page-title-two bg-color-1 centred">
     <div class="pattern-layer">
@@ -21,6 +28,35 @@
     </div>
 </section>
 <!--End Page Title-->
+<?php
+echo '<div class="row">';
+foreach ($images as $image) {
+    echo '<div class="col-md-4 mt-4">';
+    echo '<img src="' . '/' . $image . '" class="img-fluid" alt="Property Image">';
+    echo '</div>';
+}
+echo '</div>';
+?>
+{{-- @foreach ($images as $image)
+    <img src="{{ $image }}" alt="Image">
+@endforeach --}}
+{{-- <div id="slideshow-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @foreach ($imagesSTR as $index => $image)
+            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                <img src="{{ $image }}" alt="Slide {{ $index + 1 }}" class="d-block w-100">
+            </div>
+        @endforeach
+    </div>
+</div> --}}
+
+{{-- <div class="carousel-inner">
+    <div class="single-item-carousel owl-carousel owl-theme owl-dots-none">
+        @foreach ($DirectPath as $img)
+            <figure class="image-box"><img src="{{ asset($img->photo_name) }}" alt=""></figure>
+        @endforeach
+    </div>
+</div> --}}
 <!-- property-details -->
 <section class="property-details property-details-one">
     <div class="auto-container">
@@ -29,23 +65,7 @@
                 <div class="price-inner clearfix">
                     <ul class="category clearfix pull-left">
                         <li><a href="{{ route('property.type', $property->type) }}">{{ $property->type->type_name }}</a>
-                            {{-- </li>
-                        @php
-                            $buyRoute = '';
-                            $rentRoute = '';
-                        
-                            if ($property->property_status == 'buy') {
-                                $buyRoute = route('buy.property');
-                            } elseif ($property->property_status == 'rent') {
-                                $rentRoute = route('rent.property');
-                            }
-                        @endphp
-                        
-                        <li><a href="{{ $buyRoute }}">برای خرید</a></li>
-                        <li><a href="{{ $rentRoute }}">برای رهن</a></li> --}}
-
                     </ul>
-
                     <div class="price-box
                                 pull-right">
                         <?php
@@ -84,10 +104,6 @@
                 <div class="property-details-content">
                     <div class="carousel-inner">
                         <div class="single-item-carousel owl-carousel owl-theme owl-dots-none">
-                            {{-- @foreach ($images as $img)
-                                <figure class="image-box"><img src="{{ $img }}" alt="">
-                                </figure>
-                            @endforeach --}}
                         </div>
                     </div>
                     <div class="discription-box content-widget">
@@ -127,48 +143,9 @@
                         </div>
                         <ul class="info clearfix">
                             <span>حدود آدرس:</span> {{ $property->address }}
-                            {{-- <li><span>State/county:</span> {{ $property['pstate']['state_name'] }}</li>
-                            <li><span>Neighborhood:</span> {{ $property->neighborhood }}</li>
-                            <li><span>Zip/Postal Code:</span> {{ $property->postal_code }}</li>
-                            <li><span>City:</span> {{ $property->city }}</li> --}}
                         </ul>
-                        {{-- <div class="google-map-area">
-                            <div class="google-map" id="contact-google-map" data-map-lat="{{ $property->latitude }}"
-                                data-map-lng="{{ $property->longitude }}"
-                                data-icon-path="{{ asset('frontend/assets/images/icons/map-marker.png') }}"
-                                data-map-title="Brooklyn, New York, United Kingdom" data-map-zoom="12"
-                                data-markers='{
-            "marker-1": [40.712776, -74.005974, "<h4>Branch Office</h4><p>77/99 New York</p>","{{ asset('
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            frontend/assets/images/icons/map-marker.png') }}"] }'>
-                            </div>
-                        </div> --}}
                     </div>
                     <div class="nearby-box content-widget">
-                        {{-- <div class="title-box">
-                            <h4>What’s Nearby?</h4>
-                        </div>
-                        <div class="inner-box"> --}}
-                        {{-- <div class="single-item">
-                                <div class="icon-box"><i class="fas fa-book-reader"></i></div>
-                                <div class="inner">
-                                    <h5>Places:</h5>
-                                    {{-- @foreach ($facility as $item)
-                                    <div class="box clearfix">
-                                        <div class="text pull-left">
-                                            <h6>{{ $item->facility_name }} <span>({{ $item->distance }} km)</span></h6>
-                                        </div>
-                                        <ul class="rating pull-right clearfix">
-                                            <li><i class="icon-39"></i></li>
-                                            <li><i class="icon-39"></i></li>
-                                            <li><i class="icon-39"></i></li>
-                                            <li><i class="icon-39"></i></li>
-                                            <li><i class="icon-40"></i></li>
-                                        </ul>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div> 
-                        </div> --}}
                     </div>
                     <div class="statistics-box content-widget">
                         <div class="title-box">
@@ -183,11 +160,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <script>
             var users = @json($property2);
-
             var elements = [{
                     id: "buy",
                     property: "lowest_price"
@@ -222,6 +197,10 @@
                 }
             }
         </script>
+        <script>
+            new bootstrap.Carousel(document.getElementById('slideshow-carousel'))
+        </script>
+
 </section>
 <!-- property-details end -->
 @endsection

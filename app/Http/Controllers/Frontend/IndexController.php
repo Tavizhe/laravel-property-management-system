@@ -23,14 +23,12 @@ class IndexController extends Controller
         $property2 = Property::where('id', $id)->get();
         $amenities = $property->amenities_id;
         $amenities2 = amenities::where('id', $amenities)->pluck('amenities_name')->first();
+        $pType = $property->type->type_name;
+        $pType_id = PropertyType::where('type_name', $pType)->pluck('id')->first();
 
         $amenities_names = $property->amenities_name;
         $property_amen = explode(',', $amenities);
         $amenities_name = explode(',', $amenities_names);
-        // $amenities = amenities::where('id', $id)->pluck('amenities_name')->first();
-
-
-
         $thumbnailImage = Property::where('id', $id)->select('property_thumbnail')->get();
         $imageUrl = '/' . $thumbnailImage[0]->property_thumbnail;
         $multiImages = MultiImage::where('property_id', $id)->select('photo_name')->get();
@@ -41,12 +39,13 @@ class IndexController extends Controller
         $video = glob('upload/property/multiImage/' . $idString . '/*.mp4');
         $videos = implode(' ', $video);
         $type_id = $property->pType_id;
+        $pType1 = PropertyType::where('id', $type_id)->pluck('type_icon')->first();
         $property_id = Property::where('id', $id)->first();
         if ($property_id) {
             $property_thumbnail = $property->property_thumbnail;
         }
         $relatedProperty = Property::where('pType_id', $type_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(3)->get();
-        return view('frontend.property.property_details', compact('amenities2','property2', 'videos', 'images', 'property', 'imageUrl', 'property_amen', 'relatedProperty', 'property_thumbnail'));
+        return view('frontend.property.property_details', compact('pType1', 'amenities2', 'property2', 'videos', 'images', 'property', 'imageUrl', 'property_amen', 'relatedProperty', 'property_thumbnail'));
     } // End Method
     public function PropertyMessage(Request $request)
     {

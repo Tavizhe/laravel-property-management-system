@@ -9,12 +9,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!--Page Title-->
 <section class="page-title-two bg-color-1 centred">
-    <div class="pattern-layer">
+
+    {{-- <div class="pattern-layer">
+
         <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});">
         </div>
         <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});">
         </div>
-    </div>
+    </div> --}}
     <div class="auto-container">
         <div class="content-box clearfix">
             <h1> کد ملک: {{ $property->property_name }}</h1>
@@ -25,7 +27,7 @@
     </div>
 </section>
 <!-- property-details -->
-<section class="property-details property-details-one">
+<section style="background-image: url('/{{ $pType1 }}'); background-size: cover;"  class="property-details property-details-one">
     <div class="auto-container">
         <div class="top-details clearfix">
             <div class="right-column pull-right clearfix">
@@ -33,6 +35,7 @@
                     <ul class="category clearfix pull-left">
                         <li><a href="{{ route('property.type', $property->type) }}">{{ $property->type->type_name }}</a>
                     </ul>
+                    
                     <div class="price-box
                                 pull-right">
                         <?php
@@ -82,15 +85,16 @@
                             <h6> {{ $property->address }} </h6>
                         </h4>
                     </div>
+                    <?php
+                                if (!empty($images)) {
+                                    $count = count($images);
+                            ?>
                     <div class="top-details clearfix">
                         <div class="right-column pull-right clearfix">
                             <h3 id="buy">
                                 عکس های ملک:
                             </h3>
-                            <?php
-                                if (!empty($images)) {
-                                    $count = count($images);
-                            ?>
+
                             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                 <ol class="carousel-indicators">
                                     @foreach ($images as $index => $image)
@@ -116,11 +120,12 @@
                                     <span class="visually-hidden">بعد</span>
                                 </a>
                             </div>
-                            @php
-                            }
-                            @endphp
+
                         </div>
                     </div>
+                    @php
+                    }
+                    @endphp
                     <div class="details-box content-widget text-end">
                         <h4>امکانات ملک:</h4>
                         <ul class="list clearfix">

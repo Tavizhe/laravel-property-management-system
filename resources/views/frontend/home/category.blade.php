@@ -13,7 +13,7 @@ $ptype = App\Models\PropertyType::latest()->limit(5)->get();
 					<div class="category-block-one">
 						<div style="background-image: url('{{ $item->type_icon }}');background-size: cover;"
 							class="inner-box">
-							<h5><a style="background-color: white;border-radius: 10px;width: 7ch;"
+							<h5><a style="background-color: white;border-radius: 10px;width: 7ch;text-decoration: none"
 									href="{{ route('property.type',$item->id) }}">{{
 									$item->type_name }}</a></h5>
 							<span>{{ count($property) }}</span>

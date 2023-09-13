@@ -1,6 +1,6 @@
 @php
-    // $states = App\Models\State::latest()->get();
-    $ptypes = App\Models\PropertyType::latest()->get();
+// $states = App\Models\State::latest()->get();
+$ptypes = App\Models\PropertyType::latest()->get();
 @endphp
 <section class="banner-section" style="background-color: black;">
     {{-- style="background-image: url({{ asset('frontend/assets/images/banner/banner-1.jpg') }});"> --}}
@@ -22,13 +22,12 @@
                         <div class="tab active-tab" id="tab-1">
                             <div class="inner-box">
                                 <div class="top-search">
-                                    <form action="{{ route('buy.property.search') }}" method="post"
-                                        class="search-form">
+                                    <form action="{{ route('buy.property.search') }}" method="post" class="search-form">
                                         @csrf
                                         <div class="row clearfix">
                                             <div class="col-lg-6 col-md-12 col-sm-12 column">
                                                 <div class="form-group">
-                                                    <label>اطلاعات ملک</label>
+                                                    <label>نوع ملک(اختیاری)</label>
                                                     <div class="field-input">
                                                         <i class="fas fa-search"></i>
                                                         <input type="search" name="search"
@@ -36,31 +35,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-lg-4 col-md-6 col-sm-12 column">
-                                                <div class="form-group">
-                                                    <label>مکان</label>
-                                                    <div class="select-box">
-                                                        <i class="far fa-compass"></i>
-                                                        <select name="state" class="wide">
-                                                            <option data-display="محدوده">Input location
-                                                            </option>
-                                                            @foreach ($states as $state)
-                                                            <option value="{{ $state->state_name }}">
-                                                                {{ $state->state_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
                                             <div class="col-lg-6 col-md-12 col-sm-12 column">
                                                 <div class="form-group">
-                                                    <label>نوع ملک</label>
+                                                    <label>نوع ملک(اختیاری)</label>
                                                     <div class="select-box">
-                                                        <select name="pType_id" class="wide">
-                                                            <option data-display="زمین یا منزل">لیست املاک</option>
+                                                        <select style=" direction: rtl;text-align: right;" name="pType_id" class="wide"
+                                                            style="text-align: right;">
+                                                            <option>لیست املاک</option>
                                                             @foreach ($ptypes as $type)
-                                                                <option value="{{ $type->type_name }}">
-                                                                    {{ $type->type_name }}</option>
+                                                            <option value="{{ $type->type_name }}">
+                                                                {{ $type->type_name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -91,31 +75,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-lg-4 col-md-6 col-sm-12 column">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 column">
                                                 <div class="form-group">
-                                                    <label>مکان</label>
-                                                    <div class="select-box">
-                                                        <i class="far fa-compass"></i>
-                                                        <select name="state" class="wide">
-                                                            <option data-display="محدوده">Input location
-                                                            </option>
-                                                            @foreach ($states as $state)
-                                                            <option value="{{ $state->state_name }}">
-                                                                {{ $state->state_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
-                                            <div class="col-lg-6 col-md-6 col-sm-12 column">
-                                                <div class="form-group">
-                                                    <label>نوع ملک</label>
+                                                    <label>نوع ملک(اختیاری)</label>
                                                     <div class="select-box">
                                                         <select name="pType_id" class="wide">
-                                                            <option data-display="منزل یا باغ">لیست املاک</option>
+                                                            <option data-display="لیست املاک">لیست املاک</option>
                                                             @foreach ($ptypes as $type)
-                                                                <option value="{{ $type->type_name }}">
-                                                                    {{ $type->type_name }}</option>
+                                                            <option value="{{ $type->id }}">
+                                                                {{ $type->type_name }}
+                                                            </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -123,7 +92,7 @@
                                             </div>
                                         </div>
                                         <div class="search-btn">
-                                            <button type="submit"><i class="fas fa-search"></i>جستجو</button>
+                                            <button type="submit"><i class="fas fa-search"></i> جستجو </button>
                                         </div>
                                     </form>
                                 </div>

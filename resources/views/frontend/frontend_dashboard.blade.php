@@ -15,7 +15,8 @@
         href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <!-- Stylesheets -->
-    <link href="{{ asset('frontend/assets/css/font-awesome-all.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
     <link href="{{ asset('frontend/assets/css/flaticon.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/assets/css/owl.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/assets/css/bootstrap.css') }}" rel="stylesheet">
@@ -48,12 +49,23 @@
         <!-- main-footer -->
         @include('frontend.home.footer')
         <!-- main-footer end -->
-        {{--
-        <!--Scroll to top-->
-        <button class="scroll-top scroll-to-target" data-target="html">
-            <span class="fa fa-angle-up"></span>
-        </button>
-    </div> --}}
+        
+<!--Scroll to top-->
+<button class="scroll-top scroll-to-target">
+    <span class="fa fa-angle-up"></span>
+</button>
+
+<script>
+    // Add event listener to scroll to top button
+    document.querySelector('.scroll-top').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
+
+    </div> 
     <!-- jequery plugins -->
     <script src="{{ asset('frontend/assets/js/jquery.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/popper.min.js') }}"></script>
@@ -109,40 +121,40 @@
                 }
             })
             // Add To Wishlist 
-            function addToWishList(property_id) {
-                $.ajax({
-                    type: "POST",
-                    dataType: 'json',
-                    url: "/add-to-wishList/" + property_id,
-                    success: function(data) {
-                        wishlist();
-                        // Start Message 
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 3000
-                        })
-                        if ($.isEmptyObject(data.error)) {
-                            Toast.fire({
-                                type: 'success',
-                                icon: 'success',
-                                title: data.success,
-                            })
-                        } else {
-                            Toast.fire({
-                                type: 'error',
-                                icon: 'error',
-                                title: data.error,
-                            })
-                        }
-                        // End Message  
-                    }
-                })
-            }
+            // function addToWishList(property_id) {
+            //     $.ajax({
+            //         type: "POST",
+            //         dataType: 'json',
+            //         url: "/add-to-wishList/" + property_id,
+            //         success: function(data) {
+            //             wishlist();
+            //             // Start Message 
+            //             const Toast = Swal.mixin({
+            //                 toast: true,
+            //                 position: 'top-end',
+            //                 showConfirmButton: false,
+            //                 timer: 3000
+            //             })
+            //             if ($.isEmptyObject(data.error)) {
+            //                 Toast.fire({
+            //                     type: 'success',
+            //                     icon: 'success',
+            //                     title: data.success,
+            //                 })
+            //             } else {
+            //                 Toast.fire({
+            //                     type: 'error',
+            //                     icon: 'error',
+            //                     title: data.error,
+            //                 })
+            //             }
+            //             // End Message  
+            //         }
+            //     })
+            // }
     </script>
     <!-- // start load Wishlist Data  -->
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         function wishlist() {
                 $.ajax({
                     type: "GET",
@@ -224,7 +236,7 @@
                 })
             }
             /// End Wishlist Remove  
-    </script>
+    </script> --}}
     <!-- /// Add to Carepage  -->
     <script type="text/javascript">
         function addToCompare(property_id) {

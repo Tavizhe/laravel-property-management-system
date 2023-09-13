@@ -46,19 +46,17 @@
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-
-                                <li><a href="{{ route('team.home') }}"><span>تیم ما</span></a> </li>
-                                <li><a href="{{ route('blog.list') }}"><span>مقالات</span></a> </li>
-                                <li><a href="contact.html"><span>تماس با ما</span></a></li>
+                                <li><a style="text-decoration: none" href="{{ route('team.home') }}"><span>تیم ما</span></a> </li>
+                                <li><a style="text-decoration: none" href="{{ route('blog.list') }}"><span>مقالات</span></a> </li>
+                                <li><a style="text-decoration: none" href="#"><span>تماس با ما</span></a></li>
                                 <li class="dropdown">
-                                    <a href="#"><span>املاک</span></a>
+                                    <a style="text-decoration: none" href="#"><span>املاک</span></a>
                                     <ul>
-                                        <li><a href='{{ route('rent.property') }}'>املاک برای رهن و اجاره</a></li>
-                                        <li><a href="{{ route('buy.property') }}">املاک برای خرید</a></li>
+                                        <li><a  style="text-align: right;text-decoration: none" href='{{ route('rent.property') }}'>املاک برای رهن و اجاره</a></li>
+                                        <li><a  style="text-align: right;text-decoration: none" href="{{ route('buy.property') }}">املاک برای خرید</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ url('/') }}"><span>خانه</span></a> </li>
-
+                                <li><a style="text-decoration: none" href="{{ url('/') }}"><span>خانه</span></a> </li>
                             </ul>
                         </div>
                     </nav>

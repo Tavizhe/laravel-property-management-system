@@ -899,7 +899,7 @@
 
  .main-menu .navigation>li.dropdown>a span:before {
    position: absolute;
-   content: "\f107";
+   content: "";
    font-family: 'Font Awesome 5 Pro';
    top: 2px;
    right: -17px;
@@ -1633,7 +1633,7 @@
 
  .nice-select:after {
    position: absolute;
-   content: "\f107";
+   content: "";
    font-family: 'Font Awesome 5 Pro';
    font-size: 16px;
    color: #808288;
@@ -2017,7 +2017,7 @@
  }
 
  .category-block-one .inner-box:hover span {
-   background-color: rgba(255, 255, 255, 0.1);
+   background-color: white;
    color: black;
  }
 

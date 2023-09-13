@@ -235,7 +235,6 @@ sup {
 
 a {
     color: #FFD700;
-    text-decoration: underline
 }
 
 a:hover {
@@ -3121,7 +3120,7 @@ textarea.form-control.is-invalid {
 
 .btn {
     display: inline-block;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 1.5;
     color: #212529;
     text-align: center;

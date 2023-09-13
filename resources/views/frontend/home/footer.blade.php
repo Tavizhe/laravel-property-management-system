@@ -25,15 +25,15 @@ $blog = App\Models\BlogPost::latest()->limit(2)->get();
                         </div>
                         <div class="widget-content">
                             <ul class="links-list class">
-                                <li><a href="index.html">
+                                <li><a href="#">
                                         منزل مسکونی</a></li>
-                                <li><a href="index.html">
+                                <li><a href="#">
                                         ادرای، تجاری و کارگاهی</a></li>
-                                <li><a href="index.html">
+                                <li><a href="#">
                                         آپارتمان</a></li>
-                                <a href="index.html">
+                                <a href="#">
                                     باغ و ویلا</a></li>
-                                <li><a href="index.html">زمین و ملک</a></li>
+                                <li><a href="#">زمین و ملک</a></li>
                             </ul>
                         </div>
                     </div>
@@ -81,14 +81,14 @@ $blog = App\Models\BlogPost::latest()->limit(2)->get();
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="inner-box clearfix">
-                <figure class="footer-logo"><a href="index.html"><img
-                            src="{{ asset('frontend/assets/images/footer-logo.png') }}" alt=""></a></figure>
+                <figure class="footer-logo"><a href="#"><img src="{{ asset('frontend/assets/images/footer-logo.png') }}"
+                            alt=""></a></figure>
                 <div class="copyright pull-left">
-                    <p><a href="index.html">{{ $setting->copyright }}</p>
+                    <p><a href="#">{{ $setting->copyright }}</p>
                 </div>
                 {{-- <ul class="footer-nav pull-right clearfix">
-                    <li><a href="index.html">Terms of Service</a></li>
-                    <li><a href="index.html">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
                 </ul> --}}
             </div>
         </div>

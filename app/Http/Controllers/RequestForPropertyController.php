@@ -12,13 +12,14 @@ class RequestForPropertyController extends Controller
 
     public function GetRequest()
     {
-        return view('ShowRequestForProperty');
+        return view('frontend.requests.RequestForProperty');
     }
 
     public function ShowRequest()
     {
-        $requestForProperty = RequestForProperty::latest()->get();
-        return view('RequestForProperty', compact('requestForProperty'));
+        //$requestForProperty = RequestForProperty::latest()->get();
+        return view('frontend.requests.ShowRequestForProperty');
+        //, compact('requestForProperty')
     }
 
     public function RequestForPropertyStore(Request $request)

@@ -15,6 +15,8 @@ use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RequestForPropertyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +37,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/frontend/requests/RequestForProperty', [RequestForPropertyController::class, 'GetRequest'])->name('RequestForProperty.GetRequest');
-Route::post('/frontend/requests/RequestForProperty', [RequestForPropertyController::class, 'GetRequest'])->name('RequestForProperty.GetRequest');
+Route::post('/frontend/requests/RequestForProperty', [RequestForPropertyController::class, 'RequestForPropertyStore'])->name('RequestForProperty.Store');
 Route::get('/frontend/requests/ShowRequestForProperty', [RequestForPropertyController::class, 'ShowRequest'])->name('ShowRequestForProperty.ShowRequest');
 
 

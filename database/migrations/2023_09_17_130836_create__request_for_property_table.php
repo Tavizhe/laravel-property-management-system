@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('RequestForProperty', function (Blueprint $table) {
+        Schema::create('request_for_properties', function (Blueprint $table) {
             $table->id();
             $table->string('maxPrice')->nullable();
             $table->string('maxMortgage')->nullable();
@@ -29,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('RequestForProperty');
+        Schema::dropIfExists('request_for_properties');
     }
 };

@@ -50,7 +50,6 @@
                                         <input type="text" name="rent" class="form-control">
                                     </div>
                                 </div><!-- Col -->
-
                                 <div class="col-sm-6">
                                     <div class="form-group mb-3">
                                         <label class="form-label">عکس اصلی</label>

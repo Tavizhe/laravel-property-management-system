@@ -1,4 +1,3 @@
-@extends('admin.admin_dashboard')
 @extends('frontend.frontend_dashboard')
 @section('main')
 @section('title')
@@ -30,7 +29,7 @@ MellkGostar Real Estate
                         <label for="exampleInputEmail1" class="form-label">نوع ملک مورد نظر</label>
                         <select name="pType" class="form-select" id="exampleFormControlSelect1">
                             <option selected="" disabled="">انتخاب کنید</option>
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            <option value="1">1</option>
                         </select>
                     </div>
                     <div class="form-group mb-3">

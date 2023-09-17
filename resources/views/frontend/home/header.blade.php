@@ -46,7 +46,7 @@ $setting = App\Models\SiteSetting::find(1);
                                 <li><a style="text-decoration: none" href="{{ url('/') }}"><span>خانه</span></a>
                                 </li>
                                 <li><a style="text-decoration: none"
-                                        href="{{ route('RequestForProperty.GetRequest') }}"><span>ثبت درخواست ملک</span></a></li>
+                                        href="{{ route('ShowRequestForProperty.ShowRequest') }}"><span>ثبت درخواست ملک</span></a></li>
                             </ul>
                         </div>
                     </nav>

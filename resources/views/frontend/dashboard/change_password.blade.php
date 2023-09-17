@@ -8,7 +8,7 @@
         <div class="auto-container">
             <div class="content-box clearfix">
                 <h1>Change Password </h1>
-                <ul class="bread-crumb clearfix">
+                <ul class="">
                     <li><a href="{{ route('home') }}">خانه</a></li>
                     <li>Change Password</li>
                 </ul>

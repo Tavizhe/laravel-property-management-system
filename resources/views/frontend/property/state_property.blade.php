@@ -11,7 +11,7 @@
         <div class="auto-container">
             {{-- <div class="content-box clearfix">
             <h1>{{ $bState->state_name }} Property </h1>
-            <ul class="bread-crumb clearfix">
+            <ul class="">
                 <li><a href="{{ route('home') }}">خانه</a></li>
                 <li>{{ $bState->state_name }} Property List</li>
             </ul>

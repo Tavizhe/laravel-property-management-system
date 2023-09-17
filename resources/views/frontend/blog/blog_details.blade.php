@@ -1,7 +1,7 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
 @section('title')
-    {{ $blog->post_title }} | MellkGostar RealEstate
+    {{ $blog->post_title }} | املاک ملک گستر
 @endsection
 
 <!--Page Title-->
@@ -15,7 +15,7 @@
     <div class="auto-container">
         <div class="content-box clearfix">
             <h1> {{ $blog->post_title }}</h1>
-            <ul class="bread-crumb clearfix">
+            <ul class="">
                 <li><a href="{{ route('home') }}">خانه</a></li>
                 <li>{{ $blog->post_title }}</li>
             </ul>

@@ -1,14 +1,13 @@
 @php
-// $states = App\Models\State::latest()->get();
 $ptypes = App\Models\PropertyType::latest()->get();
 @endphp
 <section class="banner-section" style="background-color: black;">
-    {{-- style="background-image: url({{ asset('frontend/assets/images/banner/banner-1.jpg') }});"> --}}
     <div class="auto-container">
         <div class="inner-container">
             <div class="content-box centred">
                 <h2 style="color: #FFD700">گروه مشاورین املاک ملک گستر</h2>
-                <p>بهترین املاک شهر و محل اقامت خود را پیدا کنید</p>
+                <hr class="hr text-white">
+                <h4 style="color: #FFD700">بهترین املاک شهر و محل اقامت خود را پیدا کنید</h4>
             </div>
             <div class="search-field">
                 <div class="tabs-box">
@@ -27,7 +26,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                         <div class="row clearfix">
                                             <div class="col-lg-6 col-md-12 col-sm-12 column">
                                                 <div class="form-group">
-                                                    <label>نوع ملک(اختیاری)</label>
+                                                    <label>اطلاعات ملک</label></label>
                                                     <div class="field-input">
                                                         <i class="fas fa-search"></i>
                                                         <input type="search" name="search"
@@ -39,8 +38,8 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                                 <div class="form-group">
                                                     <label>نوع ملک(اختیاری)</label>
                                                     <div class="select-box">
-                                                        <select style=" direction: rtl;text-align: right;" name="pType_id" class="wide"
-                                                            style="text-align: right;">
+                                                        <select style=" direction: rtl;text-align: right;"
+                                                            name="pType_id" class="wide" style="text-align: right;">
                                                             <option>لیست املاک</option>
                                                             @foreach ($ptypes as $type)
                                                             <option value="{{ $type->type_name }}">

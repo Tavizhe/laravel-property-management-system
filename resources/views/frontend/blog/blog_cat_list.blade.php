@@ -1,7 +1,7 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
 @section('title')
-    {{ $breadCat->category_name }} | MellkGostar RealEstate
+    {{ $breadCat->category_name }} | املاک ملک گستر
 @endsection
 
 <!--Page Title-->
@@ -15,7 +15,7 @@
     <div class="auto-container">
         <div class="content-box clearfix">
             <h1> {{ $breadCat->category_name }} </h1>
-            <ul class="bread-crumb clearfix">
+            <ul class="">
                 <li><a href="{{ route('home') }}">خانه</a></li>
                 <li>{{ $breadCat->category_name }} </li>
             </ul>

@@ -12,7 +12,6 @@ $setting = App\Models\SiteSetting::find(1);
             </ul>
         </div>
     </div>
-
     <!-- header-lower -->
     <div style="display: flex; justify-content:center; " class="header-lower">
         <div class="outer-box">
@@ -35,18 +34,27 @@ $setting = App\Models\SiteSetting::find(1);
                                 <li><a style="text-decoration: none" href="#contact-us"><span>تیم
                                             ما</span></a> </li>
                                 <li><a style="text-decoration: none" href="#contact-us"><span>تماس با ما</span></a></li>
+                                <li><a style="text-decoration: none"
+                                        href="{{ route('blog.list') }}"><span>مقالات</span></a></li>
+                                <li><a style="text-decoration: none"
+                                        href="{{ route('Index.kojanajafabad') }}"><span>کارشناسی ملک</span></a></li>
+                                <li><a style="text-decoration: none"
+                                        href="{{ route('ShowRequestForProperty.ShowRequest') }}"><span>ثبت درخواست
+                                            ملک</span></a></li>
                                 <li class="dropdown">
-                                    <a style="text-decoration: none" href="#contact-us"><span>املاک</span></a>
+                                    <a style="text-decoration: none"
+                                        href="{{ route('FrontEndAllTypes.index') }}"><span>خانه املاک</span></a>
+
                                     <ul>
-                                        <li><a style="text-align: right;text-decoration: none" href='{{ route('rent.property') }}'>املاک برای رهن و اجاره</a></li>
+                                        <li><a style="text-align: right;text-decoration: none"
+                                                href="{{route('rent.property')}}">املاک
+                                                برای رهن و اجاره</a></li>
                                         <li><a style="text-align: right;text-decoration: none"
                                                 href="{{ route('buy.property') }}">املاک برای خرید</a></li>
                                     </ul>
                                 </li>
                                 <li><a style="text-decoration: none" href="{{ url('/') }}"><span>خانه</span></a>
                                 </li>
-                                <li><a style="text-decoration: none"
-                                        href="{{ route('ShowRequestForProperty.ShowRequest') }}"><span>ثبت درخواست ملک</span></a></li>
                             </ul>
                         </div>
                     </nav>
@@ -64,7 +72,6 @@ $setting = App\Models\SiteSetting::find(1);
                 </div>
                 <div class="menu-area clearfix center">
                     <nav class="main-menu clearfix">
-                        <!-- Keep This Empty / Menu will come through Javascript -->
                     </nav>
                 </div>
             </div>

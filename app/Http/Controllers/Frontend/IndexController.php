@@ -238,4 +238,17 @@ class IndexController extends Controller
             'frontend.team'
         );
     }
+    public function kojanajafabad()
+    {
+        return view(
+            'frontend.kojanajafabad'
+        );
+    }
+    public function FrontEndAllTypes()
+    {
+        $types = PropertyType::latest()->get();
+
+        return view('frontend.type.all_type', compact('types'));
+    } // End Method
+
 }

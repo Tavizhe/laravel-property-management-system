@@ -252,6 +252,9 @@ Route::middleware(['auth', 'roles:agent'])->group(function () {
 }); // End Group Agent Middleware
 // Frontend Property Details All Route
 Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
+Route::get('/frontend/type/all_type', [IndexController::class, 'FrontEndAllTypes'])->name('FrontEndAllTypes.index');
+
+Route::get('/frontend/kojanajafabad/', [IndexController::class, 'kojanajafabad'])->name('Index.kojanajafabad');
 // Wishlist Add Route
 Route::post('/add-to-wishList/{property_id}', [WishlistController::class, 'AddToWishList']);
 // Compare Add Route

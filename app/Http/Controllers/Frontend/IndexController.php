@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\amenities;
+use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat\NumberFormatter;
 // use App\Models\Facility;
 use App\Models\MultiImage;
@@ -246,9 +247,17 @@ class IndexController extends Controller
     }
     public function FrontEndAllTypes()
     {
+         $properties = Property::orderByDesc('id')->paginate(5);
+
+
+
         $types = PropertyType::latest()->get();
-
-        return view('frontend.type.all_type', compact('types'));
+        return view('frontend.type.all_type', compact('types', 'properties'));
     } // End Method
+    // public function AllProperties()
+    // {
+    //     $types = PropertyType::latest()->get();
 
+    //     return view('frontend.type.all_type', compact('types'));
+    // } // End Method
 }

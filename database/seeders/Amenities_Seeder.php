@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use Carbon\Carbon;
@@ -14,16 +13,9 @@ class Amenities_Seeder extends Seeder
      */
     public function run(): void
     {
-
         DB::table('amenities')->insert([
             [
                 'id' => '1',
-                'amenities_name' => '6دانگ',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'id' => '2',
                 'amenities_name' => '6 دانگ',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -47,6 +39,5 @@ class Amenities_Seeder extends Seeder
                 'updated_at' => Carbon::now()
             ]
         ]);
-
     }
 }

@@ -70,14 +70,10 @@
                                     </div>
                                     <hr>
                                     <br>
-                                    <div class="container text-center">
-                                        <div class="row">
-                                            <div class="justify-content-center">
-                                                <div class="col-md-12">
-                                                    <a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
-                                                        class="theme-btn btn-two">نمایش اطلاعات بیشتر</a>
-                                                </div>
-                                            </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-12 text-center">
+                                            <a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                                class="btn btn-primary p-2">نمایش اطلاعات بیشتر</a>
                                         </div>
                                     </div>
                                 </div>

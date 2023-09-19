@@ -40,6 +40,15 @@ return new class extends Migration {
             $table->string('featured')->nullable();
             $table->string('hot')->nullable();
             $table->integer('agent_id')->nullable();
+            $table->integer('tedadTabaghe')->nullable();
+            $table->integer('tedadKoleTabaghat')->nullable();
+            $table->integer('TabagheDarVahed')->nullable();
+            $table->integer('VaziatBana')->nullable();
+            $table->integer('Jahat')->nullable();
+            $table->integer('nama')->nullable();
+            $table->integer('KafPush')->nullable();
+            $table->integer('ServiceKitchen')->nullable();
+            $table->integer('VorudiMoshtarak')->nullable();
             $table->string('status')->default(0);
             $table->timestamps();
         });

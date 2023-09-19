@@ -37,6 +37,11 @@ class Amenities_Seeder extends Seeder
                 'amenities_name' => 'تجاری',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],[
+                'id' => '6',
+                'amenities_name' => 'تایین نشده',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

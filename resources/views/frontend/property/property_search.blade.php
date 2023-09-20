@@ -27,7 +27,7 @@
                     <div class="property-content-side">
                         <div class="item-shorting clearfix">
                             <div class="left-column pull-right">
-                                <h5>نتیجه جستجو: <span>نمایش {{ count($property) }} مورد</span></h5>
+                                <h5>نتیجه جستجو: <span>نمایش {{ count($property) }} مورد از {{ $count }} ملک</span></h5>
                             </div>
                             <div class="right-column pull-right clearfix">
                             </div>

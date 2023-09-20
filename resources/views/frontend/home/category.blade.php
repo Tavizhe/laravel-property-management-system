@@ -30,12 +30,17 @@ $ptype = App\Models\PropertyType::latest()
             </ul>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="more-btn"><a href="{{ route('rent.property') }}" class="btn btn-primary">لیست کامل
                                 املاک برای
                                 رهن</a></div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <div class="more-btn"><a href="{{ route('FrontEndAllTypes.index') }}"
+                                class="btn btn-primary">لیست کامل
+                                املاک و طبقه بندی ها</a></div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="more-btn"><a href="{{ route('buy.property') }}" class="btn btn-primary">لیست کامل
                                 املاک برای
                                 خرید</a></div>

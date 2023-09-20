@@ -14,14 +14,13 @@ class properties_seeder extends Seeder
     public function run(): void
     {
         Property::truncate();
-        $csvFile = fopen(base_path('database/data/finallyDoneLast.csv'), 'r');
+        $csvFile = fopen(base_path('database/data/Full.csv'), 'r');
         $firstLine = true;
 
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
             if (!$firstLine) {
                 Property::create(
                     [
-                        // 'id' => $data['0'],
                         'pType_id' => $data['1'],
                         'amenities_id' => $data['17'],
                         'property_name' => $data['0'],
@@ -29,8 +28,8 @@ class properties_seeder extends Seeder
                         'property_code' => $data['19'],
                         'property_status' => $data['20'],
                         'lowest_price' => $data['8'],
-                        'house_mortgage' => $data['21'],
-                        'rent' => $data['22'],
+                        'house_mortgage' => $data['22'],
+                        'rent' => $data['21'],
                         'property_thumbnail' => $data['23'],
                         'short_desc' => $data['24'],
                         'long_desc' => $data['17'],

@@ -31,8 +31,6 @@ $setting = App\Models\SiteSetting::find(1);
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li><a style="text-decoration: none" href="#contact-us"><span>تیم
-                                            ما</span></a> </li>
                                 <li><a style="text-decoration: none" href="#contact-us"><span>تماس با ما</span></a></li>
                                 <li><a style="text-decoration: none"
                                         href="{{ route('blog.list') }}"><span>مقالات</span></a></li>
@@ -44,7 +42,6 @@ $setting = App\Models\SiteSetting::find(1);
                                 <li class="dropdown">
                                     <a style="text-decoration: none"
                                         href="{{ route('FrontEndAllTypes.index') }}"><span>خانه املاک</span></a>
-
                                     <ul>
                                         <li><a style="text-align: right;text-decoration: none"
                                                 href="{{route('rent.property')}}">املاک

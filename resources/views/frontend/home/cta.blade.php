@@ -10,7 +10,7 @@
             <div class="btn-box pull-right">
                 <a href="{{ route('rent.property') }}" class="btn btn-primary">املاک جهت رهن و
                     اجاره</a>
-                <a href="{{ route('rent.property') }}" class="btn btn-primary">املاک جهت خرید</a>
+                <a href="{{ route('buy.property') }}" class="btn btn-primary">املاک جهت خرید</a>
             </div>
         </div>
 </section>

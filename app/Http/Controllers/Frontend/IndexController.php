@@ -27,14 +27,12 @@ class IndexController extends Controller
         $amenities_names = $property->amenities_name;
         $property_amen = explode(',', $amenities);
         $amenities_name = explode(',', $amenities_names);
-
         $idString = strval($id);
         $x = 'upload/property/multi-image/' . $idString;
         $images = glob($x . '/*.jpg');
         if (!empty($images)) {
             $imageUrl = $images[0];
             $property_thumbnail = $images[0];
-
         } else {
             $imageUrl = 'upload/no_image.jpg';
             $property_thumbnail = 'upload/no_image.jpg';
@@ -47,7 +45,6 @@ class IndexController extends Controller
         $firstVideo = implode(' ', $video);
         $type_id = $property->pType_id;
         $pType1 = PropertyType::where('id', $type_id)->pluck('type_icon')->first();
-
         $relatedProperty = Property::where('pType_id', $type_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(3)->get();
         return view(
             'frontend.property.property_details',

@@ -27,20 +27,18 @@ class IndexController extends Controller
         $amenities_names = $property->amenities_name;
         $property_amen = explode(',', $amenities);
         $amenities_name = explode(',', $amenities_names);
-        // $imageUrl = '/' . $thumbnailImage[0]->property_thumbnail;
+
         $idString = strval($id);
         $x = 'upload/property/multi-image/' . $idString;
         $images = glob($x . '/*.jpg');
-
         if (!empty($images)) {
             $imageUrl = $images[0];
             $property_thumbnail = $images[0];
-            // Use the $firstImage variable as needed
+
         } else {
             $imageUrl = 'upload/no_image.jpg';
             $property_thumbnail = 'upload/no_image.jpg';
         }
-
         $y = 'upload/property/multi-image/' . $idString;
         $video = glob($y . '/*.mp4');
         if (!empty($video)) {
@@ -49,7 +47,7 @@ class IndexController extends Controller
         $firstVideo = implode(' ', $video);
         $type_id = $property->pType_id;
         $pType1 = PropertyType::where('id', $type_id)->pluck('type_icon')->first();
-        //$property_thumbnail = $property->property_thumbnail ?: null;
+
         $relatedProperty = Property::where('pType_id', $type_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(3)->get();
         return view(
             'frontend.property.property_details',
@@ -146,7 +144,6 @@ class IndexController extends Controller
     {
         $property = Property::where('status', '1')->where('property_status', 'rent')->orderByDesc('id')->paginate(5);
         $count = Property::where('property_status', 'rent')->count();
-
         return view('frontend.property.rent_property', compact('property', 'count'));
     }
     public function buyPropertySearch(Request $request)
@@ -224,7 +221,6 @@ class IndexController extends Controller
         $properties = Property::orderByDesc('id')->paginate(5);
         $types = PropertyType::latest()->get();
         $count = Property::count();
-
         return view('frontend.type.all_type', compact('types', 'properties', 'count'));
     }
 }

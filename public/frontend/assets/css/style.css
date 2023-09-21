@@ -1,5 +1,4 @@
  /* Css For Realshed */
-
  /************ TABLE OF CONTENTS ***************
 1. Fonts
 2. Reset
@@ -37,18 +36,11 @@
 37. Blog Sidebar
 38. Contact Section
 39. Google Map
-
-
 **********************************************/
-
-
-
  /*** 
-
 ====================================================================
   Reset
 ====================================================================
-
  ***/
  * {
    margin: 0px;
@@ -57,32 +49,31 @@
    outline: none;
  }
 
-
  /*** 
-
 ====================================================================
   Global Settings
 ====================================================================
-
  ***/
+ @font-face {
+   font-family: "Peyda";
+   src: url("fonts/Peyda-Regular.ttf");
+ }
 
+ @font-face {
+   font-family: "aviny";
+   src: "/fonts/Aviny.woff2" format('woff2');
+ }
+
+ @font-face {
+   font-family: "IRY";
+   src: "/fonts/IRY-Medium.ttf";
+ }
 
  body {
-
-   @font-face {
-     font-family: "Sans-serif";
-     src: "/fonts/Peyda-Regular.ttf";
-     font-size: 16px;
-     color: #93959e;
-     line-height: 26px;
-     font-weight: 400;
-     background: #ffffff;
-     background-size: cover;
-     background-repeat: no-repeat;
-     background-position: center top;
-     -webkit-font-smoothing: antialiased;
-   }
+   font-family: 'IRY';
  }
+
+
 
  @media (min-width:1200px) {
    .container {
@@ -121,18 +112,14 @@
    min-width: 300px;
  }
 
-
  a {
-   @font-face {
-     font-family: "Sans";
-     src: "/fonts/Sans.ttf";
-     text-decoration: none;
-     transition: all 500ms ease;
-     -moz-transition: all 500ms ease;
-     -webkit-transition: all 500ms ease;
-     -ms-transition: all 500ms ease;
-     -o-transition: all 500ms ease;
-   }
+   font-family: "peyda";
+   text-decoration: none;
+   transition: all 500ms ease;
+   -moz-transition: all 500ms ease;
+   -webkit-transition: all 500ms ease;
+   -ms-transition: all 500ms ease;
+   -o-transition: all 500ms ease;
  }
 
  a:hover {
@@ -183,42 +170,34 @@
    transition: all 500ms ease;
  }
 
- p {
-   @font-face {
-     font-family: "Sans";
-     src: "/fonts/Sans.ttf";
-     position: relative;
-
-     color: #93959e;
-     font-weight: 400;
-     margin: 0px;
-     transition: all 500ms ease;
-   }
-
- }
-
 
 
  h1,
  h2,
- h3,
+ h3 {
+   font-family: "aviny";
+   font-weight: bold;
+   position: relative;
+   font-weight: 400;
+   color: #2d2929;
+   margin: 0px;
+   transition: all 500ms ease;
+ }
+
+ p,
  h4,
  h5,
  h6 {
-   @font-face {
-     font-family: "Sans-bold";
-     src: "/fonts/Sans-bold.ttf";
-     font-weight: bold;
-     position: relative;
-     font-weight: 400;
-     color: #2d2929;
-     margin: 0px;
-     transition: all 500ms ease;
-   }
+   font-family: "IRY";
+   font-weight: bold;
+   position: relative;
+   font-weight: 400;
+   color: #2d2929;
+   margin: 0px;
+   transition: all 500ms ease;
  }
 
  /* Preloader */
-
  .handle-preloader {
    align-items: center;
    -webkit-align-items: center;
@@ -386,7 +365,6 @@
    }
  }
 
-
  .centred {
    text-align: center;
  }
@@ -398,7 +376,6 @@
  .pull-right {
    float: right;
  }
-
 
  figure {
    margin: 0px;
@@ -415,7 +392,6 @@
  }
 
  /** button **/
-
  .theme-btn {
    @font-face {
      font-family: "Sans";
@@ -488,7 +464,6 @@
  .theme-btn.btn-three:hover {
    color: #ffffff;
  }
-
 
  .pagination {
    position: relative;
@@ -620,20 +595,12 @@
    color: #ffffff;
  }
 
-
-
-
  /*** 
-
 ====================================================================
                         Home-Page-One
 ====================================================================
-
 ***/
-
-
  /** main-header **/
-
  .main-header {
    position: relative;
    left: 0px;
@@ -692,7 +659,6 @@
  }
 
  /** header-top **/
-
  .header-top {
    position: relative;
    background-color: #1b1d21;
@@ -712,7 +678,6 @@
  .header-top .info li:last-child {
    margin: 0px !important;
  }
-
 
  .header-top .info li a {
    display: inline-block;
@@ -795,7 +760,6 @@
  }
 
  /** header-lower **/
-
  .header-lower {
    position: relative;
  }
@@ -826,9 +790,7 @@
    width: 100%;
  }
 
-
  /** main-menu **/
-
  .main-menu {
    float: left;
  }
@@ -1249,9 +1211,7 @@
    margin-bottom: 0px;
  }
 
-
  /** megamenu-style **/
-
  .main-menu .navigation>li.dropdown>.megamenu {
    position: absolute;
    width: 100%;
@@ -1265,9 +1225,7 @@
    margin-bottom: 10px;
  }
 
-
  /** mobile-menu **/
-
  .nav-outer .mobile-nav-toggler {
    position: relative;
    float: right;
@@ -1563,9 +1521,7 @@
    margin-top: 11px !important;
  }
 
-
  /** banner-section **/
-
  .banner-section {
    position: relative;
    width: 100%;
@@ -1919,9 +1875,7 @@
    position: relative;
  }
 
-
  /** category-section **/
-
  .category-section {
    position: relative;
    padding: 120px 0px 120px 0px;
@@ -2030,9 +1984,7 @@
    background-color: #e5f8ed;
  }
 
-
  /** feature-section **/
-
  .feature-section {
    position: relative;
  }
@@ -2376,9 +2328,7 @@
    margin-top: 50px;
  }
 
-
  /** video-section **/
-
  .video-section {
    position: relative;
    padding: 250px 0px;
@@ -2468,9 +2418,7 @@
    display: none !important;
  }
 
-
  /** deals-section **/
-
  .deals-section {
    position: relative;
  }
@@ -2718,9 +2666,7 @@
    margin-right: 10px;
  }
 
-
  /** testimonial-section **/
-
  .testimonial-section {
    position: relative;
    padding: 114px 0px 295px 0px;
@@ -2831,9 +2777,7 @@
    border-color: #ffffff;
  }
 
-
  /** chooseus-section **/
-
  .chooseus-section {
    position: relative;
  }
@@ -2934,9 +2878,7 @@
    color: rgba(255, 255, 255, 0.6);
  }
 
-
  /** place-section **/
-
  .place-section {
    position: relative;
    padding: 114px 0px 90px 0px;
@@ -3013,9 +2955,7 @@
    color: #93959e;
  }
 
-
  /** team-section **/
-
  .team-section {
    position: relative;
  }
@@ -3202,9 +3142,7 @@
    background-color: #1b1d21;
  }
 
-
  /** cta-section **/
-
  .cta-section {
    position: relative;
    padding: 95px 0px;
@@ -3262,9 +3200,7 @@
    }
  }
 
-
  /** news-section **/
-
  .news-section {
    position: relative;
  }
@@ -3440,9 +3376,7 @@
 
  .bg-color-3 {}
 
-
  /** download-section **/
-
  .download-section {
    position: relative;
  }
@@ -3553,9 +3487,7 @@
    margin-right: 7px;
  }
 
-
  /** main-footer **/
-
  .main-footer {
    position: relative;
  }
@@ -3750,18 +3682,12 @@
    display: none;
  }
 
-
  /*** 
-
 ====================================================================
                         Home-Page-Two
 ====================================================================
-
 ***/
-
-
  /** header-style-two **/
-
  .header-style-two {
    position: absolute;
    left: 0px;
@@ -3802,9 +3728,7 @@
    margin-right: 8px;
  }
 
-
  /** banner-style-two **/
-
  .banner-style-two {
    position: relative;
  }
@@ -3970,9 +3894,7 @@
  .banner-carousel .owl-dots .owl-dot.active span,
  .banner-carousel .owl-dots .owl-dot span:hover {}
 
-
  /** search-field-section **/
-
  .search-field-section {
    position: relative;
  }
@@ -3990,7 +3912,6 @@
    width: 100%;
    display: none;
  }
-
 
  .search-field-section .search-field .top-search .search-form {
    padding-right: 320px;
@@ -4030,9 +3951,7 @@
    transition: all 500ms ease;
  }
 
-
  /** feature-style-two **/
-
  .feature-style-two {
    position: relative;
  }
@@ -4067,7 +3986,6 @@
  .feature-style-two .owl-nav .owl-prev {
    margin-right: 10px;
  }
-
 
  .cta-section.alternate-2 {
    position: relative;
@@ -4108,9 +4026,7 @@
  .dots-style-one .owl-dots .owl-dot.active span,
  .dots-style-one .owl-dots .owl-dot span:hover {}
 
-
  /** deals-style-two **/
-
  .deals-style-two {
    position: relative;
  }
@@ -4319,9 +4235,7 @@
    background-color: #e8ded5;
  }
 
-
  /** testimonial-style-two **/
-
  .testimonial-style-two {
    position: relative;
    padding: 120px 0px;
@@ -4418,9 +4332,7 @@
    bottom: 27px;
  }
 
-
  /** place-style-two **/
-
  .place-style-two {
    position: relative;
  }
@@ -4521,9 +4433,7 @@
    right: 0px;
  }
 
-
  /** clients-section **/
-
  .clients-section {
    position: relative;
    padding: 114px 0px 75px 0px;
@@ -4574,9 +4484,7 @@
    margin-top: 5px;
  }
 
-
  /** subscribe-section **/
-
  .subscribe-section {
    position: relative;
    padding: 80px 0px 67px 0px;
@@ -4657,19 +4565,12 @@
    transition: all 500ms ease;
  }
 
-
-
  /*** 
-
 ====================================================================
                         Home-Page-Three
 ====================================================================
-
 ***/
-
-
  /** header-style-three **/
-
  .header-style-three .header-lower .main-menu .navigation>li {
    padding: 0px;
  }
@@ -4692,7 +4593,6 @@
  }
 
  /** location-section **/
-
  .location-section {
    position: relative;
  }
@@ -4884,9 +4784,7 @@
    top: 185px !important;
  }
 
-
  /** feature-style-three **/
-
  .feature-style-three {
    position: relative;
    padding-top: 115px;
@@ -4986,9 +4884,7 @@
    padding-bottom: 240px !important;
  }
 
-
  /** funfact-section **/
-
  .funfact-section {
    position: relative;
  }
@@ -5035,9 +4931,7 @@
    display: none;
  }
 
-
  /** testimonial-style-three **/
-
  .testimonial-style-three {
    position: relative;
    padding: 120px 0px;
@@ -5079,9 +4973,7 @@
    bottom: 70px;
  }
 
-
  /** pricing-section **/
-
  .pricing-section {
    position: relative;
  }
@@ -5210,9 +5102,7 @@
    margin-bottom: 50px;
  }
 
-
  /** contact-section **/
-
  .contact-section {
    position: relative;
    padding: 120px 0px;
@@ -5316,16 +5206,11 @@
    }
  }
 
-
-
  /*** 
-
 ====================================================================
                         Home-Page-Four
 ====================================================================
-
 ***/
-
  .page-content {
    position: relative;
    width: 100%;
@@ -5575,19 +5460,12 @@
    margin-bottom: 0px;
  }
 
-
-
-
  /*** 
-
 ====================================================================
                         Home-Page-Five
 ====================================================================
-
 ***/
-
  /** dark-header **/
-
  .dark-header,
  .dark-header .sticky-header {
    background-color: #1b1d21 !important;
@@ -5606,9 +5484,7 @@
    border-left: 1px solid rgba(255, 255, 255, 0.1);
  }
 
-
  /** banner-style-three **/
-
  .banner-style-three {
    position: relative;
    background-color: #191b1f;
@@ -5763,9 +5639,7 @@
    padding-bottom: 110px;
  }
 
-
  /** about-section **/
-
  .about-section {
    position: relative;
    padding: 120px 0px;
@@ -5891,9 +5765,7 @@
    box-shadow: 0 10px 30px 0px rgb(0 0 0 / 10%);
  }
 
-
  /** testimonial-style-four **/
-
  .testimonial-style-four {
    position: relative;
  }
@@ -5973,9 +5845,7 @@
    margin-top: 42px;
  }
 
-
  /** news-style-two **/
-
  .news-style-two {
    position: relative;
  }
@@ -6133,18 +6003,12 @@
    margin-bottom: 50px;
  }
 
-
-
  /*** 
-
 ====================================================================
                         Agents-Page
 ====================================================================
-
 ***/
-
  /** page-title **/
-
  .page-title {
    position: relative;
    width: 100%;
@@ -6210,9 +6074,7 @@
    display: none;
  }
 
-
  /** agents-page-section **/
-
  .agents-page-section {
    position: relative;
    padding: 120px 0px;
@@ -6299,7 +6161,6 @@
  .default-sidebar .category-widget .category-list li:last-child {
    margin-bottom: 0px;
  }
-
 
  .default-sidebar .category-widget .category-list li a {
    position: relative;
@@ -6689,9 +6550,7 @@
    border-radius: 10px;
  }
 
-
  /** agent-details **/
-
  .agent-details {
    position: relative;
    padding-top: 120px;
@@ -6854,16 +6713,11 @@
  .default-form input:focus,
  .default-form textarea:focus {}
 
-
-
  /*** 
-
 ====================================================================
                         Property-Page
 ====================================================================
-
 ***/
-
  .page-title-two {
    position: relative;
    padding: 60px 0px;
@@ -7019,9 +6873,7 @@
    background-repeat: no-repeat;
  }
 
-
  /** property-details **/
-
  .property-details {
    position: relative;
    padding: 120px 0px;
@@ -7775,9 +7627,7 @@
    margin-bottom: 0px;
  }
 
-
  /** mortgage-calculator **/
-
  .mortgage-calculator {
    position: relative;
    padding: 120px 0px 80px 0px;
@@ -8107,16 +7957,11 @@
    padding-bottom: 0px;
  }
 
-
-
  /*** 
-
 ====================================================================
                         About-Page
 ====================================================================
-
 ***/
-
  .about-section .inner-container {
    position: relative;
    padding-bottom: 120px;
@@ -8163,9 +8008,7 @@
    background-color: #17c7d2;
  }
 
-
  /** faq-page-section **/
-
  .faq-page-section {
    position: relative;
  }
@@ -8353,9 +8196,7 @@
    display: none;
  }
 
-
  /** properties-section **/
-
  .properties-section {
    position: relative;
    padding: 120px 0px;
@@ -8471,9 +8312,7 @@
    margin-bottom: 30px;
  }
 
-
  /** career-page-section **/
-
  .career-page-section {
    position: relative;
  }
@@ -8530,16 +8369,11 @@
    padding: 10.5px 30px;
  }
 
-
-
  /*** 
-
 ====================================================================
                         Gallery-Page
 ====================================================================
-
 ***/
-
  .gallery-style-one {
    position: relative;
    padding: 114px 0px 90px 0px;
@@ -8618,7 +8452,6 @@
    transform: translate(-50%, -50%) scale(1, 1);
  }
 
-
  .gallery-style-two {
    position: relative;
  }
@@ -8654,17 +8487,11 @@
    margin-top: 40px;
  }
 
-
-
  /*** 
-
 ====================================================================
                         MyProfile-Page
 ====================================================================
-
 ***/
-
-
  .myprofile-section {
    position: relative;
  }
@@ -8848,7 +8675,6 @@
    margin: 0px !important;
  }
 
-
  .myprofile-section .other-option .radio-box {
    position: relative;
    display: block;
@@ -8917,7 +8743,6 @@
    border-radius: 10px;
    overflow: hidden;
  }
-
 
  .ragister-section {
    position: relative;
@@ -9006,9 +8831,7 @@
    color: #ffffff;
  }
 
-
  /** error-section **/
-
  .error-section {
    position: relative;
    padding: 100px 0px 120px 0px;
@@ -9041,9 +8864,7 @@
    margin-bottom: 60px;
  }
 
-
  /** contact-info-section **/
-
  .contact-info-section {
    position: relative;
  }
@@ -9139,16 +8960,11 @@
    height: 540px;
  }
 
-
-
  /*** 
-
 ====================================================================
                         Agency-Page
 ====================================================================
-
 ***/
-
  .agency-content-side .agents-block-one .inner-box .image-box {
    border: 1px solid #e5e7ec;
    border-radius: 10px;
@@ -9164,15 +8980,11 @@
    border-radius: 10px;
  }
 
-
  /*** 
-
 ====================================================================
                         Blog-Page
 ====================================================================
-
 ***/
-
  .sidebar-page-container {
    position: relative;
  }
@@ -9654,9 +9466,7 @@
    background-color: #ffffff;
  }
 
-
  /** modify-css **/
-
  .advanced-search {
    position: absolute;
    right: 0px;

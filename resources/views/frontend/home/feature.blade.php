@@ -5,12 +5,15 @@
                 املاک ثبت شده</h5>
         </div>
         <div class="row clearfix">
+            @php
+            $property = App\Models\Property::where('status','1')->orderBy('id', 'DESC')->limit(3)->get();
+            @endphp
             @foreach ($property as $item)
             <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
                 <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><img src="{{ asset($item->property_thumbnail) }}" alt=""></figure>
+                            <figure class="image"><img style="height: 374px ;weight:320px" src="{{ asset($item->property_thumbnail) }}" alt=""></figure>
                             <span class="category">جدید</span></span>
                         </div>
                         <div class="lower-content">

@@ -39,6 +39,9 @@ Route::get('/dashboard', function () {
 
 Route::post('/frontend/requests/RequestForProperty', [RequestForPropertyController::class, 'RequestForPropertyStore'])->name('RequestForProperty.Store');
 Route::get('/frontend/requests/ShowRequestForProperty', [RequestForPropertyController::class, 'ShowRequest'])->name('ShowRequestForProperty.ShowRequest');
+Route::get('/frontend/contactUs', [IndexController::class, 'contactUs'])->name('contactUs');
+Route::post('/frontend/formForUs', [IndexController::class, 'formForUs'])->name('formForUs');
+Route::get('/frontend/formForUsShow', [IndexController::class, 'formForUs'])->name('formForUsShow');
 
 
 Route::middleware('auth')->group(function () {
@@ -229,7 +232,6 @@ Route::middleware(['auth', 'roles:agent'])->group(function () {
         Route::post('/agent/update/property/MultiImage', 'AgentUpdatePropertyMultiImage')->name('agent.update.property.MultiImage');
         Route::get('/agent/property/multiImg/delete/{id}', 'AgentPropertyMultiImgDelete')->name('agent.property.multiImg.delete');
         Route::post('/agent/store/new/MultiImage', 'AgentStoreNewMultiImage')->name('agent.store.new.MultiImage');
-        // Route::post('/agent/update/property/facilities', 'AgentUpdatePropertyFacilities')->name('agent.update.property.facilities');
         Route::get('/agent/details/property/{id}', 'AgentDetailsProperty')->name('agent.details.property');
         Route::get('/agent/delete/property/{id}', 'AgentDeleteProperty')->name('agent.delete.property');
         Route::get('/agent/property/message/', 'AgentPropertyMessage')->name('agent.property.message');
@@ -251,7 +253,7 @@ Route::middleware(['auth', 'roles:agent'])->group(function () {
     });
 }); // End Group Agent Middleware
 // Frontend Property Details All Route
-Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
+Route::get('/property/details/{id}', [IndexController::class, 'PropertyDetails']);
 Route::get('/frontend/type/all_type', [IndexController::class, 'FrontEndAllTypes'])->name('FrontEndAllTypes.index');
 
 Route::get('/frontend/kojanajafabad/', [IndexController::class, 'kojanajafabad'])->name('Index.kojanajafabad');

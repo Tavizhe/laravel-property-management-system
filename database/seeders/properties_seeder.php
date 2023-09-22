@@ -21,6 +21,7 @@ class properties_seeder extends Seeder
             if (!$firstLine) {
                 Property::create(
                     [
+                        'id'=>$data['19'],
                         'pType_id' => $data['1'],
                         'amenities_id' => $data['17'],
                         'property_name' => $data['0'],
@@ -32,7 +33,7 @@ class properties_seeder extends Seeder
                         'rent' => $data['21'],
                         'property_thumbnail' => $data['23'],
                         'short_desc' => $data['24'],
-                        'long_desc' => $data['17'],
+                        'long_desc' => $data['16'],
                         'bedrooms' => $data['7'],
                         'bathrooms' => $data['25'],
                         'garage' => $data['14'],

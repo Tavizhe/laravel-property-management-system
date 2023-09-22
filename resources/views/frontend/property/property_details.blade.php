@@ -51,6 +51,7 @@
                                         <h4>ملک برای {{ $property->property_status == 'rent' ? 'رهن و اجاره' : 'فروش' }}
                                             واقع در
                                             {{ $property->address }}</h4>
+                                            <br>
                                         <div class="right-column pull-right clearfix">
                                             <div class="price-inner clearfix">
                                                 <div class="price-box pull-right">
@@ -76,7 +77,7 @@
                                             </div><br>
                                             <hr>
                                             <h4 class="list clearfix">توضیحات:
-                                                <h6 class="list clearfix"> {!! $property->long_desc !!} </h6>
+                                                <h6 class="list clearfix"> {{ $property->long_desc }} </h6>
                                             </h4>
                                             <hr>
                                             <h4>امکانات ملک:</h4>
@@ -111,7 +112,7 @@
                                                             padding-left: 5px;
                                                         }
                                                     </style>
-                                                    <h6>تعداد خواب: {{ $bedrooms }}</h6>
+                                                    <h6>تعداد خواب: {{ $bedrooms }} مورد</h6>
                                                 </li>
                                                 @endif
                                                 @if($typeName)
@@ -158,7 +159,68 @@
                                                             padding-left: 5px;
                                                         }
                                                     </style>
-                                                    <h6>پارکینگ: {{ $garage }}</h6>
+                                                    <h6>پارکینگ: {{ $garage }} مورد</h6>
+                                                </li>
+                                                @endif
+                                                @if($property->Jahat)
+                                                <li style="display: flex;align-items: center;" class="float-end">
+                                                    <style>
+                                                        li.float-end::before {
+                                                            content: "•";
+                                                            color: black;
+                                                            padding-left: 5px;
+                                                        }
+                                                    </style>
+                                                    <h6>جهت: {{ $property->Jahat }}</h6>
+                                                </li>
+                                                @endif
+                                                @if($property->nama)
+                                                <li style="display: flex;align-items: center;" class="float-end">
+                                                    <style>
+                                                        li.float-end::before {
+                                                            content: "•";
+                                                            color: black;
+                                                            padding-left: 5px;
+                                                        }
+                                                    </style>
+                                                    <h6>نما: {{ $property->nama }}</h6>
+                                                </li>
+                                                @endif
+                                                @if($property->KafPush)
+                                                <li style="display: flex;align-items: center;" class="float-end">
+                                                    <style>
+                                                        li.float-end::before {
+                                                            content: "•";
+                                                            color: black;
+                                                            padding-left: 5px;
+                                                        }
+                                                    </style>
+                                                    <h6>کف پوش: {{ $property->KafPush }}</h6>
+                                                </li>
+                                                @endif
+                                                @if($property->ServiceKitchen)
+                                                <li style="display: flex;align-items: center;" class="float-end">
+                                                    <style>
+                                                        li.float-end::before {
+                                                            content: "•";
+                                                            color: black;
+                                                            padding-left: 5px;
+                                                        }
+                                                    </style>
+                                                    <h6>سرویس کابینت: {{ $property->ServiceKitchen }}</h6>
+                                                </li>
+                                                @endif
+                                                @if($property->VorudiMoshtarak)
+                                                <li style="display: flex;align-items: center;" class="float-end">
+                                                    <style>
+                                                        li.float-end::before {
+                                                            content: "•";
+                                                            color: black;
+                                                            padding-left: 5px;
+                                                        }
+                                                    </style>
+                                                    <h6>ورودی مشترک: @if($property->VorudiMoshtarak) دارد @else ندارد
+                                                        @endif</h6>
                                                 </li>
                                                 @endif
                                             </ul>
@@ -173,6 +235,18 @@
                                                 onclick="location.href='#film'">نمایش
                                                 فیلم</a>
                                                 @endif
+                                                @if (!$images && !$firstVideo)
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="location.href='#'">عکس و فیلم موجود نیست</a>
+                                                    @endif
+                                                    @if ($images && !$firstVideo)
+                                                    <button type="button" class="btn btn-primary"
+                                                        onclick="location.href='#'">فیلم موجود نیست</a>
+                                                        @endif
+                                                        @if (!$images && $firstVideo)
+                                                        <button type="button" class="btn btn-primary"
+                                                            onclick="location.href='#'">عکس موجود نیست</a>
+                                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
@@ -183,6 +257,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if($images)
                         <section id="image" class="top-details">
                             <h3>
                                 عکس های ملک:
@@ -218,27 +293,20 @@
                                 </a>
                             </div>
                         </section>
+                        @endif
+                        @if($firstVideo)
                         <section id="film" class="top-details">
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-8 col-md-10 col-sm-12">
-                                        <div class="statistics-box content-widget">
-                                            <div class="title-box">
-                                                <h4>فیلم ملک</h4>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <div class="embed-responsive embed-responsive-16by9">
-                                                    <video controls>
-                                                        <source src="{{ asset($firstVideo) }}" type="video/mp4">
-                                                        Your browser does not support the video tag.
-                                                    </video>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <h3>فیلم ملک:</h3>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <video controls>
+                                        <source src="{{ asset($firstVideo) }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
                                 </div>
                             </div>
                         </section>
+                        @endif
                     </div>
                 </div>
             </div>

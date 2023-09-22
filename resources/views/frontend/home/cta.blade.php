@@ -1,4 +1,4 @@
-<section class="cta-section bg-color-2">
+<section class="cta-section bg-color-2 pt-3 mt-3">
     <div class="pattern-layer"
         style=" pointer-events: none; background-image: url({{ asset('frontend/assets/images/shape/shape-2.png') }});">
     </div>

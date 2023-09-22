@@ -18,8 +18,8 @@ $setting = App\Models\SiteSetting::find(1);
             <div class="main-box">
                 <div class="logo-box">
                     <figure class="logo"><a href="{{ url('/') }}"><img
-                                style="width:140px; height:60px; padding: 1px 0px;"
-                                src="{{ asset($setting->logo) }}" alt=""></a>
+                                style="width:140px; height:60px; padding: 1px 0px;" src="{{ asset($setting->logo) }}"
+                                alt=""></a>
                     </figure>
                 </div>
                 <div class="menu-area clearfix">
@@ -32,13 +32,14 @@ $setting = App\Models\SiteSetting::find(1);
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li><a style="text-decoration: none" href="#contact-us"><span>تماس با ما</span></a></li>
+                                <li><a style="text-decoration: none" href="{{ route('contactUs') }}"><span>تماس با
+                                            ما</span></a></li>
                                 <li><a style="text-decoration: none"
                                         href="{{ route('blog.list') }}"><span>مقالات</span></a></li>
                                 <li><a style="text-decoration: none"
                                         href="{{ route('Index.kojanajafabad') }}"><span>کارشناسی ملک</span></a></li>
                                 <li><a style="text-decoration: none"
-                                        href="{{ route('ShowRequestForProperty.ShowRequest') }}"><span>ثبت درخواست
+                                        href="{{ route('formForUs') }}"><span>ثبت درخواست
                                             ملک</span></a></li>
                                 <li class="dropdown">
                                     <a style="text-decoration: none"

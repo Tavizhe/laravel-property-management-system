@@ -44,7 +44,7 @@ $property = App\Models\Property::where('status', '1')
                                         {{ $item->property_status }}</a></div>
                             </div>
                             <div class="title-text">
-                                <h4><a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{
+                                <h4><a href="{{ url('property/details/' . $item->id) }}">{{
                                         $item->property_name }}</a>
                                 </h4>
                             </div>
@@ -67,8 +67,7 @@ $property = App\Models\Property::where('status', '1')
                                 <li><i class="icon-15"></i>{{ $item->bathrooms }} Baths</li>
                                 <li><i class="icon-16"></i>{{ $item->property_size }} Sq Ft</li>
                             </ul>
-                            <div class="btn-box"><a
-                                    href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                            <div class="btn-box"><a href="{{ url('property/details/' . $item->id) }}"
                                     class="theme-btn btn-two">See Details</a></div>
                         </div>
                     </div>

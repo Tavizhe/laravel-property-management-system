@@ -46,8 +46,7 @@
                                     </div>
                                     <div class="lower-content">
                                         <div class="title-text">
-                                            <h4><a
-                                                    href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{
+                                            <h4><a href="{{ url('property/details/' . $item->id) }}">{{
                                                     $item->property_name }}</a>
                                             </h4>
                                         </div>
@@ -111,7 +110,7 @@
                                     <hr>
                                     <div class="row justify-content-center">
                                         <div class="col-md-12 text-center">
-                                            <a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                            <a href="{{ url('property/details/' . $item->id) }}"
                                                 class="btn btn-primary p-2">نمایش اطلاعات بیشتر</a>
                                         </div>
                                     </div>

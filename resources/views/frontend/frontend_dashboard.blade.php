@@ -142,7 +142,7 @@
                 })
             }
     </script>
-    <!-- // start load Wishlist Data  -->   
+    <!-- // start load Wishlist Data  -->
 </body><!-- End of .page_wrapper -->
 
 </html>

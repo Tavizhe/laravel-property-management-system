@@ -20,20 +20,22 @@
         z-index: -1;
     }
 </style>
-<section class="page-title-two bg-color-1 centred">
-    <div class="pattern-layer">
-        <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});">
-        </div>
-        <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});">
-        </div>
+
+<section class="page-title-two cta-section bg-color-2 centred">
+    <div class="pattern-layer"
+        style="pointer-events: none; background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }})">
     </div>
     <div class="auto-container">
         <div class="content-box clearfix">
-            <h1>املاک</h1>
-            <ul class="">
-                <li><a href="{{ route('home') }}">خانه</a></li>
-                <li>لیست کلیه املاک</li>
-            </ul>
+            <a style="font-size: 24px;" href="#">لیست کلیه املاک</a>
+            <div class="text-center">
+                <nav aria-label="bread-crumb">
+                    <ol class="bread-crumb">
+                        <li><a href="{{ route('home') }}">خانه</a></li>
+                        <li>لیست کلیه املاک</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
     </div>
 </section>
@@ -102,7 +104,7 @@
                                         <div class="author-info clearfix">
                                             <div class="title-text">
                                                 <h4><a style="text-decoration: none;"
-                                                        href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">کد:
+                                                        href="{{ url('property/details/' . $item->id) }}">کد:
                                                         {{ $item->property_name }}</a>
                                                     <div class="buy-btn pull-left">
                                                         <a style="color: white; text-decoration: none;">{{
@@ -113,7 +115,8 @@
                                                         <button class="btn btn-primary float-end m-2">برای: {{ $status
                                                             }}</button>
                                                         <button class="btn btn-primary float-end m-2">
-                                                            <a>{{
+                                                            <a style="color:white"
+                                                                href="{{ url('/property/type' . '/' . $item->type->id) }}">{{
                                                                 $item->type->type_name }}</a>
                                                         </button>
                                                     </div>
@@ -185,7 +188,7 @@
                                     <hr>
                                     <div class="row justify-content-center">
                                         <div class="col-md-12 text-center">
-                                            <a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                            <a href="{{ url('property/details/' . $item->id) }}"
                                                 class="btn btn-primary p-2">نمایش اطلاعات بیشتر</a>
                                         </div>
                                     </div>
@@ -194,11 +197,13 @@
                             @endforeach
                         </div>
                     </div>
-                    <nav class="pagination-wrapper">
-                        <ul class="pagination justify-content-center">
-                            {{ $properties->links('vendor.pagination.custom') }}
-                        </ul>
-                    </nav>
+                    <div class="d-flex justify-content-center">
+                        <nav class="pagination-wrapper">
+                            <ul class="pagination">
+                                {{ $properties->onEachSide(0)->links('vendor.pagination.custom') }}
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>

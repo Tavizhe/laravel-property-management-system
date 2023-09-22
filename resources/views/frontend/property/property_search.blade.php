@@ -1,20 +1,21 @@
 @extends('frontend.frontend_dashboard')
 @section('main')
 <!--Page Title-->
-<section class="page-title-two bg-color-1 centred">
-    <div class="pattern-layer">
-        <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});">
-        </div>
-        <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});">
-        </div>
+<section class="page-title-two cta-section bg-color-2 centred">
+    <div class="pattern-layer"
+        style="pointer-events: none; background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }})">
     </div>
     <div class="auto-container">
         <div class="content-box clearfix">
-            <h1> Property Search </h1>
-            <ul class="">
-                <li><a href="{{ route('home') }}">خانه</a></li>
-                <li>Property Search</li>
-            </ul>
+            <a style="font-size: 24px;" href="#">جستجوی ملک</a>
+            <div class="text-center">
+                <nav aria-label="bread-crumb">
+                    <ol class="bread-crumb">
+                        <li><a href="{{ route('home') }}">خانه</a></li>
+                        <li>نتیجه جستجو</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
     </div>
 </section>
@@ -43,8 +44,7 @@
                                     </div>
                                     <div class="lower-content">
                                         <div class="title-text">
-                                            <h4><a
-                                                    href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">{{
+                                            <h4><a href="{{ url('property/details/' . $item->id) }}">{{
                                                     $item->property_name }}</a>
                                             </h4>
                                         </div>
@@ -98,14 +98,14 @@
                                     <hr>
                                     <div class="row justify-content-center">
                                         <div class="col-md-12 text-center">
-                                            <a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                            <a href="{{ url('property/details/' . $item->id) }}"
                                                 class="btn btn-primary p-2">نمایش اطلاعات بیشتر</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
-                        </div>                       
+                        </div>
                     </div>
                 </div>
             </div>

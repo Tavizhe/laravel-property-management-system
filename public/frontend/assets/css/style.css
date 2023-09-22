@@ -1521,6 +1521,7 @@
    background-repeat: no-repeat;
    background-position: bottom center;
    padding-top: 10px;
+   padding-bottom: 10px;
  }
 
  .banner-section:before {
@@ -1627,13 +1628,18 @@
    position: relative;
    display: block;
    background-color: #ffffff;
-   border-radius: 5px;
+   border-radius: 50px;
    box-shadow: 0 15px 50px 0px rgb(0 0 0 / 10%);
  }
 
  .search-field .top-search .search-form {
    position: relative;
-   padding: 25px 170px 32px 40px;
+   position: relative;
+   display: block;
+   background-color: #ffffff;
+   border-radius: 50px;
+   box-shadow: 0 15px 50px 0px rgb(0 0 0 / 10%);
+   padding: 10px 25px 10px 25px;
  }
 
  .search-field .top-search .form-group {
@@ -1658,7 +1664,7 @@
    height: 50px;
    border: 1px solid #e5e7ec;
    border-radius: 5px;
-   padding: 10px 20px 10px 50px;
+   padding: 10px 0px 10px 50px;
    font-size: 14px;
    color: #808288;
    transition: all 500ms ease;
@@ -1746,16 +1752,53 @@
    text-align: center;
    text-transform: uppercase;
    background-color: #ffffff;
-   border-radius: 5px 5px 0px 0px;
+   border-radius: 50px;
    width: 120px;
-   padding: 10px 10px;
+   padding: 10px;
    cursor: pointer;
    transition: all 500ms ease;
+   top: -20px;
+   margin-right: 10px;
  }
 
- .search-field .tab-btn-box li.active-btn {
-   color: #ffffff;
+ .search-field .tab-btn-box li:before {
+   content: "";
+   position: absolute;
+   left: calc(50% - 10px);
+   bottom: -10px;
  }
+
+
+
+ .search-field .tab-btn-box li.active-btn {
+   position: relative;
+   display: inline-block;
+   font-size: 15px;
+   line-height: 26px;
+   font-weight: 500;
+   color: white;
+   text-align: center;
+   text-transform: uppercase;
+   background-color: #FFA600;
+   border-radius: 5px 5px 5px 5px;
+   width: 120px;
+   padding: 10px;
+   cursor: pointer;
+   transition: all 500ms ease;
+   top: -20px;
+
+ }
+
+ .search-field .tab-btn-box li.active-btn:after {
+   content: "";
+   position: absolute;
+   border-left: 10px solid transparent;
+   border-right: 10px solid transparent;
+   border-top: 10px solid #FFA600;
+   left: calc(50% - 10px);
+   bottom: -10px;
+ }
+
 
  .search-field .advanced-search-text {
    position: relative;

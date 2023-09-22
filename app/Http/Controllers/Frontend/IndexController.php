@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\amenities;
+use App\Models\formForUs;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat\NumberFormatter;
 use App\Models\MultiImage;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
-    public function PropertyDetails($id, $slug, Request $request)
+    public function PropertyDetails($id, Request $request)
     {
         $property = Property::findOrFail($id);
         $property2 = Property::where('id', $id)->get();
@@ -220,5 +221,38 @@ class IndexController extends Controller
         $types = PropertyType::latest()->get();
         $count = Property::count();
         return view('frontend.type.all_type', compact('types', 'properties', 'count'));
+    }
+    public function contactUs()
+    {
+        return view('frontend.contactUs');
+    }
+    public function formForUs(Request $request)
+    {
+        $formForUs = formForUs::insert([
+            'pType_id' => $request->pType_id,
+            'property_name' => $request->property_name,
+            'property_slug' => strtolower(str_replace(' ', '-', $request->property_name)),
+            'property_status' => $request->property_status,
+            'lowest_price' => $request->lowest_price,
+            'house_mortgage' => $request->house_mortgage,
+            'rent' => $request->rent,
+            'short_desc' => $request->short_desc,
+            'long_desc' => $request->long_desc,
+            'bedrooms' => $request->bedrooms,
+            'bathrooms' => $request->bathrooms,
+            'garage' => $request->garage,
+            'foundation_size' => $request->foundation_size,
+            'property_size' => $request->property_size,
+            'property_video' => $request->property_video,
+            'address' => $request->address,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'featured' => $request->featured,
+            'hot' => $request->hot,
+            'agent_id' => $request->agent_id,
+            'status' => 1,
+            'created_at' => Carbon::now(),
+        ]);
+        return view('frontend.formForUs', compact('types', 'properties', 'count'));
     }
 }

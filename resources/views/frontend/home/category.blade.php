@@ -39,7 +39,7 @@ $ptype = App\Models\PropertyType::latest()
                                     class="position-absolute top-50 start-50 translate-middle text-center">
                                     <i class="{{ $icons[$i] }}" style="font-size: 40px; color:black"></i>
                                     <br>
-                                    <h6 class="underline-on-hover">{{ $text[$i] }}</h6>
+                                    <h6 style="font-weight: bold;font-size: 15px" class="underline-on-hover">{{ $text[$i] }}</h6>
                                 </a>
                             </div>
                         </div>

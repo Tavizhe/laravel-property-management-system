@@ -13,20 +13,21 @@
                 <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="inner-box">
                         <div class="image-box">
-                            <figure class="image"><img style="height: 374px ;weight:320px" src="{{ asset($item->property_thumbnail) }}" alt=""></figure>
+                            <figure class="image"><img style="height: 374px ;weight:320px"
+                                    src="{{ asset($item->property_thumbnail) }}" alt=""></figure>
                             <span class="category">جدید</span></span>
                         </div>
                         <div class="lower-content">
                             <div class="author-info clearfix">
                                 <div class="title-text text-center">
                                     <h4><a style="text-decoration: none;"
-                                            href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">کد:
+                                            href="{{ url('property/details/' . $item->id) }}">کد:
                                             {{ $item->property_name }}</a></h4>
                                 </div>
                                 <hr>
                                 <div class="buy-btn pull-left">
                                     <a
-                                        href="{{ url('property/details/' . $item->id . '/' . $item->property_slug, $item->type) }}">{{
+                                        href="{{ url('/property/type' . '/' . $item->type->id) }}">{{
                                         $item->type->type_name }}</a>
                                 </div>
                                 @php
@@ -69,7 +70,7 @@
                                 <br>
                                 <div class="row justify-content-center">
                                     <div class="col-md-12 text-center">
-                                        <a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                        <a href="{{ url('property/details/' . $item->id) }}"
                                             class="btn btn-primary p-2">نمایش اطلاعات بیشتر</a>
                                     </div>
                                 </div>

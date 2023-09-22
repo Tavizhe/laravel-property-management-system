@@ -64,7 +64,7 @@
                                         <div class="author-info clearfix">
                                             <div class="title-text">
                                                 <h4><a style="text-decoration: none;"
-                                                        href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}">کد:
+                                                        href="{{ url('property/details/' . $item->id) }}">کد:
                                                         {{ $item->property_name }}</a>
                                                     <div class="buy-btn pull-left">
                                                         <a style="color: white; text-decoration: none;">{{
@@ -133,7 +133,7 @@
                                     <hr>
                                     <div class="row justify-content-center">
                                         <div class="col-md-12 text-center">
-                                            <a href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                            <a href="{{ url('property/details/' . $item->id) }}"
                                                 class="btn btn-primary p-2">نمایش اطلاعات بیشتر</a>
                                         </div>
                                     </div>

@@ -5,13 +5,21 @@ MellkGostar Real Estate
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 @section('main')
 <!--Page Title-->
-<section class="page-title-two bg-color-1 centred">
+<section class="page-title-two cta-section bg-color-2 centred">
+    <div class="pattern-layer"
+        style="pointer-events: none; background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }})">
+    </div>
     <div class="auto-container">
         <div class="content-box clearfix">
-            <h1>فرم درخواست ملک</h1>
-            <ul class="">
-                <li><a href="{{ route('home') }}">خانه</a></li>
-            </ul>
+            <a style="font-size: 24px;" href="#">فرم درخواست ملک</a>
+            <div class="text-center">
+                <nav aria-label="bread-crumb">
+                    <ol class="bread-crumb">
+                        <li><a href="{{ route('home') }}">خانه</a></li>
+                        <li>فرم درخواست ملک</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
     </div>
 </section>

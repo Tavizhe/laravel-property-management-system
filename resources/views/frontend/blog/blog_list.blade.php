@@ -5,24 +5,30 @@ Blog | املاک ملک گستر
 @endsection
 
 <!--Page Title-->
-<section class="page-title-two bg-color-1 centred">
-    <div class="pattern-layer">
-        <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});">
-        </div>
-        <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});">
-        </div>
+<section class="page-title-two cta-section bg-color-2 centred">
+    <div class="pattern-layer"
+        style="pointer-events: none; background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }})">
     </div>
     <div class="auto-container">
         <div class="content-box clearfix">
-            <h1>مقالات</h1>
-            <ul class="">
-                <li><a href="{{ route('home') }}">خانه</a></li>
-                <li>وبلاگ</li>
-            </ul>
+            <a style="font-size: 24px;" href="#">مقالات</a>
+            <div class="text-center">
+                <nav aria-label="bread-crumb">
+                    <ol class="bread-crumb">
+                        <li><a href="{{ route('home') }}">خانه</a></li>
+                        <li>وبلاگ</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
     </div>
 </section>
 <!--End Page Title-->
+<section class="property-page-section property-list d-flex align-items-center justify-content-center">
+    <div class="row">
+        <h2>به زودی</h2>
+    </div>
+</section>
 
 <!-- sidebar-page-container -->
 <section class="sidebar-page-container blog-grid sec-pad-2">
@@ -44,7 +50,8 @@ Blog | املاک ملک گستر
                                         <span class="category">Featured</span>
                                     </div>
                                     <div class="lower-content">
-                                        <h4><a href="{{ url('blog/details/' . $item->post_slug) }}">{{ $item->post_title
+                                        <h4><a href="{{ url('blog/details/' . $item->post_slug) }}">{{
+                                                $item->post_title
                                                 }}</a>
                                         </h4>
                                         <ul class="post-info clearfix">

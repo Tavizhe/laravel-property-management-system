@@ -4,20 +4,21 @@
 املاک رهنی | املاک ملک گستر
 @endsection
 <!--Page Title-->
-<section class="page-title-two bg-color-1 centred">
-    <div class="pattern-layer">
-        <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});">
-        </div>
-        <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});">
-        </div>
+<section class="page-title-two cta-section bg-color-2 centred">
+    <div class="pattern-layer"
+        style="pointer-events: none; background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});">
     </div>
     <div class="auto-container">
         <div class="content-box clearfix">
-            <h1>املاک برای رهن و اجاره</h1>
-            <ul class="">
-                <li><a href="{{ route('home') }}">خانه</a></li>
-                <li>لیست املاک رهنی</li>
-            </ul>
+            <a style="font-size: 24px" href="#">املاک برای رهن و اجاره</a>
+            <div class="text-center">
+                <nav aria-label="bread-crumb">
+                    <ol class="bread-crumb">
+                        <li class="bread-crumb-item"><a href="{{ route('home') }}">خانه</a></li>
+                        <li class="bread-crumb-item active" aria-current="page">لیست املاک رهنی</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
     </div>
 </section>
@@ -144,11 +145,13 @@
                 </div>
             </div>
         </div>
-        <nav class="pagination-wrapper">
-            <ul class="pagination justify-content-center">
-                {{ $property->links('vendor.pagination.custom') }}
-            </ul>
-        </nav>
+        <div class="d-flex justify-content-center">
+            <nav class="pagination-wrapper">
+                <ul class="pagination">
+                    {{ $property->onEachSide(0)->links('vendor.pagination.custom') }}
+                </ul>
+            </nav>
+        </div>
     </div>
 </section>
 @endsection

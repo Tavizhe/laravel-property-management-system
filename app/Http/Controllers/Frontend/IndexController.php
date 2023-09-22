@@ -135,7 +135,8 @@ class IndexController extends Controller
     public function PropertyType($id)
     {
         $property = Property::where('status', '1')->where('pType_id', $id)->orderByDesc('id')->paginate(5);
-        return view('frontend.property.property_type', compact('property'));
+        $id = Property::where('status', '1')->where('pType_id', $id)->get();
+        return view('frontend.property.property_type', compact('property', 'id'));
     }
     public function rentProperty()
     {

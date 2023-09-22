@@ -17,7 +17,8 @@ $setting = App\Models\SiteSetting::find(1);
         <div class="outer-box">
             <div class="main-box">
                 <div class="logo-box">
-                    <figure class="logo"><a href="{{ url('/') }}"><img style="width:140px; height:60px;"
+                    <figure class="logo"><a href="{{ url('/') }}"><img
+                                style="width:140px; height:60px; padding: 1px 0px;"
                                 src="{{ asset($setting->logo) }}" alt=""></a>
                     </figure>
                 </div>
@@ -62,14 +63,9 @@ $setting = App\Models\SiteSetting::find(1);
     <!-- sticky Header -->
     <div class="sticky-header">
         <div class="outer-box">
-            <div class="main-box">
-                <div class="logo-box">
-                    <figure class="logo"><a href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}" alt=""></a>
-                    </figure>
-                </div>
+            <div class="main-box justify-content-center">
                 <div class="menu-area clearfix center">
-                    <nav class="main-menu clearfix">
-                    </nav>
+                    <nav class="main-menu clearfix navbar navbar-expand-lg"></nav>
                 </div>
             </div>
         </div>

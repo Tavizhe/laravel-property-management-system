@@ -217,7 +217,7 @@
  .preloader-close {
    position: fixed;
    z-index: 99999999;
-   font-size: 20px;
+   font-size: 16px;
    width: 40px;
    height: 40px;
    line-height: 40px;
@@ -400,7 +400,7 @@
      display: inline-block;
      overflow: hidden;
      vertical-align: middle;
-     font-size: 17px;
+     font-s.inner-containerize: 17px;
      line-height: 25px;
      font-weight: 500;
      text-align: center;
@@ -508,13 +508,7 @@
    font-weight: 700;
  }
 
- .sec-pad {
-   padding: 114px 0px 120px 0px;
- }
 
- .sec-pad-2 {
-   padding: 120px 0px;
- }
 
  .mr-0 {
    margin: 0px !important;
@@ -571,7 +565,7 @@
  .sec-title {
    position: relative;
    display: block;
-   margin-bottom: 40px;
+   margin-bottom: 10px;
  }
 
  .sec-title h5 {
@@ -662,7 +656,6 @@
  .header-top {
    position: relative;
    background-color: #1b1d21;
-   padding: 11.5px 70px;
  }
 
  .header-top .info li {
@@ -766,7 +759,6 @@
 
  .main-header .outer-box {
    position: relative;
-   padding: 0px 70px;
  }
 
  .main-header .outer-box .main-box {
@@ -774,12 +766,10 @@
    display: flex;
    flex-wrap: wrap;
    align-items: center;
-   justify-content: space-between;
  }
 
  .main-header .logo-box {
    position: relative;
-   padding: 27.5px 0px;
  }
 
  .main-header .logo-box .logo {
@@ -1481,7 +1471,7 @@
 
  .mobile-menu .contact-info h4 {
    position: relative;
-   font-size: 20px;
+   font-size: 16px;
    color: #ffffff;
    font-weight: 700;
    margin-bottom: 20px;
@@ -1511,6 +1501,8 @@
 
  .main-header .sticky-header .logo-box {
    padding: 15.5px 0px !important;
+   width: 140px;
+   height: 60px;
  }
 
  .main-header .sticky-header .navigation>li {
@@ -1528,8 +1520,7 @@
    background-size: cover;
    background-repeat: no-repeat;
    background-position: bottom center;
-   padding-top: 150px;
-   padding-bottom: 60px;
+   padding-top: 10px;
  }
 
  .banner-section:before {
@@ -1546,7 +1537,7 @@
  .banner-section .content-box {
    position: relative;
    display: block;
-   margin-bottom: 100px;
+   margin-bottom: 10px;
  }
 
  .banner-section .content-box h2 {
@@ -1560,7 +1551,7 @@
  }
 
  .banner-section .content-box p {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    color: #ffffff;
  }
@@ -1873,12 +1864,14 @@
 
  .banner-section .inner-container {
    position: relative;
+   height: 350px;
+   width: 100%;
  }
 
  /** category-section **/
  .category-section {
    position: relative;
-   padding: 120px 0px 120px 0px;
+   padding: 10px 0px 10px 0px;
    background-color: #ffffff;
  }
 
@@ -2207,7 +2200,7 @@
  .feature-block-one .inner-box .lower-content .title-text h4 {
    position: relative;
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 28px;
    font-weight: 500;
    margin-bottom: 7px;
@@ -2229,7 +2222,7 @@
  }
 
  .feature-block-one .inner-box .lower-content .price-box .price-info h4 {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 24px;
    font-weight: 500;
  }
@@ -2253,7 +2246,7 @@
    line-height: 40px;
    border: 1px solid #e5e7ec;
    border-radius: 4px;
-   font-size: 20px;
+   font-size: 16px;
    color: #a6a7af;
    text-align: center;
  }
@@ -2490,7 +2483,7 @@
  .deals-block-one .inner-box .lower-content .title-text h4 {
    position: relative;
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 28px;
    font-weight: 500;
    margin-bottom: 7px;
@@ -2512,7 +2505,7 @@
  }
 
  .deals-block-one .inner-box .lower-content .price-box .price-info h4 {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 24px;
    font-weight: 500;
  }
@@ -2536,7 +2529,7 @@
    line-height: 40px;
    border: 1px solid #e5e7ec;
    border-radius: 4px;
-   font-size: 20px;
+   font-size: 16px;
    color: #a6a7af;
    text-align: center;
  }
@@ -2644,7 +2637,7 @@
    border: 1px solid #e5e7ec;
    border-radius: 5px;
    text-align: center;
-   font-size: 20px;
+   font-size: 16px;
    color: #9799a2;
    background: transparent;
    cursor: pointer;
@@ -2734,14 +2727,14 @@
  }
 
  .testimonial-block-one .inner-box .text p {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 34px;
    color: #2d2929;
  }
 
  .testimonial-block-one .inner-box .author-info h4 {
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 1px;
@@ -2867,7 +2860,7 @@
  .chooseus-block-one .inner-box h4 {
    position: relative;
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    color: #ffffff;
    font-weight: 700;
@@ -2937,7 +2930,7 @@
  .place-block-one .inner-box .text h4 {
    position: relative;
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 1px;
@@ -3074,7 +3067,7 @@
 
  .team-block-one .inner-box .lower-content .inner h4 {
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 32px;
    font-weight: 500;
    margin-bottom: 5px;
@@ -3145,7 +3138,7 @@
  /** cta-section **/
  .cta-section {
    position: relative;
-   padding: 95px 0px;
+   padding-bottom: 10px;
  }
 
  .cta-section .text h2 {
@@ -3286,7 +3279,7 @@
  .news-block-one .inner-box .lower-content h4 {
    position: relative;
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 17px;
@@ -3473,7 +3466,7 @@
  }
 
  .content_block_1 .content-box .download-btn a h4 {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 24px;
    font-weight: 500;
    transition: all 500ms ease;
@@ -3494,7 +3487,7 @@
 
  .footer-top {
    position: relative;
-   padding: 115px 0px 120px 0px;
+   padding-top: 10px;
  }
 
  .footer-top .widget-title {
@@ -3618,7 +3611,7 @@
    position: absolute;
    left: 0px;
    top: 2px;
-   font-size: 20px;
+   font-size: 16px;
  }
 
  .footer-top .contact-widget .info-list li a {
@@ -3838,7 +3831,7 @@
    position: relative;
    display: block;
    color: #fff;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    opacity: 0;
    -webkit-transform: translateY(100px);
@@ -4312,7 +4305,7 @@
 
  .testimonial-block-two .inner-box .author-info h4 {
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 2px;
@@ -4861,7 +4854,7 @@
  .owl-item:nth-child(2n+1) .feature-block-two .inner-box .icon-box:before {}
 
  .feature-block-two .inner-box h4 {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 21px;
@@ -4999,7 +4992,7 @@
 
  .pricing-block-one .pricing-table .table-header h4 {
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    color: #ffffff;
    font-weight: 500;
@@ -5707,7 +5700,7 @@
 
  .image_block_2 .image-box .text h4 {
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    color: #ffffff;
    font-weight: 500;
@@ -5819,7 +5812,7 @@
 
  .testimonial-block-three .inner-box h4 {
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 36px;
    font-weight: 500;
    margin-bottom: 19px;
@@ -5827,7 +5820,7 @@
 
  .testimonial-block-three .inner-box h5 {
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 36px;
    font-weight: 500;
    margin-bottom: 0px;
@@ -5978,7 +5971,7 @@
 
  .news-block-two .inner-box .content-box h4 {
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 17px;
@@ -6042,7 +6035,7 @@
  .page-title .bread-crumb li {
    position: relative;
    display: inline-block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    color: #ffffff;
    padding-right: 15px;
@@ -6314,7 +6307,7 @@
  .agents-block-one .inner-box .content-box .title-inner h4 {
    position: relative;
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 2px;
@@ -6469,7 +6462,7 @@
  .agents-block-two .inner-box .content-box .title-inner h4 {
    position: relative;
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 2px;
@@ -6720,7 +6713,7 @@
 ***/
  .page-title-two {
    position: relative;
-   padding: 60px 0px;
+   padding: 35px 0px;
  }
 
  .page-title-two h1 {
@@ -6729,6 +6722,7 @@
    line-height: 50px;
    font-weight: 500;
    margin-bottom: 12px;
+   color: goldenrod;
  }
 
  .page-title-two .bread-crumb li {
@@ -6753,7 +6747,7 @@
 
  .page-title-two .bread-crumb li:before {
    position: absolute;
-   content: "\f105";
+   /* content: "\f105 */
    font-family: 'Font Awesome 5 Pro';
    font-weight: 700;
    top: 0px;
@@ -6876,7 +6870,6 @@
  /** property-details **/
  .property-details {
    position: relative;
-   padding: 120px 0px;
  }
 
  .property-details .top-details {
@@ -7014,7 +7007,7 @@
    line-height: 40px;
    border: 1px solid #e5e7ec;
    border-radius: 3px;
-   font-size: 20px;
+   font-size: 16px;
    color: #989aa3;
    text-align: center;
  }
@@ -7120,7 +7113,7 @@
  }
 
  .property-details-content .title-box h4 {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
  }
@@ -7558,7 +7551,7 @@
  }
 
  .property-sidebar .author-widget .author-box .inner h4 {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 8px;
@@ -7796,7 +7789,7 @@
  }
 
  .property-sidebar .calculator-widget h4 {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
  }
@@ -7826,7 +7819,7 @@
  }
 
  .property-details .similar-content .title h4 {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
  }
@@ -8157,7 +8150,7 @@
    position: relative;
    display: inline-block;
    width: 135px;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 40px;
    font-weight: 500;
    color: #2d2929;
@@ -8343,13 +8336,13 @@
  }
 
  .career-page-section .accordion-box .block .acc-btn h5 {
-   font-size: 20px;
+   font-size: 16px;
  }
 
  .career-page-section .accordion-box .content-box h4 {
    position: relative;
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 19px;
@@ -8569,7 +8562,7 @@
    position: relative;
    display: block;
    padding-left: 42px;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 25px;
@@ -8760,7 +8753,7 @@
  .ragister-section .inner-box h4 {
    display: block;
    text-align: left;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 26px;
@@ -8928,7 +8921,7 @@
  }
 
  .info-block-one .inner-box h4 {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
    margin-bottom: 21px;
@@ -9023,7 +9016,7 @@
  }
 
  .blog-sidebar .sidebar-widget .widget-title h4 {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
  }
@@ -9288,7 +9281,7 @@
 
  .blog-details-content .news-block-one .inner-box .lower-content .text blockquote h4 {
    display: block;
-   font-size: 20px;
+   font-size: 16px;
    line-height: 34px;
    font-weight: 500;
    font-style: italic;
@@ -9344,7 +9337,7 @@
  }
 
  .blog-details-content .group-title h4 {
-   font-size: 20px;
+   font-size: 16px;
    line-height: 30px;
    font-weight: 500;
  }
@@ -9451,7 +9444,7 @@
    border-bottom: 1px solid #e5e7ec !important;
    border-radius: 0px !important;
    padding: 10px 0px !important;
-   font-size: 16px !important;
+   font-size: 16px;
  }
 
  .comment-form .form-group.message-btn {
@@ -9496,7 +9489,7 @@
    position: relative;
    display: block;
    text-align: right;
-   margin-top: 14px;
+   /* margin-top: 14px; */
  }
 
  .banner-section .switch_btn_one .nav-btn {
@@ -9525,7 +9518,7 @@
 
  .banner-section .switch_btn_one .nav-btn:before {
    position: absolute;
-   content: "\f055";
+   /* content: "\f055"; */
    font-family: 'Font Awesome 5 Pro';
    left: 0px;
    top: 0px;

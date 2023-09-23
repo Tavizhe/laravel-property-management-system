@@ -32,14 +32,14 @@ $setting = App\Models\SiteSetting::find(1);
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li><a style="text-decoration: none" href="{{ route('contactUs') }}"><span>تماس با
+                                <li><a style="text-decoration: none" href="#contact-us"><span>تماس با
                                             ما</span></a></li>
                                 <li><a style="text-decoration: none"
                                         href="{{ route('blog.list') }}"><span>مقالات</span></a></li>
                                 <li><a style="text-decoration: none"
                                         href="{{ route('Index.kojanajafabad') }}"><span>کارشناسی ملک</span></a></li>
                                 <li><a style="text-decoration: none"
-                                        href="{{ route('formForUs') }}"><span>ثبت درخواست
+                                        href="{{ route('formForUsShow') }}"><span>ثبت درخواست
                                             ملک</span></a></li>
                                 <li class="dropdown">
                                     <a style="text-decoration: none"

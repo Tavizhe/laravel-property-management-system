@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('formForUs', function (Blueprint $table) {
+        Schema::create('form_for_us', function (Blueprint $table) {
             $table->id();
             $table->string('owner')->nullable();
             $table->string('phone')->nullable();

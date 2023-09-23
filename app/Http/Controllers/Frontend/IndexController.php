@@ -222,37 +222,30 @@ class IndexController extends Controller
         $count = Property::count();
         return view('frontend.type.all_type', compact('types', 'properties', 'count'));
     }
-    public function contactUs()
+    public function formForUsShow()
     {
-        return view('frontend.contactUs');
+        return view('frontend.formForUsShow');
     }
     public function formForUs(Request $request)
     {
         $formForUs = formForUs::insert([
-            'pType_id' => $request->pType_id,
-            'property_name' => $request->property_name,
-            'property_slug' => strtolower(str_replace(' ', '-', $request->property_name)),
-            'property_status' => $request->property_status,
-            'lowest_price' => $request->lowest_price,
-            'house_mortgage' => $request->house_mortgage,
-            'rent' => $request->rent,
-            'short_desc' => $request->short_desc,
-            'long_desc' => $request->long_desc,
-            'bedrooms' => $request->bedrooms,
-            'bathrooms' => $request->bathrooms,
-            'garage' => $request->garage,
-            'foundation_size' => $request->foundation_size,
-            'property_size' => $request->property_size,
-            'property_video' => $request->property_video,
-            'address' => $request->address,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-            'featured' => $request->featured,
-            'hot' => $request->hot,
-            'agent_id' => $request->agent_id,
-            'status' => 1,
+            'id' => $request->id,
+            'owner' => $request->owner,
+            'phone' => $request->phone,
+            'onvan' => $request->onvan,
+            'status' => $request->status,
+            'price' => $request->price,
+            'rooms' => $request->rooms,
+            'tozihat' => $request->tozihat,
+            'masahat' => $request->masahat,
+            'zirbana' => $request->zirbana,
+            'jahat' => $request->jahat,
+            'nama' => $request->nama,
+            'sanad' => $request->sanad,
+            'adress' => $request->adress,
+            'tozihat2' => $request->tozihat2,            
             'created_at' => Carbon::now(),
         ]);
-        return view('frontend.formForUs', compact('types', 'properties', 'count'));
+        return view('frontend.formForUsShow', compact('formForUs'));
     }
 }

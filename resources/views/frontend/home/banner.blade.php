@@ -300,6 +300,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
                         <ul class="tab-btns tab-buttons centred clearfix">
                             <li class="tab-btn active-btn" data-tab="#tab-1">خرید و فروش</li>
                             <li class="tab-btn" data-tab="#tab-2">رهن و اجاره</li>
+                            <li class="tab-btn" data-tab="#tab-3">بر اساس قیمت</li>
                         </ul>
                     </div>
                     <div class="tabs-content info-group">
@@ -387,6 +388,26 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                                     </div>
                                                 </li>
                                             </ul>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab" id="tab-3">
+                            <div class="inner-box">
+                                <div class="top-search">
+                                    <form class="search-form" action="{{ route('priceFilter.property.search') }}"
+                                        method="POST">
+                                        @csrf
+
+                                        <div class="row p-2">
+                                            <div class="col-12 form-group form-control rounded-pill">
+                                                <label for="price_range">Price Range:</label>
+                                                <input type="range" class="form-control-range" id="price_range"
+                                                    name="price_range" min="500000000" max="500000000000"
+                                                    step="500000000">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Filter</button>
                                         </div>
 
                                     </form>

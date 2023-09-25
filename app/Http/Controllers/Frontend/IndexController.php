@@ -168,7 +168,18 @@ class IndexController extends Controller
                 ->where('property_status', 'buy')
                 ->get();
         }
+
         return view('frontend.property.property_search', compact('property'));
+    }
+    public function pricePropertySearch(Request $request)
+    {
+        $priceRange = $request->input('price_range');
+        $maxPrice = intval($priceRange);
+        $property = Property::whereBetween('lowest_price', [100000, $maxPrice])
+            ->get()->sortByDesc('lowest_price');
+        
+
+        return view('frontend.property.priceFilter_property', compact('property'));
     }
     public function rentPropertySearch(Request $request)
     {
@@ -243,7 +254,7 @@ class IndexController extends Controller
             'nama' => $request->nama,
             'sanad' => $request->sanad,
             'adress' => $request->adress,
-            'tozihat2' => $request->tozihat2,            
+            'tozihat2' => $request->tozihat2,
             'created_at' => Carbon::now(),
         ]);
         return view('frontend.formForUsShow', compact('formForUs'));

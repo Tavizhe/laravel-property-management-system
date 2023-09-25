@@ -14,7 +14,7 @@
                 $link = [route('blog.list'), route('Index.kojanajafabad'), route('formForUsShow'),
                 route('ShowRequestForProperty.ShowRequest'), route('FrontEndAllTypes.index')];
                 @endphp
-                <div style="align-items: center;justify-content: center;" class="row">
+                <div style="justify-content: center;" class="row">
                     @for ($i = 0; $i < count($img); $i++) <div class="col-md-2">
                         <div class="category-block-one">
                             <div class="position-relative">

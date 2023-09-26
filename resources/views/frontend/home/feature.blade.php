@@ -13,8 +13,16 @@
                 <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="inner-box">
                         <div class="image-box">
+                            @php
+                            $type = $item->pType_id;
+                            if (!empty($item->property_thumbnail)) {
+                            $property_thumbnail = $item->property_thumbnail;
+                            } else {
+                            $property_thumbnail = 'upload/no-image/' . $type . '.jpg';
+                            }
+                            @endphp
                             <figure class="image"><img style="height: 374px ;weight:320px"
-                                    src="{{ asset($item->property_thumbnail) }}" alt=""></figure>
+                                    src="{{ asset($property_thumbnail) }}" alt=""></figure>
                             <span class="category">جدید</span></span>
                         </div>
                         <div class="lower-content">
@@ -26,8 +34,7 @@
                                 </div>
                                 <hr>
                                 <div class="buy-btn pull-left">
-                                    <a
-                                        href="{{ url('/property/type' . '/' . $item->type->id) }}">{{
+                                    <a href="{{ url('/property/type' . '/' . $item->type->id) }}">{{
                                         $item->type->type_name }}</a>
                                 </div>
                                 @php

@@ -17,9 +17,7 @@ $setting = App\Models\SiteSetting::find(1);
         <div class="outer-box">
             <div class="main-box">
                 <div class="logo-box">
-                    <figure class="logo"><a href="{{ url('/') }}"><img
-                                style="width:140px; height:60px; padding: 1px 0px;" src="{{ asset($setting->logo) }}"
-                                alt=""></a>
+                    <figure class="logo p-2"><a href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}" alt=""></a>
                     </figure>
                 </div>
                 <div class="menu-area clearfix">
@@ -38,8 +36,8 @@ $setting = App\Models\SiteSetting::find(1);
                                         href="{{ route('blog.list') }}"><span>مقالات</span></a></li>
                                 <li><a style="text-decoration: none"
                                         href="{{ route('Index.kojanajafabad') }}"><span>کارشناسی ملک</span></a></li>
-                                <li><a style="text-decoration: none"
-                                        href="{{ route('formForUsShow') }}"><span>ثبت درخواست
+                                <li><a style="text-decoration: none" href="{{ route('formForUsShow') }}"><span>ثبت
+                                            درخواست
                                             ملک</span></a></li>
                                 <li class="dropdown">
                                     <a style="text-decoration: none"

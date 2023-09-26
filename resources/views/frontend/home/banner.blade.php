@@ -10,6 +10,114 @@ $ptypes = App\Models\PropertyType::latest()->get();
         border-top: 20px solid #ffa600;
     }
 </style>
+<style>
+    /* Import Google Font - Poppins */
+    @import url('https:
+
+
+        ::selection {
+            color: #fff;
+            background: #17A2B8;
+        }
+
+        .price-input {
+            width: 100%;
+            display: flex;
+            margin: 30px 0 35px;
+        }
+
+        .wrapper {
+            width: 400px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px 25px 40px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-input .field {
+            display: flex;
+            width: 100%;
+            height: 45px;
+            align-items: center;
+        }
+
+        .field input {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            font-size: 19px;
+            margin-left: 12px;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid #999;
+            -moz-appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .price-input .separator {
+            width: 130px;
+            display: flex;
+            font-size: 19px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider {
+            height: 5px;
+            position: relative;
+            background: #ddd;
+            border-radius: 5px;
+        }
+
+        .slider .progress {
+            height: 100%;
+            left: 25%;
+            right: 25%;
+            position: absolute;
+            border-radius: 5px;
+            background: #17A2B8;
+        }
+
+        .range-input {
+            position: relative;
+        }
+
+        .range-input input {
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            top: -5px;
+            background: none;
+            pointer-events: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            height: 17px;
+            width: 17px;
+            border-radius: 50%;
+            background: #17A2B8;
+            pointer-events: auto;
+            -webkit-appearance: none;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            height: 17px;
+            width: 17px;
+            border: none;
+            border-radius: 50%;
+            background: #17A2B8;
+            pointer-events: auto;
+            -moz-appearance: none;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+        }
+</style>
 {{-- <section style="background-color: black" class="banner-section">
     <div class="container">
         <div class="row justify-content-center">
@@ -399,17 +507,30 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                     <form class="search-form" action="{{ route('priceFilter.property.search') }}"
                                         method="POST">
                                         @csrf
-
-                                        <div class="row p-2">
-                                            <div class="col-12 form-group form-control rounded-pill">
-                                                <label for="price_range">Price Range:</label>
-                                                <input type="range" class="form-control-range" id="price_range"
-                                                    name="price_range" min="500000000" max="500000000000"
-                                                    step="500000000">
+                                        <div class="row pb-2">
+                                            <div style="flex-wrap: nowrap;">
+                                                <div class="price-input">
+                                                    <div class="field">
+                                                        <span>حداقل</span>
+                                                        <input type="number" class="input-min" value="25500000000">
+                                                    </div>
+                                                    <div class="separator">-</div>
+                                                    <div class="field">
+                                                        <span>حداکثر</span>
+                                                        <input type="number" class="input-max" value="100000000000">
+                                                    </div>
+                                                </div>
+                                                <div class="slider">
+                                                    <div class="progress"></div>
+                                                </div>
+                                                <div class="range-input">
+                                                    <input type="range" class="range-min" min="1000000000"
+                                                        max="100000000000" value="1000000000" step="500000000">
+                                                    <input type="range" class="range-max" min="1000000000"
+                                                        max="100000000000" value="100000000000" step="500000000">
+                                                </div>
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Filter</button>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
@@ -419,4 +540,49 @@ $ptypes = App\Models\PropertyType::latest()->get();
             </div>
         </div>
     </div>
+    <script>
+        const rangeInput = document.querySelectorAll(".range-input input"), 
+           priceInput = document.querySelectorAll(".price-input input"), 
+           range = document.querySelector(".slider .progress"); 
+       
+       let priceGap = 1000; 
+       
+       priceInput.forEach(input => { 
+           input.addEventListener("input", e => { 
+               let minPrice = parseInt(priceInput[0].value), 
+                   maxPrice = parseInt(priceInput[1].value); 
+       
+               if ((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max) { 
+                   if (e.target.className === "input-min") { 
+                       rangeInput[0].value = minPrice; 
+                       range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%"; 
+                   } else {
+                       rangeInput[1].value = maxPrice; 
+                       range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%"; 
+                   }
+               }
+           });
+       });
+       
+       rangeInput.forEach(input => { 
+           input.addEventListener("input", e => { 
+               let minVal = parseInt(rangeInput[0].value), 
+                   maxVal = parseInt(rangeInput[1].value); 
+       
+               if ((maxVal - minVal) < priceGap) { 
+                   if (e.target.className === "range-min") { 
+                       rangeInput[0].value = maxVal - priceGap; 
+                   } else {
+                       rangeInput[1].value = minVal + priceGap; 
+                   }
+               } else {
+                   priceInput[0].value = minVal; 
+                   priceInput[1].value = maxVal; 
+                   range.style.right = ((minVal / rangeInput[0].max) * 100) + "%"; 
+                   range.style.left = 100 - (maxVal / rangeInput[1].max) * 100 + "%"; 
+               }
+           });
+       });
+       
+    </script>
 </section>

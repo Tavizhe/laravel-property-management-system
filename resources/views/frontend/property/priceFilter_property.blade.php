@@ -46,7 +46,7 @@
                 <div class="property-content-side">
                     <div class="item-shorting clearfix">
                         <div class="left-column pull-right">
-                            <h5>نتیجه جستجو: <span>نمایش {{ count($property) }} مورد از  ملک</span></h5>
+                            <h5>نتیجه جستجو: <span>نمایش {{ count($property) }} مورد از ملک</span></h5>
                         </div>
                         <div class="right-column pull-right clearfix">
                         </div>
@@ -81,7 +81,7 @@
                                                         @if ($item->lowest_price != 0)
                                                         <h6>مبلغ</h6>
                                                         <h4>{{ number_format($item->lowest_price, 0, '.', ',') }}
-                                                            میلیون
+
                                                             تومان</h4>
                                                         @endif
                                                     </div>
@@ -89,7 +89,7 @@
                                                         @if ($item->house_mortgage != 0)
                                                         <h6>رهن</h6>
                                                         <h4>{{ number_format($item->house_mortgage, 0, '.', ',') }}
-                                                            میلیون تومان
+                                                            تومان
                                                         </h4>
                                                         @endif
                                                     </div>

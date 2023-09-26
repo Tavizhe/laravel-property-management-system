@@ -56,7 +56,7 @@
                                                         @if ($item->lowest_price != 0)
                                                         <h6>مبلغ</h6>
                                                         <h4>{{ number_format($item->lowest_price, 0, '.', ',') }}
-                                                            میلیون
+
                                                             تومان</h4>
                                                         @endif
                                                     </div>
@@ -64,7 +64,7 @@
                                                         @if ($item->house_mortgage != 0)
                                                         <h6>رهن</h6>
                                                         <h4>{{ number_format($item->house_mortgage, 0, '.', ',') }}
-                                                            میلیون تومان
+                                                            تومان
                                                         </h4>
                                                         @endif
                                                     </div>

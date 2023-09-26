@@ -39,49 +39,56 @@
         </div>
     </div>
 </section>
-<div class="page-content">
-    @php
-    $ptype = App\Models\PropertyType::latest()->get();
-    @endphp
-    <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
-            <div class="sec-title centred">
-                <h5 style="color: #FFD700" class="fw-bold text-center mt-4 mb-3 border p-2 rounded-pill bg-color-2">دسته
-                    بندی املاک</h5>
-                </h5>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="container">
-                        <div class="row ">
-                            @foreach ($types as $key => $item)
-                            @php
-                            $property = App\Models\Property::where('ptype_id', $item->id)->get();
-                            @endphp
-                            <div class="col-md-3">
-                                <ul class="category-list clearfix">
-                                    <div class="category-block-one">
-                                        <div style="background-image: url('/{{ $item->type_icon }}');background-size: cover; height:210px;wieght:182px"
-                                            class="inner-box center m-5">
-                                            <div class="overlay"></div>
-                                            <h5 class="center" style="text-align: center"><a
-                                                    style="background-color: white;border-radius: 10px;width: 7ch;text-decoration: none;text-align: center"
-                                                    href="{{ route('property.type', $item->id) }}">{{ $item->type_name
-                                                    }}</a>
-                                                <hr><span>{{ count($property) }}</span>
-                                            </h5>
+<section>
+    <div class="page-content">
+        @php
+        $ptype = App\Models\PropertyType::latest()->get();
+        @endphp
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="sec-title centred">
+                    <h5 style="color: #FFD700" class="fw-bold text-center mt-4 mb-3 border p-2 rounded-pill bg-color-2">
+                        دسته
+                        بندی املاک</h5>
+                    </h5>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row ">
+                                @foreach ($types as $key => $items)
+                                @php
+                                $property = App\Models\Property::where('ptype_id', $items->id)->get();
+                                @endphp
+                                <div class="col-md-3">
+                                    <ul class="category-list clearfix">
+                                        <div class="category-block-one">
+                                            <div style="background-image: url('/{{ $items->type_icon }}');background-size: cover; height:210px;wieght:182px"
+                                                class="inner-box center m-5">
+                                                <div class="overlay"></div>
+                                                <h5 class="center" style="text-align: center"><a
+                                                        style="background-color: white;border-radius: 10px;width: 7ch;text-decoration: none;text-align: center"
+                                                        href="{{ route('property.type', $items->id) }}">{{
+                                                        $items->type_name
+                                                        }}</a>
+                                                    <hr><span>{{ count($property) }}</span>
+                                                </h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                </ul>
+                                    </ul>
+                                </div>
+                                @endforeach
                             </div>
-                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+
+
+
 <section class="property-page-section property-list">
     <div class="auto-container">
         <div class="row clearfix">
@@ -97,7 +104,24 @@
                             <div class="deals-block-one">
                                 <div class="inner-box">
                                     <div class="image-box">
-                                        <figure class="image"><img src="{{ asset($item->property_thumbnail) }}" alt=""
+                                        @php
+                                        $idString = strval($item->id);
+                                        $y = 'upload/property/multi-image/' . $idString;
+                                        $imageTrue = glob($y . '/*.jpg');
+                                        if (!empty($imageTrue)) {
+                                        $type = $item->pType_id;
+                                        if (!empty($item->property_thumbnail)) {
+                                        $property_thumbnail = $item->property_thumbnail;
+                                        } else {
+                                        $property_thumbnail = 'upload/no-image/' . $type . '.jpg';
+                                        }
+                                        $firstImage = $property_thumbnail;
+                                        }else{
+                                        //$firstImage = $imageTrue;
+                                        echo "$imageTrue!";
+                                        }
+                                        @endphp
+                                        <figure class="image"><img src="{{ asset($firstImage) }}" alt=""
                                                 style="width:300px; height:350px;"></figure>
                                     </div>
                                     <div class="lower-content">
@@ -129,19 +153,23 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         @if ($item->lowest_price != 0)
+                                                        @php
+                                                        $price = intval($item->lowest_price);
+                                                        @endphp
+                                                        @if ($price != 0)
                                                         <h6>مبلغ</h6>
-                                                        <h4>{{ number_format($item->lowest_price, 0, '.',
-                                                            ',') }}
-                                                            میلیون
-                                                            تومان</h4>
+                                                        <h4>{{ number_format($price, 0, '.',',') }} تومان</h4>
+                                                        {{-- <h4>{{ print_r($item->lowest_price) }}</h4> --}}
                                                         @endif
+                                                        @endif
+
                                                     </div>
                                                     <div class="col-lg-6">
                                                         @if ($item->house_mortgage != 0)
                                                         <h6>رهن</h6>
                                                         <h4>{{ number_format($item->house_mortgage, 0, '.',
                                                             ',') }}
-                                                            میلیون تومان
+                                                            تومان
                                                         </h4>
                                                         @endif
                                                     </div>

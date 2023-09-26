@@ -11,112 +11,108 @@ $ptypes = App\Models\PropertyType::latest()->get();
     }
 </style>
 <style>
-    /* Import Google Font - Poppins */
-    @import url('https:
+    ::selection {
+        color: #fff;
+        background: #17A2B8;
+    }
 
+    .price-input {
+        width: 100%;
+        display: flex;
+        margin: 30px 0 35px;
+    }
 
-        ::selection {
-            color: #fff;
-            background: #17A2B8;
-        }
+    .wrapper {
+        width: 400px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px 25px 40px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+    }
 
-        .price-input {
-            width: 100%;
-            display: flex;
-            margin: 30px 0 35px;
-        }
+    .price-input .field {
+        display: flex;
+        width: 100%;
+        height: 45px;
+        align-items: center;
+    }
 
-        .wrapper {
-            width: 400px;
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px 25px 40px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
-        }
+    .field input {
+        width: 100%;
+        height: 100%;
+        outline: none;
+        font-size: 19px;
+        margin-left: 12px;
+        border-radius: 5px;
+        text-align: center;
+        border: 1px solid #999;
+        -moz-appearance: textfield;
+    }
 
-        .price-input .field {
-            display: flex;
-            width: 100%;
-            height: 45px;
-            align-items: center;
-        }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
 
-        .field input {
-            width: 100%;
-            height: 100%;
-            outline: none;
-            font-size: 19px;
-            margin-left: 12px;
-            border-radius: 5px;
-            text-align: center;
-            border: 1px solid #999;
-            -moz-appearance: textfield;
-        }
+    .price-input .separator {
+        width: 130px;
+        display: flex;
+        font-size: 19px;
+        align-items: center;
+        justify-content: center;
+    }
 
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-        }
+    .slider {
+        height: 5px;
+        position: relative;
+        background: #ddd;
+        border-radius: 5px;
+    }
 
-        .price-input .separator {
-            width: 130px;
-            display: flex;
-            font-size: 19px;
-            align-items: center;
-            justify-content: center;
-        }
+    .slider .progress {
+        height: 100%;
+        left: 25%;
+        right: 25%;
+        position: absolute;
+        border-radius: 5px;
+        background: #17A2B8;
+    }
 
-        .slider {
-            height: 5px;
-            position: relative;
-            background: #ddd;
-            border-radius: 5px;
-        }
+    .range-input {
+        position: relative;
+    }
 
-        .slider .progress {
-            height: 100%;
-            left: 25%;
-            right: 25%;
-            position: absolute;
-            border-radius: 5px;
-            background: #17A2B8;
-        }
+    .range-input input {
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        top: -5px;
+        background: none;
+        pointer-events: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
 
-        .range-input {
-            position: relative;
-        }
+    input[type="range"]::-webkit-slider-thumb {
+        height: 17px;
+        width: 17px;
+        border-radius: 50%;
+        background: #17A2B8;
+        pointer-events: auto;
+        -webkit-appearance: none;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    }
 
-        .range-input input {
-            position: absolute;
-            width: 100%;
-            height: 5px;
-            top: -5px;
-            background: none;
-            pointer-events: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            height: 17px;
-            width: 17px;
-            border-radius: 50%;
-            background: #17A2B8;
-            pointer-events: auto;
-            -webkit-appearance: none;
-            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-        }
-
-        input[type="range"]::-moz-range-thumb {
-            height: 17px;
-            width: 17px;
-            border: none;
-            border-radius: 50%;
-            background: #17A2B8;
-            pointer-events: auto;
-            -moz-appearance: none;
-            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-        }
+    input[type="range"]::-moz-range-thumb {
+        height: 17px;
+        width: 17px;
+        border: none;
+        border-radius: 50%;
+        background: #17A2B8;
+        pointer-events: auto;
+        -moz-appearance: none;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    }
 </style>
 {{-- <section style="background-color: black" class="banner-section">
     <div class="container">
@@ -409,6 +405,7 @@ $ptypes = App\Models\PropertyType::latest()->get();
                             <li class="tab-btn active-btn" data-tab="#tab-1">خرید و فروش</li>
                             <li class="tab-btn" data-tab="#tab-2">رهن و اجاره</li>
                             <li class="tab-btn" data-tab="#tab-3">بر اساس قیمت</li>
+                            <li class="tab-btn" data-tab="#tab-4">بر اساس کد</li>
                         </ul>
                     </div>
                     <div class="tabs-content info-group">
@@ -530,6 +527,37 @@ $ptypes = App\Models\PropertyType::latest()->get();
                                                         max="100000000000" value="100000000000" step="500000000">
                                                 </div>
                                             </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab active-tab" id="tab-4">
+                            <div class="inner-box">
+                                <div class="top-search">
+                                    <form action="{{ route('buy.property.search') }}" method="post" class="search-form">
+                                        @csrf
+                                        <div class="row p-2">
+                                            <ul class="d-flex" style="flex-wrap: nowrap;">
+                                                <li style="flex-grow: 1;">
+                                                    <div class="form-group">
+                                                        <div class="field-input">
+                                                            <i class="fas fa-search"></i>
+                                                            <input style="padding-right: 5px;"
+                                                                class="form-control rounded-pill" type="search"
+                                                                name="search" placeholder="کد ملک را وارد فرمایید"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li style="flex-grow: 0;" class="pt-2">
+                                                    <div class="form-group" style="height: 50px;">
+                                                        <button type="submit"
+                                                            class="btn-submit btn btn-theme btn-inverse rounded-pill">جست
+                                                            و جو</button>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </form>
                                 </div>

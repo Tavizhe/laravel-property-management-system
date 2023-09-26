@@ -177,7 +177,7 @@ class IndexController extends Controller
         $maxPrice = intval($priceRange);
         $property = Property::whereBetween('lowest_price', [100000, $maxPrice])
             ->get()->sortByDesc('lowest_price');
-        
+
 
         return view('frontend.property.priceFilter_property', compact('property'));
     }
@@ -231,6 +231,7 @@ class IndexController extends Controller
         $properties = Property::orderByDesc('id')->paginate(5);
         $types = PropertyType::latest()->get();
         $count = Property::count();
+
         return view('frontend.type.all_type', compact('types', 'properties', 'count'));
     }
     public function formForUsShow()

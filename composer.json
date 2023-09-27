@@ -6,8 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "anhskohbo/no-captcha": "^3.5",
-        "barryvdh/laravel-dompdf": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "haruncpi/laravel-id-generator": "^1.1",
         "intervention/image": "^2.7",
@@ -19,8 +17,8 @@
         "spatie/laravel-permission": "^5.10"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.9",
         "fakerphp/faker": "^1.9.1",
-        "laravel/breeze": "^1.19",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "laravelflare/flare": "^0.1.15",

@@ -113,80 +113,7 @@
         -moz-appearance: none;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
     }
-</style>
-{{-- <section style="background-color: black" class="banner-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="content-box text-center">
-                    <h2 class="text-warning">گروه مشاورین املاک ملک گستر</h2>
-                    <hr class="hr text-white">
-                    <h4 class="text-warning">بهترین املاک شهر و محل اقامت خود را پیدا کنید</h4>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="search-field">
-        <div class="tabs-box">
-            <div class="tab-btn-box">
-                <ul class="tab-btns tab-buttons">
-                    <li class="tab-btn active-btn" data-tab="#tab-1">خرید و فروش</li>
-                    <li class="tab-btn" data-tab="#tab-2">رهن و اجاره</li>
-                </ul>
-            </div>
-            <div class="tab active-tab" id="tab-1">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="top-search rounded-pill
-                        ">
-                                <form action="search.php" method="post">
-                                    @csrf
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <ul class="col-md-6 col-lg-4 d-flex" style="flex-wrap: nowrap;">
-                                            <li>
-                                                <div class="form-group">
-                                                    <div class="field-input">
-                                                        <i class="fas fa-search"></i>
-                                                        <input class="form-control rounded-pill" type="search"
-                                                            name="search" placeholder="اطلاعات ملک را وارد فرمایید"
-                                                            required>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-group">
-                                                    <div class="select-box">
-                                                        <select name="pType_id" class="form-control rounded-pill">
-                                                            <option>لیست املاک</option>
-                                                            @foreach ($ptypes as $type)
-                                                            <option value="{{ $type->type_name }}">{{ $type->type_name
-                                                                }}
-                                                            </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary rounded-pill">جست و
-                                                        جو</button>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
-<style>
+
     form.form-search {
         font-size: 16px;
         margin-bottom: 10px;
@@ -303,88 +230,6 @@
         border-color: #ff5a5f;
     }
 </style>
-{{-- <section style="background-color: black" class="banner-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="content-box text-center">
-                    <h2 class="text-warning">گروه مشاورین املاک ملک گستر</h2>
-                    <hr class="hr text-white">
-                    <h4 class="text-warning">بهترین املاک شهر و محل اقامت خود را پیدا کنید</h4>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="search-field">
-        <div class="tabs-box">
-            <div class="row d-flex justify-content-center align-items-start">
-                <div class="col-12 col-md-6">
-                    <div class="tab-btn-box">
-                        <ul class="tab-btns tab-buttons">
-                            <li class="tab-btn active-btn" data-tab="#tab-1">خرید و فروش</li>
-                            <li class="tab-btn" data-tab="#tab-2">رهن و اجاره</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab active-tab" id="tab-1">
-            <div class="container">
-                <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-12">
-                        <div class="top-search rounded-pill">
-                            <form class="form-search style1" action="search.php" method="post">
-                                @csrf
-                                <div class="search-form-inner">
-                                    <div class="main-inner clearifx">
-                                        <div class="content-main-inner rounded-pill">
-                                            <div class="row p-2">
-                                                <ul class="d-flex" style="flex-wrap: nowrap;">
-                                                    <li style="flex-grow: 1;">
-                                                        <div class="form-group">
-                                                            <div class="field-input">
-                                                                <i class="fas fa-search"></i>
-                                                                <input class="form-control rounded-pill" type="search"
-                                                                    name="search"
-                                                                    placeholder="اطلاعات ملک را وارد فرمایید" required>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li style="flex-grow: 1;">
-                                                        <div class="form-group">
-                                                            <div class="select-box">
-                                                                <select name="pType_id"
-                                                                    class="form-control rounded-pill">
-                                                                    <option>لیست املاک</option>
-                                                                    @foreach ($ptypes as $type)
-                                                                    <option value="{{ $type->type_name }}">{{
-                                                                        $type->type_name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li style="flex-grow: 0;" class="pt-2">
-                                                        <div class="form-group" style="height: 50px;">
-                                                            <button type="submit"
-                                                                class="btn-submit btn btn-theme btn-inverse rounded-pill">جست
-                                                                و جو</button>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
 <section style="background-color: black" class="banner-section">
     <div class="auto-container">
         <div class="inner-container">
@@ -501,45 +346,56 @@
                         </div>
                         <div class="tab" id="tab-3">
                             <div class="inner-box">
-                                <div class="top-search pb-5 pr-5 pl-5">
-                                    <div class="container">
-                                        <div class="col">
-                                            <header class="field d-flex align-items-center justify-content-center">
-                                                <h4>محدوده قیمت مورد نظر خود را وارد فرمایید:</h4>
-                                            </header>
-                                            {{-- <div class="row"> --}}
-                                            <div class="price-input">
-                                                <div class="field d-flex align-items-center justify-content-center">
-                                                    <div class="col-sm-1">
-                                                        <span>Min</span>
-                                                        <input type="number" class="input-min" value="2500">
-                                                    </div>
-                                                    <div class="separator">-</div>
-                                                    <div class="col-sm-1">
-                                                        <span>Max</span>
-                                                        <input type="number" class="input-max" value="7500">
+                                <div class="top-search pr-5 pl-5">
+                                    <form action="{{ route('filter.property.search') }}" method="post"
+                                        class="search-form">
+                                        @csrf
+                                        <div class="container">
+                                            <div class="col">
+                                                <header class="field d-flex align-items-center justify-content-center">
+                                                    <h6>محدوده قیمت مورد نظر خود را بر اساس میلیون وارد فرمایید:
+                                                        ( برای مثال اینجا 2.5 میلیارد تا 7.5 میلیارد تنظیم شده است)</h6>
+                                                </header>
+                                                <div class="price-input">
+                                                    <div class="field d-flex align-items-center justify-content-center">
+                                                        <div class="col-sm-1">
+                                                            <span>حداقل</span>
+                                                            <input for type="number" name="min" class="input-min text-nowrap"
+                                                                value="25000">
+                                                        </div>
+                                                        <div class="separator">-</div>
+                                                        <div class="col-sm-1">
+                                                            <span>حداکثر</span>
+                                                            <input type="number" name="max" class="input-max text-nowrap"
+                                                                value="75000">
+                                                        </div>
+                                                        <div
+                                                            class="col-sm-2 p-2 d-flex align-items-center justify-content-center">
+                                                            <button type="submit"
+                                                                class="btn-submit btn btn-theme btn-inverse rounded-pill">جست
+                                                                و جو</button>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="slider">
+                                                    <div class="progress"></div>
+                                                </div>
+                                                <div class="range-input">
+                                                    <input type="range" class="range-min" min="0"
+                                                        max="100000" value="25000" step="1">
+                                                    <input type="range" class="range-max" min="0"
+                                                        max="100000" value="75000" step="1">
+                                                </div>
                                             </div>
-                                            <div class="slider">
-                                                <div class="progress"></div>
-                                            </div>
-                                            <div class="range-input">
-                                                <input type="range" class="range-min" min="0"
-                                                    max="10000" value="2500" step="100">
-                                                <input type="range" class="range-max" min="0"
-                                                    max="10000" value="7500" step="100">
-                                            </div>
-                                            {{-- </div> --}}
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                         <div class="tab" id="tab-4">
                             <div class="inner-box">
                                 <div class="top-search">
-                                    <form action="{{ route('buy.property.search') }}" method="post"
+                                    <form action="{{ route('CodeSearch.property.search') }}" method="post"
                                         class="search-form">
                                         @csrf
                                         <div class="row p-2">
@@ -573,22 +429,26 @@
             </div>
         </div>
     </div>
-    {{-- <script>
+    <script>
         const rangeInput = document.querySelectorAll(".range-input input"),
             priceInput = document.querySelectorAll(".price-input input"),
             range = document.querySelector(".slider .progress");
-        let priceGap = 1000;
+        const formatter = new Intl.NumberFormat('en-US');
+        let priceGap = 100;
         priceInput.forEach(input => {
             input.addEventListener("input", e => {
                 let minPrice = parseInt(priceInput[0].value),
                     maxPrice = parseInt(priceInput[1].value);
-                if ((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max) {
+                let formattedMinPrice = formatter.format(minPrice),
+                    formattedMaxPrice = formatter.format(maxPrice);
+                if ((formattedMaxPrice - formattedMinPrice >= priceGap) && formattedMaxPrice <= rangeInput[
+                        1].max) {
                     if (e.target.className === "input-min") {
-                        rangeInput[0].value = minPrice;
-                        range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
+                        rangeInput[0].value = formattedMinPrice;
+                        range.style.left = ((formattedMinPrice / rangeInput[0].max) * 100) + "%";
                     } else {
-                        rangeInput[1].value = maxPrice;
-                        range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+                        rangeInput[1].value = formattedMaxPrice;
+                        range.style.right = 100 - (formattedMaxPrice / rangeInput[1].max) * 100 + "%";
                     }
                 }
             });
@@ -611,46 +471,5 @@
                 }
             });
         });
-    </script> --}}
-    {{-- <form class="search-form" action="{{ route('priceFilter.property.search') }}"
-                                        method="POST">
-                                        @csrf                                         --}}
-    {{-- <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <div class="price-input">
-                                                        <div class="field">
-                                                            <label for="min_price">حداقل: </label>
-                                                            <input type="number" id="min_price"
-                                                                class="input-min form-control" value="25500000000"
-                                                                name="min_price">
-                                                        </div>
-                                                        <div class="separator">-</div>
-                                                        <div class="field">
-                                                            <label for="max_price">حداکثر: </label>
-                                                            <input type="number" id="max_price"
-                                                                class="input-max form-control" value="100000000000"
-                                                                name="max_price">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div style="flex-grow: 1;" class="col-md-2 d-flex align-items-center">
-                                                    <div class="form-group" style="height: 50px;">
-                                                        <button type="submit"
-                                                            class="btn-submit btn btn-theme btn-inverse rounded-pill">جست
-                                                            و جو</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> --}}
-    {{-- <div class="slider">
-                                            <div class="progress"></div>
-                                            <input type="range" class="range-min" min="1000000000"
-                                                max="100000000000" value="1000000000" step="500000000"
-                                                name="min_range">
-                                            <input type="range" class="range-max" min="1000000000"
-                                                max="100000000000" value="100000000000" step="500000000"
-                                                name="max_range">
-                                        </div> --}}
-    {{-- </form> --}}
+    </script>
 </section>

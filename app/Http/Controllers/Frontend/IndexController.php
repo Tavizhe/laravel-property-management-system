@@ -64,69 +64,6 @@ class IndexController extends Controller
             )
         );
     }
-    public function PropertyMessage(Request $request)
-    {
-        $pid = $request->property_id;
-        $aid = $request->agent_id;
-        if (Auth::check()) {
-            PropertyMessage::insert([
-                'user_id' => Auth::user()->id,
-                'agent_id' => $aid,
-                'property_id' => $pid,
-                'msg_name' => $request->msg_name,
-                'msg_email' => $request->msg_email,
-                'msg_phone' => $request->msg_phone,
-                'message' => $request->message,
-                'created_at' => Carbon::now(),
-            ]);
-            $notification = [
-                'message' => 'Send Message Successfully',
-                'alert-type' => 'success',
-            ];
-            return redirect()->back()->with($notification);
-        } else {
-            $notification = [
-                'message' => 'Plz Login Your Account First',
-                'alert-type' => 'error',
-            ];
-            return redirect()->back()->with($notification);
-        }
-    }
-    public function AgentDetails($id)
-    {
-        $agent = User::findOrFail($id);
-        $property = Property::where('agent_id', $id)->get();
-        $featured = Property::where('featured', '1')->limit(3)->get();
-        $rentProperty = Property::where('property_status', 'rent')->get();
-        $buyProperty = Property::where('property_status', 'buy')->get();
-        return view('frontend.agent.agent_details', compact('agent', 'property', 'featured', 'rentProperty', 'buyProperty'));
-    }
-    public function AgentDetailsMessage(Request $request)
-    {
-        $aid = $request->agent_id;
-        if (Auth::check()) {
-            PropertyMessage::insert([
-                'user_id' => Auth::user()->id,
-                'agent_id' => $aid,
-                'msg_name' => $request->msg_name,
-                'msg_email' => $request->msg_email,
-                'msg_phone' => $request->msg_phone,
-                'message' => $request->message,
-                'created_at' => Carbon::now(),
-            ]);
-            $notification = [
-                'message' => 'Send Message Successfully',
-                'alert-type' => 'success',
-            ];
-            return redirect()->back()->with($notification);
-        } else {
-            $notification = [
-                'message' => 'Plz Login Your Account First',
-                'alert-type' => 'error',
-            ];
-            return redirect()->back()->with($notification);
-        }
-    }
     public function buyProperty()
     {
         $property = Property::where('status', '1')->where('property_status', 'buy')->orderByDesc('id')->paginate(5);
@@ -136,7 +73,7 @@ class IndexController extends Controller
     public function PropertyType($id)
     {
         $property = Property::where('status', '1')->where('pType_id', $id)->orderByDesc('id')->paginate(5);
-        $id = Property::where('status', '1')->where('pType_id', $id)->get();
+        $id = Property::where('status', '1')->where('pType_id', $id)->get()->sortByDesc('lowest_price');
         return view('frontend.property.property_type', compact('property', 'id'));
     }
     public function rentProperty()
@@ -147,27 +84,42 @@ class IndexController extends Controller
     }
     public function buyPropertySearch(Request $request)
     {
-        $request->validate([
-            'search' => 'required'
-        ]);
+        $request->validate(['search' => 'required']);
         $item = $request->search;
         $sType = $request->pType_id;
-        $property = Property::where('property_name', 'like', '%' . $item . '%')
-            ->where('property_status', 'buy')
-            ->get();
-        if ($property->isEmpty()) {
-            $property = Property::where('address', 'like', '%' . $item . '%')
-                ->where('property_status', 'buy')
-                ->get();
-        } else if ($property->isEmpty()) {
-            $property = Property::where('long_desc', 'like', '%' . $item . '%')
-                ->where('property_status', 'buy')
-                ->get();
-        } else if ($property->isEmpty()) {
-            $property = Property::where('short_desc', 'like', '%' . $item . '%')
-                ->where('property_status', 'buy')
-                ->get();
+        if ($sType != 'لیست املاک') {
+            $property = Property::where(function ($query) use ($item) {
+                $query->where('property_name', 'like', '%' . $item . '%')
+                    ->orWhere('address', 'like', '%' . $item . '%')
+                    ->orWhere('long_desc', 'like', '%' . $item . '%');
+            })
+                ->whereHas('type', function ($query) use ($sType) {
+                    $query->where('type_name', $sType);
+                })
+                ->where('Property_status', 'buy')
+                ->get()
+                ->sortByDesc('lowest_price');
+        } else {
+            // Skip querying if sType is equal to 'لیست املاک'
+            $property = Property::where(function ($query) use ($item) {
+                $query->where('property_name', 'like', '%' . $item . '%')
+                    ->orWhere('address', 'like', '%' . $item . '%')
+                    ->orWhere('long_desc', 'like', '%' . $item . '%');
+            })
+                ->where('Property_status', 'buy')
+                ->get()
+                ->sortByDesc('lowest_price');
         }
+
+
+        return view('frontend.property.property_search', compact('property'));
+    }
+    public function FilterSearch(Request $request)
+    {
+        $mixP = $request->min;
+        $maxP = $request->max;
+        $property = Property::whereBetween('lowest_price', [$mixP, $maxP])->get()
+            ->sortByDesc('lowest_price');
 
         return view('frontend.property.property_search', compact('property'));
     }
@@ -177,8 +129,6 @@ class IndexController extends Controller
         $maxPrice = intval($priceRange);
         $property = Property::whereBetween('lowest_price', [100000, $maxPrice])
             ->get()->sortByDesc('lowest_price');
-
-
         return view('frontend.property.priceFilter_property', compact('property'));
     }
     public function rentPropertySearch(Request $request)
@@ -186,32 +136,66 @@ class IndexController extends Controller
         $request->validate(['search' => 'required']);
         $item = $request->search;
         $sType = $request->pType_id;
-        $property = Property::where('property_name', 'like', '%' . $item . '%')
-            ->where('property_status', 'rent')
-            ->get();
-        if ($property->isEmpty()) {
-            $property = Property::where('address', 'like', '%' . $item . '%')
-                ->where('property_status', 'rent')
-                ->get();
-        } else if ($property->isEmpty()) {
-            $property = Property::where('long_desc', 'like', '%' . $item . '%')
-                ->where('property_status', 'rent')
-                ->get();
-        } else if ($property->isEmpty()) {
-            $property = Property::where('short_desc', 'like', '%' . $item . '%')
-                ->where('property_status', 'rent')
-                ->get();
+        if ($sType != 'لیست املاک') {
+            $property = Property::where(function ($query) use ($item) {
+                $query->where('property_name', 'like', '%' . $item . '%')
+                    ->orWhere('address', 'like', '%' . $item . '%')
+                    ->orWhere('long_desc', 'like', '%' . $item . '%');
+            })
+                ->whereHas('type', function ($query) use ($sType) {
+                    $query->where('type_name', $sType);
+                })
+                ->where('Property_status', 'rent')
+                ->get()
+                ->sortByDesc('lowest_price');
+        } else {
+            // Skip querying if sType is equal to 'لیست املاک'
+            $property = Property::where(function ($query) use ($item) {
+                $query->where('property_name', 'like', '%' . $item . '%')
+                    ->orWhere('address', 'like', '%' . $item . '%')
+                    ->orWhere('long_desc', 'like', '%' . $item . '%');
+            })->get()
+                ->sortByDesc('lowest_price');
         }
         return view('frontend.property.property_search', compact('property'));
     }
     public function AllPropertySearch(Request $request)
     {
         $request->validate(['search' => 'required']);
-        $property_status = $request->property_status;
+        $item = $request->search;
         $sType = $request->pType_id;
-        $bedrooms = $request->bedrooms;
-        $bathrooms = $request->bathrooms;
-        $property = Property::where('status', '1')->where('bedrooms', $bedrooms)->where('bathrooms', 'like', '%' . $bathrooms . '%')->get();
+        if ($sType != 'لیست املاک') {
+            $property = Property::where(function ($query) use ($item) {
+                $query->where('property_name', 'like', '%' . $item . '%')
+                    ->orWhere('address', 'like', '%' . $item . '%')
+                    ->orWhere('long_desc', 'like', '%' . $item . '%');
+            })
+                ->whereHas('type', function ($query) use ($sType) {
+                    $query->where('type_name', $sType);
+                })
+                ->get()
+                ->sortByDesc('lowest_price');
+        } else {
+            // Skip querying if sType is equal to 'لیست املاک'
+            $property = Property::where(function ($query) use ($item) {
+                $query->where('property_name', 'like', '%' . $item . '%')
+                    ->orWhere('address', 'like', '%' . $item . '%')
+                    ->orWhere('long_desc', 'like', '%' . $item . '%');
+            })->get()
+                ->sortByDesc('lowest_price');
+        }
+        return view('frontend.property.property_search', compact('property'));
+    }
+    public function CodeSearch(Request $request)
+    {
+        $request->validate(['search' => 'required']);
+        $item = $request->search;
+
+        $property = Property::where(function ($query) use ($item) {
+            $query->where('property_name', 'like', '%' . $item . '%');
+        })->get()
+            ->sortByDesc('property_name');
+
         return view('frontend.property.property_search', compact('property'));
     }
     public function showTeam()
@@ -229,9 +213,8 @@ class IndexController extends Controller
     public function FrontEndAllTypes()
     {
         $properties = Property::orderByDesc('id')->paginate(5);
-        $types = PropertyType::latest()->get();
+        $types = PropertyType::latest()->get()->sortByDesc('lowest_price');
         $count = Property::count();
-
         return view('frontend.type.all_type', compact('types', 'properties', 'count'));
     }
     public function formForUsShow()

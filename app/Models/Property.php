@@ -16,10 +16,10 @@ class Property extends Model
         return $this->belongsTo(PropertyType::class, 'pType_id', 'id');
     }
 
-    public function user()
-    {
-        return $this->belongsTo(user::class, 'agent_id', 'id');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(user::class, 'agent_id', 'id');
+    // }
 
     // public function pState()
     // {

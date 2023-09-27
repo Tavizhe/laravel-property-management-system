@@ -37,7 +37,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('/frontend/property/priceFilter_property', [IndexController::class, 'pricePropertySearch'])->name('priceFilter.property.search');
+Route::post('/frontend/property/property_search', [IndexController::class, 'CodeSearch'])->name('CodeSearch.property.search');
+Route::post('/frontend/property/filter_search', [IndexController::class, 'FilterSearch'])->name('filter.property.search');
 Route::post('/frontend/requests/RequestForProperty', [RequestForPropertyController::class, 'RequestForPropertyStore'])->name('RequestForProperty.Store');
 Route::get('/frontend/requests/ShowRequestForProperty', [RequestForPropertyController::class, 'ShowRequest'])->name('ShowRequestForProperty.ShowRequest');
 Route::get('/frontend/contactUs', [IndexController::class, 'contactUs'])->name('contactUs');
